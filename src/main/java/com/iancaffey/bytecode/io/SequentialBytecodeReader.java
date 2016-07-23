@@ -15,7 +15,7 @@ import java.util.Map;
  * @author Ian Caffey
  * @since 1.0
  */
-public abstract class SequentialBytecodeReader<T extends BytecodeToken, V extends BytecodeVisitor> extends AbstractBytecodeReader<T, V> {
+public abstract class SequentialBytecodeReader<T extends BytecodeToken, V extends BytecodeVisitor> extends AbstractBytecodeReader<V> {
     private final T[] tokens;
     private final Map<T, BytecodeConsumer<V, DataInputStream>> consumers;
     private int index = 0;
@@ -53,13 +53,13 @@ public abstract class SequentialBytecodeReader<T extends BytecodeToken, V extend
     }
 
     @Override
-    protected boolean hasNext() {
+    protected boolean canStep() {
         return index < tokens.length;
     }
 
     @Override
     protected void step(V visitor) throws IOException {
-        if (!hasNext())
+        if (!canStep())
             throw new BufferUnderflowException();
         T token = tokens[index++];
         if (!consumers.containsKey(token))

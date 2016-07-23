@@ -1,7 +1,5 @@
 package com.iancaffey.bytecode.io;
 
-import com.iancaffey.bytecode.util.BytecodeToken;
-
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -13,7 +11,7 @@ import java.io.InputStream;
  * @author Ian Caffey
  * @since 1.0
  */
-public abstract class AbstractBytecodeReader<T extends BytecodeToken, V extends BytecodeVisitor> implements BytecodeReader<V> {
+public abstract class AbstractBytecodeReader<V extends BytecodeVisitor> implements BytecodeReader<V> {
     protected final DataInputStream stream;
 
     protected AbstractBytecodeReader(byte[] b) {
@@ -34,13 +32,13 @@ public abstract class AbstractBytecodeReader<T extends BytecodeToken, V extends 
         this.stream = stream;
     }
 
-    protected abstract void step(V visitor) throws IOException;
+    protected abstract boolean canStep();
 
-    protected abstract boolean hasNext();
+    protected abstract void step(V visitor) throws IOException;
 
     @Override
     public void accept(V visitor) throws IOException {
-        while (hasNext())
+        while (canStep())
             step(visitor);
     }
 

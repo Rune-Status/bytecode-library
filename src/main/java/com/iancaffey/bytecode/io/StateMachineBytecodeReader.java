@@ -15,7 +15,7 @@ import java.util.Map;
  * @author Ian Caffey
  * @since 1.0
  */
-public class StateMachineBytecodeReader<T extends BytecodeToken, V extends BytecodeVisitor> extends AbstractBytecodeReader<T, V> {
+public class StateMachineBytecodeReader<T extends BytecodeToken, V extends BytecodeVisitor> extends AbstractBytecodeReader<V> {
     private final Map<T, BytecodeFunction<V, DataInputStream, T>> consumers;
     private T token;
 
@@ -52,13 +52,13 @@ public class StateMachineBytecodeReader<T extends BytecodeToken, V extends Bytec
     }
 
     @Override
-    protected boolean hasNext() {
+    protected boolean canStep() {
         return token != null;
     }
 
     @Override
     protected void step(V visitor) throws IOException {
-        if (!hasNext())
+        if (!canStep())
             throw new BufferUnderflowException();
         if (!consumers.containsKey(token))
             throw new IllegalArgumentException("Unable to parse token: " + token);
