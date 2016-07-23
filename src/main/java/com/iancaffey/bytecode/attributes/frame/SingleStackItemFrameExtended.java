@@ -12,8 +12,8 @@ import com.iancaffey.bytecode.attributes.VerificationTypeInfo;
 public class SingleStackItemFrameExtended extends StackFrame {
     private final VerificationTypeInfo stack;
 
-    public SingleStackItemFrameExtended(int type, int offset, VerificationTypeInfo stack) {
-        super(type, offset);
+    public SingleStackItemFrameExtended(int offset, VerificationTypeInfo stack) {
+        super(StackFrame.SINGLE_STACK_ITEM_FRAME_EXTENDED, offset);
         this.stack = stack;
     }
 

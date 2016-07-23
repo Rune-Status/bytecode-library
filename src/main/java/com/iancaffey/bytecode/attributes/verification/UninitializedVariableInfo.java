@@ -11,8 +11,8 @@ import com.iancaffey.bytecode.attributes.VerificationTypeInfo;
 public class UninitializedVariableInfo extends VerificationTypeInfo {
     private final int offset;
 
-    public UninitializedVariableInfo(int type, int offset) {
-        super(type);
+    public UninitializedVariableInfo(int offset) {
+        super(VerificationTypeInfo.UNINITIALIZED);
         this.offset = offset;
     }
 

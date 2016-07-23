@@ -9,7 +9,7 @@ import com.iancaffey.bytecode.attributes.StackFrame;
  * @since 1.0
  */
 public class SameFrameExtended extends StackFrame {
-    public SameFrameExtended(int type, int offset) {
-        super(type, offset);
+    public SameFrameExtended(int offset) {
+        super(StackFrame.SAME_FRAME_EXTENDED, offset);
     }
 }
