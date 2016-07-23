@@ -13,5 +13,5 @@ import java.io.InputStream;
  */
 @FunctionalInterface
 public interface BytecodeConsumer<V extends BytecodeVisitor, S extends InputStream> {
-    void accept(V v, S stream) throws IOException;
+    void accept(V visitor, S stream) throws IOException;
 }

@@ -12,6 +12,6 @@ import java.io.InputStream;
  * @since 1.0
  */
 @FunctionalInterface
-public interface BytecodeFunction<V extends BytecodeVisitor, S extends InputStream, R> {
-    R apply(V v, S stream) throws IOException;
+public interface BytecodeFunction<V extends BytecodeVisitor, S extends InputStream, T> {
+    T apply(V visitor, S stream) throws IOException;
 }

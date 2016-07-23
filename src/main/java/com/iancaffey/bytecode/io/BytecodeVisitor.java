@@ -7,4 +7,9 @@ package com.iancaffey.bytecode.io;
  * @since 1.0
  */
 public interface BytecodeVisitor {
+    public default void begin() {
+    }
+
+    public default void end() {
+    }
 }

@@ -16,35 +16,35 @@ import java.util.Map;
  * @since 1.0
  */
 public class StateMachineBytecodeReader<T extends BytecodeToken, V extends BytecodeVisitor> extends AbstractBytecodeReader<T, V> {
-    private T token;
     private final Map<T, BytecodeFunction<V, DataInputStream, T>> consumers;
+    private T token;
 
-    public StateMachineBytecodeReader(byte[] b, V visitor, T start, Map<T, BytecodeFunction<V, DataInputStream, T>> consumers) {
-        super(b, visitor);
+    public StateMachineBytecodeReader(byte[] b, T start, Map<T, BytecodeFunction<V, DataInputStream, T>> consumers) {
+        super(b);
         if (start == null || consumers == null)
             throw new IllegalArgumentException();
         this.token = start;
         this.consumers = consumers;
     }
 
-    public StateMachineBytecodeReader(byte[] b, int offset, int length, V visitor, T start, Map<T, BytecodeFunction<V, DataInputStream, T>> consumers) {
-        super(b, offset, length, visitor);
+    public StateMachineBytecodeReader(byte[] b, int offset, int length, T start, Map<T, BytecodeFunction<V, DataInputStream, T>> consumers) {
+        super(b, offset, length);
         if (start == null || consumers == null)
             throw new IllegalArgumentException();
         this.token = start;
         this.consumers = consumers;
     }
 
-    public StateMachineBytecodeReader(InputStream stream, V visitor, T start, Map<T, BytecodeFunction<V, DataInputStream, T>> consumers) {
-        super(stream, visitor);
+    public StateMachineBytecodeReader(InputStream stream, T start, Map<T, BytecodeFunction<V, DataInputStream, T>> consumers) {
+        super(stream);
         if (start == null || consumers == null)
             throw new IllegalArgumentException();
         this.token = start;
         this.consumers = consumers;
     }
 
-    public StateMachineBytecodeReader(DataInputStream stream, V visitor, T start, Map<T, BytecodeFunction<V, DataInputStream, T>> consumers) {
-        super(stream, visitor);
+    public StateMachineBytecodeReader(DataInputStream stream, T start, Map<T, BytecodeFunction<V, DataInputStream, T>> consumers) {
+        super(stream);
         if (start == null || consumers == null)
             throw new IllegalArgumentException();
         this.token = start;
@@ -52,17 +52,12 @@ public class StateMachineBytecodeReader<T extends BytecodeToken, V extends Bytec
     }
 
     @Override
-    public boolean hasNext() {
+    protected boolean hasNext() {
         return token != null;
     }
 
     @Override
-    public T peek() {
-        return token;
-    }
-
-    @Override
-    public void read() throws IOException {
+    protected void step(V visitor) throws IOException {
         if (!hasNext())
             throw new BufferUnderflowException();
         if (!consumers.containsKey(token))

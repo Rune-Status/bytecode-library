@@ -31,31 +31,46 @@ public class Type {
 
     private static Pattern identifier() {
         StringBuilder builder = new StringBuilder();
-        for (Literal literal : Literal.values())
-            builder.append(String.format(NEGATION_FORMAT, literal.value()));
-        for (Keyword keyword : Keyword.values())
-            builder.append(String.format(NEGATION_FORMAT, keyword.value()));
-        builder.append(NEGATION_FORMAT);
-        return Pattern.compile(builder.toString());
+        Literal[] literals = Literal.values();
+        Keyword[] keywords = Keyword.values();
+        for (int i = 0; i < literals.length; i++) {
+            Literal literal = literals[i];
+            builder.append(literal.value());
+            if (i != literals.length - 1 || keywords.length > 0)
+                builder.append('|');
+        }
+        for (int i = 0; i < keywords.length; i++) {
+            Keyword keyword = keywords[i];
+            builder.append(keyword.value());
+            if (i != keywords.length - 1)
+                builder.append('|');
+        }
+        return Pattern.compile(String.format(NEGATION_FORMAT, builder.toString()) + IDENTIFIER_FORMAT);
+    }
+
+    public static String getTypeIdentifier(Class<?> c) {
+        if (c == null)
+            throw new IllegalArgumentException();
+        return c.getName().replace('.', '/');
     }
 
     public static boolean isIdentifier(String identifier) {
-        return IDENTIFIER.matcher(identifier).matches();
+        return identifier != null && IDENTIFIER.matcher(identifier).matches();
     }
 
     public static boolean isPackageIdentifier(String identifier) {
-        return PACKAGE_IDENTIFIER.matcher(identifier).matches();
+        return identifier != null && PACKAGE_IDENTIFIER.matcher(identifier).matches();
     }
 
     public static boolean isTypeVariableIdentifier(String identifier) {
-        return TYPE_VARIABLE_SIGNATURE.matcher(identifier).matches();
+        return identifier != null && TYPE_VARIABLE_SIGNATURE.matcher(identifier).matches();
     }
 
     public static boolean isPrimitiveIdentifier(String identifier) {
-        return PRIMITIVE_TYPE.matcher(identifier).matches();
+        return identifier != null && PRIMITIVE_TYPE.matcher(identifier).matches();
     }
 
     public static boolean isVoidIdentifier(String identifier) {
-        return VOID_TYPE.matcher(identifier).matches();
+        return identifier != null && VOID_TYPE.matcher(identifier).matches();
     }
 }

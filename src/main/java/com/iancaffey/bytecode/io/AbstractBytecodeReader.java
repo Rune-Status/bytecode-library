@@ -13,27 +13,35 @@ import java.io.InputStream;
  * @author Ian Caffey
  * @since 1.0
  */
-public abstract class AbstractBytecodeReader<T extends BytecodeToken, V extends BytecodeVisitor> implements BytecodeReader<T> {
+public abstract class AbstractBytecodeReader<T extends BytecodeToken, V extends BytecodeVisitor> implements BytecodeReader<V> {
     protected final DataInputStream stream;
-    protected final V visitor;
 
-    public AbstractBytecodeReader(byte[] b, V visitor) {
-        this(new ByteArrayInputStream(b), visitor);
+    protected AbstractBytecodeReader(byte[] b) {
+        this(new ByteArrayInputStream(b));
     }
 
-    public AbstractBytecodeReader(byte[] b, int offset, int length, V visitor) {
-        this(new ByteArrayInputStream(b, offset, length), visitor);
+    protected AbstractBytecodeReader(byte[] b, int offset, int length) {
+        this(new ByteArrayInputStream(b, offset, length));
     }
 
-    public AbstractBytecodeReader(InputStream stream, V visitor) {
-        this(new DataInputStream(stream), visitor);
+    protected AbstractBytecodeReader(InputStream stream) {
+        this(new DataInputStream(stream));
     }
 
-    public AbstractBytecodeReader(DataInputStream stream, V visitor) {
-        if (stream == null || visitor == null)
+    protected AbstractBytecodeReader(DataInputStream stream) {
+        if (stream == null)
             throw new IllegalArgumentException();
         this.stream = stream;
-        this.visitor = visitor;
+    }
+
+    protected abstract void step(V visitor) throws IOException;
+
+    protected abstract boolean hasNext();
+
+    @Override
+    public void accept(V visitor) throws IOException {
+        while (hasNext())
+            step(visitor);
     }
 
     @Override

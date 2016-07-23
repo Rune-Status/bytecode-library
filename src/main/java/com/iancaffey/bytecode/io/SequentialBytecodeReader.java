@@ -15,37 +15,37 @@ import java.util.Map;
  * @author Ian Caffey
  * @since 1.0
  */
-public class SequentialBytecodeReader<T extends BytecodeToken, V extends BytecodeVisitor> extends AbstractBytecodeReader<T, V> {
-    private int index = 0;
+public abstract class SequentialBytecodeReader<T extends BytecodeToken, V extends BytecodeVisitor> extends AbstractBytecodeReader<T, V> {
     private final T[] tokens;
     private final Map<T, BytecodeConsumer<V, DataInputStream>> consumers;
+    private int index = 0;
 
-    public SequentialBytecodeReader(byte[] b, V visitor, T[] tokens, Map<T, BytecodeConsumer<V, DataInputStream>> consumers) {
-        super(b, visitor);
+    public SequentialBytecodeReader(byte[] b, T[] tokens, Map<T, BytecodeConsumer<V, DataInputStream>> consumers) {
+        super(b);
         if (tokens == null || consumers == null)
             throw new IllegalArgumentException();
         this.tokens = tokens;
         this.consumers = consumers;
     }
 
-    public SequentialBytecodeReader(byte[] b, int offset, int length, V visitor, T[] tokens, Map<T, BytecodeConsumer<V, DataInputStream>> consumers) {
-        super(b, offset, length, visitor);
+    public SequentialBytecodeReader(byte[] b, int offset, int length, T[] tokens, Map<T, BytecodeConsumer<V, DataInputStream>> consumers) {
+        super(b, offset, length);
         if (tokens == null || consumers == null)
             throw new IllegalArgumentException();
         this.tokens = tokens;
         this.consumers = consumers;
     }
 
-    public SequentialBytecodeReader(InputStream stream, V visitor, T[] tokens, Map<T, BytecodeConsumer<V, DataInputStream>> consumers) {
-        super(stream, visitor);
+    public SequentialBytecodeReader(InputStream stream, T[] tokens, Map<T, BytecodeConsumer<V, DataInputStream>> consumers) {
+        super(stream);
         if (tokens == null || consumers == null)
             throw new IllegalArgumentException();
         this.tokens = tokens;
         this.consumers = consumers;
     }
 
-    public SequentialBytecodeReader(DataInputStream stream, V visitor, T[] tokens, Map<T, BytecodeConsumer<V, DataInputStream>> consumers) {
-        super(stream, visitor);
+    public SequentialBytecodeReader(DataInputStream stream, T[] tokens, Map<T, BytecodeConsumer<V, DataInputStream>> consumers) {
+        super(stream);
         if (tokens == null || consumers == null)
             throw new IllegalArgumentException();
         this.tokens = tokens;
@@ -53,17 +53,12 @@ public class SequentialBytecodeReader<T extends BytecodeToken, V extends Bytecod
     }
 
     @Override
-    public boolean hasNext() {
+    protected boolean hasNext() {
         return index < tokens.length;
     }
 
     @Override
-    public T peek() {
-        return hasNext() ? tokens[index] : null;
-    }
-
-    @Override
-    public void read() throws IOException {
+    protected void step(V visitor) throws IOException {
         if (!hasNext())
             throw new BufferUnderflowException();
         T token = tokens[index++];
