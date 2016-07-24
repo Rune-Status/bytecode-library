@@ -13,9 +13,9 @@ import java.io.IOException;
  * @author Ian Caffey
  * @since 1.0
  */
-public class FieldReferenceInfoHandler implements BytecodeHandler<BytecodeReader<ClassModel,ClassVisitor>, ClassVisitor> {
+public class FieldReferenceInfoHandler implements BytecodeHandler<BytecodeReader<ClassModel, ClassVisitor>, ClassVisitor> {
     @Override
-    public void accept(BytecodeReader<ClassModel,ClassVisitor> reader, ClassVisitor visitor) throws IOException {
+    public void accept(BytecodeReader<ClassModel, ClassVisitor> reader, ClassVisitor visitor) throws IOException {
         reader.model.constantPool[reader.model.constantPoolIndex] = new FieldReferenceInfo(reader.readUnsignedShort(), reader.readUnsignedShort());
     }
 }

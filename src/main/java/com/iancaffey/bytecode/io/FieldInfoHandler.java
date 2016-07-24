@@ -12,9 +12,9 @@ import java.io.IOException;
  * @author Ian Caffey
  * @since 1.0
  */
-public class FieldInfoHandler implements BytecodeHandler<BytecodeReader<ClassModel,ClassVisitor>, ClassVisitor> {
+public class FieldInfoHandler implements BytecodeHandler<BytecodeReader<ClassModel, ClassVisitor>, ClassVisitor> {
     @Override
-    public void accept(BytecodeReader<ClassModel,ClassVisitor> reader, ClassVisitor visitor) throws IOException {
+    public void accept(BytecodeReader<ClassModel, ClassVisitor> reader, ClassVisitor visitor) throws IOException {
         int access = reader.readUnsignedShort();
         int nameIndex = reader.readUnsignedShort();
         int descriptorIndex = reader.readUnsignedShort();

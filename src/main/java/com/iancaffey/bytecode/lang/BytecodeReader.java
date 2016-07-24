@@ -20,10 +20,6 @@ public class BytecodeReader<M extends BytecodeModel, V extends BytecodeVisitor> 
     private final BytecodeController<BytecodeReader<M, V>, V> controller;
     private int index;
 
-    public static <R extends BytecodeReader, V extends BytecodeVisitor> BytecodeController<R, V> singletonController(BytecodeHandler<R, V> handler) {
-        return new BytecodeController<>(new Interval[]{null}, Collections.singletonMap(null, handler));
-    }
-
     public BytecodeReader(byte[] data, BytecodeController<BytecodeReader<M, V>, V> controller, M model) {
         this(new ByteArrayInputStream(data), controller, model);
     }
@@ -39,6 +35,10 @@ public class BytecodeReader<M extends BytecodeModel, V extends BytecodeVisitor> 
         this.controller = controller;
         this.model = model;
         this.index = 0;
+    }
+
+    public static <R extends BytecodeReader, V extends BytecodeVisitor> BytecodeController<R, V> singletonController(BytecodeHandler<R, V> handler) {
+        return new BytecodeController<>(new Interval[]{null}, Collections.singletonMap(null, handler));
     }
 
     public void accept(V visitor) throws IOException {

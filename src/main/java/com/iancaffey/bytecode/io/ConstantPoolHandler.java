@@ -14,17 +14,17 @@ import java.util.Map;
  * @author Ian Caffey
  * @since 1.0
  */
-public class ConstantPoolHandler implements BytecodeHandler<BytecodeReader<ClassModel,ClassVisitor>, ClassVisitor> {
-    private final Map<Integer, BytecodeHandler<BytecodeReader<ClassModel,ClassVisitor>, ClassVisitor>> handlers;
+public class ConstantPoolHandler implements BytecodeHandler<BytecodeReader<ClassModel, ClassVisitor>, ClassVisitor> {
+    private final Map<Integer, BytecodeHandler<BytecodeReader<ClassModel, ClassVisitor>, ClassVisitor>> handlers;
 
-    public ConstantPoolHandler(Map<Integer, BytecodeHandler<BytecodeReader<ClassModel,ClassVisitor>, ClassVisitor>> handlers) {
+    public ConstantPoolHandler(Map<Integer, BytecodeHandler<BytecodeReader<ClassModel, ClassVisitor>, ClassVisitor>> handlers) {
         if (handlers == null)
             throw new IllegalArgumentException();
         this.handlers = handlers;
     }
 
     @Override
-    public void accept(BytecodeReader<ClassModel,ClassVisitor> reader, ClassVisitor visitor) throws IOException {
+    public void accept(BytecodeReader<ClassModel, ClassVisitor> reader, ClassVisitor visitor) throws IOException {
         int length = reader.readUnsignedShort();
         reader.model.constantPool = new ConstantPoolInfo[length];
         for (reader.model.constantPoolIndex = 1; reader.model.constantPoolIndex < length; reader.model.constantPoolIndex++) {

@@ -14,17 +14,17 @@ import java.io.IOException;
  * @author Ian Caffey
  * @since 1.0
  */
-public class MethodsHandler implements BytecodeHandler<BytecodeReader<ClassModel,ClassVisitor>, ClassVisitor> {
-    private final BytecodeHandler<BytecodeReader<ClassModel,ClassVisitor>, ClassVisitor> handler;
+public class MethodsHandler implements BytecodeHandler<BytecodeReader<ClassModel, ClassVisitor>, ClassVisitor> {
+    private final BytecodeHandler<BytecodeReader<ClassModel, ClassVisitor>, ClassVisitor> handler;
 
-    public MethodsHandler(BytecodeHandler<BytecodeReader<ClassModel,ClassVisitor>, ClassVisitor> handler) {
+    public MethodsHandler(BytecodeHandler<BytecodeReader<ClassModel, ClassVisitor>, ClassVisitor> handler) {
         if (handler == null)
             throw new IllegalArgumentException();
         this.handler = handler;
     }
 
     @Override
-    public void accept(BytecodeReader<ClassModel,ClassVisitor> reader, ClassVisitor visitor) throws IOException {
+    public void accept(BytecodeReader<ClassModel, ClassVisitor> reader, ClassVisitor visitor) throws IOException {
         int length = reader.readUnsignedShort();
         reader.model.methods = new MethodInfo[length];
         reader.model.methodAttributeIndexes = new int[length];

@@ -13,9 +13,9 @@ import java.io.IOException;
  * @author Ian Caffey
  * @since 1.0
  */
-public class MethodHandleInfoHandler implements BytecodeHandler<BytecodeReader<ClassModel,ClassVisitor>, ClassVisitor> {
+public class MethodHandleInfoHandler implements BytecodeHandler<BytecodeReader<ClassModel, ClassVisitor>, ClassVisitor> {
     @Override
-    public void accept(BytecodeReader<ClassModel,ClassVisitor> reader, ClassVisitor visitor) throws IOException {
+    public void accept(BytecodeReader<ClassModel, ClassVisitor> reader, ClassVisitor visitor) throws IOException {
         reader.model.constantPool[reader.model.constantPoolIndex] = new MethodHandleInfo(reader.readUnsignedByte(), reader.readUnsignedShort());
     }
 }

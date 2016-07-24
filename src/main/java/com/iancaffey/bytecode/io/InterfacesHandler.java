@@ -15,9 +15,9 @@ import java.io.IOException;
  * @author Ian Caffey
  * @since 1.0
  */
-public class InterfacesHandler implements BytecodeHandler<BytecodeReader<ClassModel,ClassVisitor>, ClassVisitor> {
+public class InterfacesHandler implements BytecodeHandler<BytecodeReader<ClassModel, ClassVisitor>, ClassVisitor> {
     @Override
-    public void accept(BytecodeReader<ClassModel,ClassVisitor> reader, ClassVisitor visitor) throws IOException {
+    public void accept(BytecodeReader<ClassModel, ClassVisitor> reader, ClassVisitor visitor) throws IOException {
         int length = reader.readUnsignedShort();
         String[] interfaces = new String[length];
         for (int i = 0; i < interfaces.length; i++) {

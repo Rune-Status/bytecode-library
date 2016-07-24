@@ -26,7 +26,7 @@ public class AttributeReader {
         return adapter;
     }
 
-    public AttributeInfo read(BytecodeReader<ClassModel,ClassVisitor> reader) throws IOException {
+    public AttributeInfo read(BytecodeReader<ClassModel, ClassVisitor> reader) throws IOException {
         throw new UnsupportedOperationException();
     }
 }

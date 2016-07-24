@@ -15,9 +15,9 @@ import java.io.IOException;
  * @author Ian Caffey
  * @since 1.0
  */
-public class ParentInfoHandler implements BytecodeHandler<BytecodeReader<ClassModel,ClassVisitor>, ClassVisitor> {
+public class ParentInfoHandler implements BytecodeHandler<BytecodeReader<ClassModel, ClassVisitor>, ClassVisitor> {
     @Override
-    public void accept(BytecodeReader<ClassModel,ClassVisitor> reader, ClassVisitor visitor) throws IOException {
+    public void accept(BytecodeReader<ClassModel, ClassVisitor> reader, ClassVisitor visitor) throws IOException {
         int parentInfo = reader.readUnsignedShort();
         if (parentInfo == 0) //Object has no super class
             return;
