@@ -7,6 +7,7 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.BufferUnderflowException;
 import java.util.Collections;
 
 /**
@@ -43,7 +44,7 @@ public class BytecodeReader<M extends BytecodeModel, V extends BytecodeVisitor> 
 
     public void accept(V visitor) throws IOException {
         if (!controller.canRead(index))
-            throw new IllegalStateException("Invalid starting position.");
+            throw new BufferUnderflowException();
         visitor.begin();
         while (controller.canRead(index))
             controller.read(index++, this, visitor);
