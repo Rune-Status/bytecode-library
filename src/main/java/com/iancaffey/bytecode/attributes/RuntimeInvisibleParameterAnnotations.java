@@ -11,7 +11,7 @@ import com.iancaffey.bytecode.AttributeInfo;
 public class RuntimeInvisibleParameterAnnotations extends AttributeInfo {
     private final Annotation[][] parameterAnnotations;
 
-    public RuntimeInvisibleParameterAnnotations(int nameIndex, int infoLength, Annotation[][] parameterAnnotations) {
+    public RuntimeInvisibleParameterAnnotations(int nameIndex, int infoLength, Annotation[]... parameterAnnotations) {
         super(nameIndex, infoLength);
         this.parameterAnnotations = parameterAnnotations;
     }

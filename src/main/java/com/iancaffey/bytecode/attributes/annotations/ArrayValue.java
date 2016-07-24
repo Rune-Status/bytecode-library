@@ -11,7 +11,7 @@ import com.iancaffey.bytecode.attributes.ElementValue;
 public class ArrayValue extends ElementValue {
     private final ElementValue[] elements;
 
-    public ArrayValue(int tag, ElementValue[] elements) {
+    public ArrayValue(int tag, ElementValue... elements) {
         super(tag);
         this.elements = elements;
     }

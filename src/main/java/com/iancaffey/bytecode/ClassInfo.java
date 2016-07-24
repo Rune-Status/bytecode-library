@@ -23,8 +23,6 @@ public class ClassInfo implements Accessible {
     private final AttributeInfo[] attributes;
 
     public ClassInfo(int magic, int minor, int major, ConstantPoolInfo[] constantPool, int access, int info, int parent, int[] interfaces, FieldInfo[] fields, MethodInfo[] methods, AttributeInfo[] attributes) {
-        if (magic != MAGIC || constantPool == null || interfaces == null || fields == null || methods == null || attributes == null)
-            throw new IllegalArgumentException();
         this.magic = magic;
         this.minor = minor;
         this.major = major;
@@ -51,7 +49,7 @@ public class ClassInfo implements Accessible {
     }
 
     public int version() {
-        return ((major & 0xFF) << 8) | (minor & 0xFF);
+        return ((major & 0xFF) << 16) | (minor & 0xFF);
     }
 
     public int constantPoolCount() {

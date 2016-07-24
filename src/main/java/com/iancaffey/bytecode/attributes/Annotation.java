@@ -10,7 +10,7 @@ public class Annotation {
     private final int typeIndex;
     private final ElementPair[] elements;
 
-    public Annotation(int typeIndex, ElementPair[] elements) {
+    public Annotation(int typeIndex, ElementPair... elements) {
         this.typeIndex = typeIndex;
         this.elements = elements;
     }

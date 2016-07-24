@@ -11,7 +11,7 @@ import com.iancaffey.bytecode.AttributeInfo;
 public class LineNumberTable extends AttributeInfo {
     private final LineInfo[] info;
 
-    public LineNumberTable(int nameIndex, int infoLength, LineInfo[] info) {
+    public LineNumberTable(int nameIndex, int infoLength, LineInfo... info) {
         super(nameIndex, infoLength);
         this.info = info;
     }

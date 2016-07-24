@@ -10,7 +10,7 @@ public class BootstrapMethodInfo {
     private final int methodIndex;
     private final int[] arguments;
 
-    public BootstrapMethodInfo(int methodIndex, int[] arguments) {
+    public BootstrapMethodInfo(int methodIndex, int... arguments) {
         this.methodIndex = methodIndex;
         this.arguments = arguments;
     }

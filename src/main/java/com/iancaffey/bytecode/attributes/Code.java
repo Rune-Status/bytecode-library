@@ -15,7 +15,7 @@ public class Code extends AttributeInfo {
     private final ExceptionTable[] exceptions;
     private final AttributeInfo[] attributes;
 
-    public Code(int nameIndex, int infoLength, int stackDepthLimit, int localCountLimit, byte[] data, ExceptionTable[] exceptions, AttributeInfo[] attributes) {
+    public Code(int nameIndex, int infoLength, int stackDepthLimit, int localCountLimit, byte[] data, ExceptionTable[] exceptions, AttributeInfo... attributes) {
         super(nameIndex, infoLength);
         this.stackDepthLimit = stackDepthLimit;
         this.localCountLimit = localCountLimit;

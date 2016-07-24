@@ -24,8 +24,6 @@ public class ConstantPoolInfo {
     private final int tag;
 
     public ConstantPoolInfo(int tag) {
-        if (tag == 0)
-            throw new IllegalArgumentException();
         this.tag = tag;
     }
 }

@@ -12,7 +12,7 @@ import com.iancaffey.bytecode.attributes.VerificationTypeInfo;
 public class AppendFrame extends StackFrame {
     private final VerificationTypeInfo[] local;
 
-    public AppendFrame(int type, int offset, VerificationTypeInfo[] local) {
+    public AppendFrame(int type, int offset, VerificationTypeInfo... local) {
         super(type, offset);
         this.local = local;
     }

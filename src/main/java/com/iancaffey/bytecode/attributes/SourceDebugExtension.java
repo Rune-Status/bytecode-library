@@ -9,7 +9,7 @@ import com.iancaffey.bytecode.AttributeInfo;
  * @since 1.0
  */
 public class SourceDebugExtension extends AttributeInfo {
-    private final String info; //size restricted as core implementation uses byte[]
+    private final String info;
 
     public SourceDebugExtension(int nameIndex, int infoLength, String info) {
         super(nameIndex, infoLength);

@@ -13,7 +13,7 @@ public class FullFrame extends StackFrame {
     private final VerificationTypeInfo[] local;
     private final VerificationTypeInfo[] stack;
 
-    public FullFrame(int offset, VerificationTypeInfo[] local, VerificationTypeInfo[] stack) {
+    public FullFrame(int offset, VerificationTypeInfo[] local, VerificationTypeInfo... stack) {
         super(StackFrame.FULL_FRAME, offset);
         this.local = local;
         this.stack = stack;
