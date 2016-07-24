@@ -21,6 +21,30 @@ public class BytecodeReader<M extends BytecodeModel, V extends BytecodeVisitor> 
     private final BytecodeController<BytecodeReader<M, V>, V> controller;
     private int index;
 
+    public BytecodeReader(byte[] data, BytecodeHandler<BytecodeReader<M, V>, V> handler) {
+        this(data, BytecodeReader.singletonController(handler));
+    }
+
+    public BytecodeReader(byte[] data, BytecodeHandler<BytecodeReader<M, V>, V> handler, M model) {
+        this(new ByteArrayInputStream(data), BytecodeReader.singletonController(handler), model);
+    }
+
+    public BytecodeReader(byte[] data, int offset, int length, BytecodeHandler<BytecodeReader<M, V>, V> handler) {
+        this(data, offset, length, BytecodeReader.singletonController(handler));
+    }
+
+    public BytecodeReader(byte[] data, int offset, int length, BytecodeHandler<BytecodeReader<M, V>, V> handler, M model) {
+        this(new ByteArrayInputStream(data, offset, length), BytecodeReader.singletonController(handler), model);
+    }
+
+    public BytecodeReader(InputStream stream, BytecodeHandler<BytecodeReader<M, V>, V> handler) {
+        this(stream, BytecodeReader.singletonController(handler));
+    }
+
+    public BytecodeReader(InputStream stream, BytecodeHandler<BytecodeReader<M, V>, V> handler, M model) {
+        this(stream, BytecodeReader.singletonController(handler), model);
+    }
+
     public BytecodeReader(byte[] data, BytecodeController<BytecodeReader<M, V>, V> controller) {
         this(data, controller, null);
     }
