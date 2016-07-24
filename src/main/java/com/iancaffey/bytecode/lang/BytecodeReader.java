@@ -21,17 +21,29 @@ public class BytecodeReader<M extends BytecodeModel, V extends BytecodeVisitor> 
     private final BytecodeController<BytecodeReader<M, V>, V> controller;
     private int index;
 
+    public BytecodeReader(byte[] data, BytecodeController<BytecodeReader<M, V>, V> controller) {
+        this(data, controller, null);
+    }
+
     public BytecodeReader(byte[] data, BytecodeController<BytecodeReader<M, V>, V> controller, M model) {
         this(new ByteArrayInputStream(data), controller, model);
+    }
+
+    public BytecodeReader(byte[] data, int offset, int length, BytecodeController<BytecodeReader<M, V>, V> controller) {
+        this(data, offset, length, controller, null);
     }
 
     public BytecodeReader(byte[] data, int offset, int length, BytecodeController<BytecodeReader<M, V>, V> controller, M model) {
         this(new ByteArrayInputStream(data, offset, length), controller, model);
     }
 
+    public BytecodeReader(InputStream stream, BytecodeController<BytecodeReader<M, V>, V> controller) {
+        this(stream, controller, null);
+    }
+
     public BytecodeReader(InputStream stream, BytecodeController<BytecodeReader<M, V>, V> controller, M model) {
         super(stream);
-        if (controller == null || model == null)
+        if (controller == null)
             throw new IllegalArgumentException();
         this.controller = controller;
         this.model = model;

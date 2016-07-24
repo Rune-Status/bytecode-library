@@ -5,7 +5,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.nio.ByteBuffer;
 
 /**
  * VisitorTest
@@ -15,24 +14,17 @@ import java.nio.ByteBuffer;
  */
 public class VisitorTest {
     private static interface ByteVisitor extends BytecodeVisitor {
-        public void visit(ByteBuffer buffer);
-    }
-
-    private static class ByteModel implements BytecodeModel {
-        public ByteBuffer buffer;
+        public void visit(byte[] data);
     }
 
     @Test
     public void visitorTest() throws IOException {
         byte[] data = new byte[]{2, 0, 1, 0, 2, 0, 3, 0, 4, 0, 3, 0, 2, 0, 1, 0, 4, 0, 5, 0, 3, 0, 4, 0, 2, 0, 3, 0};
-        BytecodeReader<ByteModel, ByteVisitor> r = new BytecodeReader<>(data, BytecodeReader.singletonController((reader, visitor) -> {
+        BytecodeReader<BytecodeModel, ByteVisitor> r = new BytecodeReader<>(data, BytecodeReader.singletonController((reader, visitor) -> {
             byte[] b = new byte[reader.available()];
             reader.readFully(b);
-            reader.model.buffer = ByteBuffer.wrap(b);
-            visitor.visit(reader.model.buffer);
-        }), new ByteModel());
-        r.accept(buffer -> {
-        });
-        Assert.assertArrayEquals(data, r.model.buffer.array());
+            visitor.visit(b);
+        }));
+        r.accept(buffer -> Assert.assertArrayEquals(data, buffer));
     }
 }
