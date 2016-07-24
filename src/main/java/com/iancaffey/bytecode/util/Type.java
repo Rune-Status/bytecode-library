@@ -22,11 +22,8 @@ public class Type {
     public static final Pattern TYPE_VARIABLE_SIGNATURE = Pattern.compile(String.format("T%s;", IDENTIFIER));
 
     private static Pattern baseType() {
-        return Pattern.compile(String.format("[%s]{1}",
-                Arrays.stream(Primitive.values()).
-                        map(Primitive::value).
-                        map(String::valueOf).
-                        collect(Collectors.joining("|"))));
+        return Pattern.compile(String.format("[%s]{1}", Arrays.stream(Primitive.values()).
+                map(primitive -> String.valueOf(primitive.value())).collect(Collectors.joining("|"))));
     }
 
     private static Pattern identifier() {
