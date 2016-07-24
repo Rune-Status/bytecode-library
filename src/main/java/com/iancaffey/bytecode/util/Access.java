@@ -14,6 +14,7 @@ public enum Access {
     PROTECTED(0x0004),
     STATIC(0x0008),
     FINAL(0x0010),
+    SUPER(0x0020),
     INTERFACE(0x0200),
     ABSTRACT(0x0400),
     SYNTHETIC(0x1000),

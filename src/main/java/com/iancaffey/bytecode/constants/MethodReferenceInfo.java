@@ -13,7 +13,7 @@ public class MethodReferenceInfo extends ConstantPoolInfo {
     private final int nameTypeIndex;
 
     public MethodReferenceInfo(int classIndex, int nameTypeIndex) {
-        super(ConstantPoolInfo.METHOD_REF);
+        super(ConstantPoolInfo.METHOD_REFERENCE);
         this.classIndex = classIndex;
         this.nameTypeIndex = nameTypeIndex;
     }

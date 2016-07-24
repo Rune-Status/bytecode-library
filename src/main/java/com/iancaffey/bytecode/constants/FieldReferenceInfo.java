@@ -13,7 +13,7 @@ public class FieldReferenceInfo extends ConstantPoolInfo {
     private final int nameTypeIndex;
 
     public FieldReferenceInfo(int classIndex, int nameTypeIndex) {
-        super(ConstantPoolInfo.FIELD_REF);
+        super(ConstantPoolInfo.FIELD_REFERENCE);
         this.classIndex = classIndex;
         this.nameTypeIndex = nameTypeIndex;
     }

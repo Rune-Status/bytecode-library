@@ -12,8 +12,8 @@ public class EnclosingMethod extends AttributeInfo {
     private final int classIndex;
     private final int methodIndex;
 
-    public EnclosingMethod(int nameIndex, int infoLength, int classIndex, int methodIndex) {
-        super(nameIndex, infoLength);
+    public EnclosingMethod(String name, int infoLength, int classIndex, int methodIndex) {
+        super(name, infoLength);
         this.classIndex = classIndex;
         this.methodIndex = methodIndex;
     }

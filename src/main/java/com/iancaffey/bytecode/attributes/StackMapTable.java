@@ -11,8 +11,8 @@ import com.iancaffey.bytecode.AttributeInfo;
 public class StackMapTable extends AttributeInfo {
     private final StackFrame[] frames;
 
-    public StackMapTable(int nameIndex, int infoLength, StackFrame... frames) {
-        super(nameIndex, infoLength);
+    public StackMapTable(String name, int infoLength, StackFrame... frames) {
+        super(name, infoLength);
         this.frames = frames;
     }
 

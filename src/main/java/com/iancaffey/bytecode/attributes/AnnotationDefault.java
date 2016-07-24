@@ -11,8 +11,8 @@ import com.iancaffey.bytecode.AttributeInfo;
 public class AnnotationDefault extends AttributeInfo {
     private final ElementValue defaultValue;
 
-    public AnnotationDefault(int nameIndex, int infoLength, ElementValue defaultValue) {
-        super(nameIndex, infoLength);
+    public AnnotationDefault(String name, int infoLength, ElementValue defaultValue) {
+        super(name, infoLength);
         this.defaultValue = defaultValue;
     }
 

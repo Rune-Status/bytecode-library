@@ -11,8 +11,8 @@ import com.iancaffey.bytecode.AttributeInfo;
 public class Signature extends AttributeInfo {
     private final int index;
 
-    public Signature(int nameIndex, int index) {
-        super(nameIndex, Short.BYTES);
+    public Signature(String name, int index) {
+        super(name, Short.BYTES);
         this.index = index;
     }
 

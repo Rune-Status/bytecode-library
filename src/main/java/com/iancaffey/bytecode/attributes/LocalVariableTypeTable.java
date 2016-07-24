@@ -11,8 +11,8 @@ import com.iancaffey.bytecode.AttributeInfo;
 public class LocalVariableTypeTable extends AttributeInfo {
     private final LocalVariableTypeInfo[] info;
 
-    public LocalVariableTypeTable(int nameIndex, int infoLength, LocalVariableTypeInfo... info) {
-        super(nameIndex, infoLength);
+    public LocalVariableTypeTable(String name, int infoLength, LocalVariableTypeInfo... info) {
+        super(name, infoLength);
         this.info = info;
     }
 

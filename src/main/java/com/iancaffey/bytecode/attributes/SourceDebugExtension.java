@@ -11,8 +11,8 @@ import com.iancaffey.bytecode.AttributeInfo;
 public class SourceDebugExtension extends AttributeInfo {
     private final String info;
 
-    public SourceDebugExtension(int nameIndex, int infoLength, String info) {
-        super(nameIndex, infoLength);
+    public SourceDebugExtension(String name, int infoLength, String info) {
+        super(name, infoLength);
         this.info = info;
     }
 

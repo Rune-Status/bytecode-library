@@ -1,14 +1,12 @@
-package com.iancaffey.bytecode.util.token;
-
-import com.iancaffey.bytecode.util.BytecodeToken;
+package com.iancaffey.bytecode.util;
 
 /**
- * ClassInfoToken
+ * ClassInfoStep
  *
  * @author Ian Caffey
  * @since 1.0
  */
-public enum ClassInfoToken implements BytecodeToken {
+public enum ClassInfoStep implements BytecodeStep {
     MAGIC,
     VERSION,
     CONSTANT_POOL,

@@ -14,12 +14,12 @@ import java.io.InputStream;
 public abstract class AbstractBytecodeReader<V extends BytecodeVisitor> implements BytecodeReader<V> {
     protected final DataInputStream stream;
 
-    protected AbstractBytecodeReader(byte[] b) {
-        this(new ByteArrayInputStream(b));
+    protected AbstractBytecodeReader(byte[] data) {
+        this(new ByteArrayInputStream(data));
     }
 
-    protected AbstractBytecodeReader(byte[] b, int offset, int length) {
-        this(new ByteArrayInputStream(b, offset, length));
+    protected AbstractBytecodeReader(byte[] data, int offset, int length) {
+        this(new ByteArrayInputStream(data, offset, length));
     }
 
     protected AbstractBytecodeReader(InputStream stream) {

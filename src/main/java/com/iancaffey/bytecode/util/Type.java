@@ -33,10 +33,10 @@ public class Type {
                         collect(Collectors.joining("|"))) + IDENTIFIER_FORMAT);
     }
 
-    public static String getTypeIdentifier(Class<?> c) {
+    public static String getInternalForm(Class<?> c) {
         if (c == null)
             throw new IllegalArgumentException();
-        return c.getName().replace('.', '/');
+        return c.getName().replaceAll("^(\\[+L)", "").replaceAll(";", "").replace('.', '/');
     }
 
     public static boolean isIdentifier(String identifier) {

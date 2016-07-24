@@ -9,7 +9,7 @@ import com.iancaffey.bytecode.AttributeInfo;
  * @since 1.0
  */
 public class RuntimeVisibleAnnotations extends AttributeInfo {
-    public RuntimeVisibleAnnotations(int nameIndex, int infoLength) {
-        super(nameIndex, infoLength);
+    public RuntimeVisibleAnnotations(String name, int infoLength) {
+        super(name, infoLength);
     }
 }

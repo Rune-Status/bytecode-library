@@ -11,8 +11,8 @@ import com.iancaffey.bytecode.AttributeInfo;
 public class Exceptions extends AttributeInfo {
     private final int[] indexes;
 
-    public Exceptions(int nameIndex, int infoLength, int... indexes) {
-        super(nameIndex, infoLength);
+    public Exceptions(String name, int infoLength, int... indexes) {
+        super(name, infoLength);
         this.indexes = indexes;
     }
 

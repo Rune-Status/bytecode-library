@@ -11,8 +11,8 @@ import com.iancaffey.bytecode.AttributeInfo;
 public class SourceFile extends AttributeInfo {
     private final int index;
 
-    public SourceFile(int nameIndex, int index) {
-        super(nameIndex, Short.BYTES);
+    public SourceFile(String name, int index) {
+        super(name, Short.BYTES);
         this.index = index;
     }
 

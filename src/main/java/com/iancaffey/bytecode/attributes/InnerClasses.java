@@ -11,8 +11,8 @@ import com.iancaffey.bytecode.AttributeInfo;
 public class InnerClasses extends AttributeInfo {
     private final InnerClassInfo[] info;
 
-    public InnerClasses(int nameIndex, int infoLength, InnerClassInfo... info) {
-        super(nameIndex, infoLength);
+    public InnerClasses(String name, int infoLength, InnerClassInfo... info) {
+        super(name, infoLength);
         this.info = info;
     }
 

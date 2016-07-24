@@ -10,14 +10,14 @@ import com.iancaffey.bytecode.util.Accessible;
  */
 public class MethodInfo implements Accessible {
     private final int access;
-    private final int nameIndex;
-    private final int descriptorIndex;
+    private final String name;
+    private final String descriptor;
     private final AttributeInfo[] attributes;
 
-    public MethodInfo(int access, int nameIndex, int descriptorIndex, AttributeInfo[] attributes) {
+    public MethodInfo(int access, String name, String descriptor, AttributeInfo[] attributes) {
         this.access = access;
-        this.nameIndex = nameIndex;
-        this.descriptorIndex = descriptorIndex;
+        this.name = name;
+        this.descriptor = descriptor;
         this.attributes = attributes;
     }
 
@@ -26,12 +26,12 @@ public class MethodInfo implements Accessible {
         return access;
     }
 
-    public int nameIndex() {
-        return nameIndex;
+    public String name() {
+        return name;
     }
 
-    public int descriptorIndex() {
-        return descriptorIndex;
+    public String descriptor() {
+        return descriptor;
     }
 
     public int attributeCount() {

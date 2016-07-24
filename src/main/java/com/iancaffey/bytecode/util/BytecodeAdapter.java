@@ -1,5 +1,6 @@
 package com.iancaffey.bytecode.util;
 
+import com.iancaffey.bytecode.io.BytecodeReader;
 import com.iancaffey.bytecode.io.BytecodeVisitor;
 
 import java.io.DataInputStream;
@@ -12,6 +13,6 @@ import java.io.IOException;
  * @since 1.0
  */
 @FunctionalInterface
-public interface BytecodeAdapter<V extends BytecodeVisitor> {
-    public void accept(V visitor, DataInputStream stream) throws IOException;
+public interface BytecodeAdapter<R extends BytecodeReader<V>, V extends BytecodeVisitor> {
+    public void accept(R reader, V visitor, DataInputStream stream) throws IOException;
 }

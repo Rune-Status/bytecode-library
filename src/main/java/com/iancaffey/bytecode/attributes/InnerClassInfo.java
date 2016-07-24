@@ -11,13 +11,13 @@ import com.iancaffey.bytecode.util.Accessible;
 public class InnerClassInfo implements Accessible {
     private final int classInfoIndex;
     private final int outerClassInfoIndex;
-    private final int nameIndex;
+    private final String name;
     private final int access;
 
-    public InnerClassInfo(int classInfoIndex, int outerClassInfoIndex, int nameIndex, int access) {
+    public InnerClassInfo(int classInfoIndex, int outerClassInfoIndex, String name, int access) {
         this.classInfoIndex = classInfoIndex;
         this.outerClassInfoIndex = outerClassInfoIndex;
-        this.nameIndex = nameIndex;
+        this.name = name;
         this.access = access;
     }
 
@@ -29,8 +29,8 @@ public class InnerClassInfo implements Accessible {
         return outerClassInfoIndex;
     }
 
-    public int nameIndex() {
-        return nameIndex;
+    public String name() {
+        return name;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.iancaffey.bytecode.io.visitor;
+package com.iancaffey.bytecode.util;
 
 import com.iancaffey.bytecode.io.ClassVisitor;
 
@@ -26,26 +26,14 @@ public class ClassVisitorPair implements ClassVisitor {
     }
 
     @Override
-    public void visitMagic(int magic) {
-        one.visitMagic(magic);
-        two.visitMagic(magic);
-    }
-
-    @Override
-    public void visitVersion(int major, int minor) {
-        one.visitVersion(major, minor);
-        two.visitVersion(major, minor);
-    }
-
-    @Override
-    public void visitAccess() {
-        one.visitAccess();
-        two.visitAccess();
+    public void visit(int access, int major, int minor, String name, String superName, String[] interfaces) {
+        one.visit(access, major, minor, name, superName, interfaces);
+        two.visit(access, major, minor, name, superName, interfaces);
     }
 
     @Override
     public void end() {
-        one.begin();
         two.begin();
+        one.begin();
     }
 }

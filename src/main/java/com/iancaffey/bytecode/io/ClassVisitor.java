@@ -1,9 +1,9 @@
 package com.iancaffey.bytecode.io;
 
-import com.iancaffey.bytecode.io.visitor.ClassVisitorGroup;
-import com.iancaffey.bytecode.io.visitor.ClassVisitorPair;
+import com.iancaffey.bytecode.util.ClassVisitorGroup;
+import com.iancaffey.bytecode.util.ClassVisitorPair;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
  * ClassVisitor
@@ -20,16 +20,19 @@ public interface ClassVisitor extends BytecodeVisitor {
         return new ClassVisitorGroup(visitors);
     }
 
-    public static ClassVisitor group(Collection<ClassVisitor> visitors) {
+    public static ClassVisitor group(List<ClassVisitor> visitors) {
         return new ClassVisitorGroup(visitors);
     }
 
-    public default void visitMagic(int magic) {
+    public default void visit(int access, int major, int minor, String name, String superName, String[] interfaces) {
+
     }
 
-    public default void visitVersion(int major, int minor) {
+    public default FieldVisitor visitField(int access, String name, String description) {
+        return null;
     }
 
-    public default void visitAccess() {
+    public default MethodVisitor visitMethod(int access, String name, String description) {
+        return null;
     }
 }

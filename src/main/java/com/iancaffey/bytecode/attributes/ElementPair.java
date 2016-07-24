@@ -7,16 +7,16 @@ package com.iancaffey.bytecode.attributes;
  * @since 1.0
  */
 public class ElementPair {
-    private final int nameIndex;
+    private final String name;
     private final ElementValue value;
 
-    public ElementPair(int nameIndex, ElementValue value) {
-        this.nameIndex = nameIndex;
+    public ElementPair(String name, ElementValue value) {
+        this.name = name;
         this.value = value;
     }
 
-    public int nameIndex() {
-        return nameIndex;
+    public String name() {
+        return name;
     }
 
     public ElementValue value() {

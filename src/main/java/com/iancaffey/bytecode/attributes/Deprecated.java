@@ -9,7 +9,7 @@ import com.iancaffey.bytecode.AttributeInfo;
  * @since 1.0
  */
 public class Deprecated extends AttributeInfo {
-    public Deprecated(int nameIndex) {
-        super(nameIndex, 0);
+    public Deprecated(String name) {
+        super(name, 0);
     }
 }

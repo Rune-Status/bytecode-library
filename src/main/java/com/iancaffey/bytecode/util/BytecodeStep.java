@@ -1,11 +1,11 @@
 package com.iancaffey.bytecode.util;
 
 /**
- * BytecodeToken
+ * BytecodeStep
  *
  * @author Ian Caffey
  * @since 1.0
  */
-public interface BytecodeToken {
+public interface BytecodeStep {
 
 }

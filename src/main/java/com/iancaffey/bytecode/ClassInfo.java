@@ -11,25 +11,23 @@ import com.iancaffey.bytecode.util.Accessible;
 public class ClassInfo implements Accessible {
     public static final int MAGIC = 0xCAFEBABE;
     private final int magic;
-    private final int minor;
     private final int major;
-    private final ConstantPoolInfo[] constantPool;
+    private final int minor;
     private final int access;
-    private final int info;
-    private final int parent;
-    private final int[] interfaces;
+    private final String name;
+    private final String superName;
+    private final String[] interfaces;
     private final FieldInfo[] fields;
     private final MethodInfo[] methods;
     private final AttributeInfo[] attributes;
 
-    public ClassInfo(int magic, int minor, int major, ConstantPoolInfo[] constantPool, int access, int info, int parent, int[] interfaces, FieldInfo[] fields, MethodInfo[] methods, AttributeInfo[] attributes) {
+    public ClassInfo(int magic, int major, int minor, int access, String name, String superName, String[] interfaces, FieldInfo[] fields, MethodInfo[] methods, AttributeInfo[] attributes) {
         this.magic = magic;
         this.minor = minor;
         this.major = major;
-        this.constantPool = constantPool;
         this.access = access;
-        this.info = info;
-        this.parent = parent;
+        this.name = name;
+        this.superName = superName;
         this.interfaces = interfaces;
         this.fields = fields;
         this.methods = methods;
@@ -52,48 +50,32 @@ public class ClassInfo implements Accessible {
         return ((major & 0xFF) << 16) | (minor & 0xFF);
     }
 
-    public int constantPoolCount() {
-        return constantPool.length;
-    }
-
-    public ConstantPoolInfo constantPoolInfo(int index) {
-        return constantPool[index];
-    }
-
     @Override
     public int access() {
         return access;
     }
 
-    public int infoIndex() {
-        return info;
+    public String name() {
+        return name;
     }
 
-    public ConstantPoolInfo info() {
-        return constantPool[info];
-    }
-
-    public int parentIndex() {
-        return parent;
-    }
-
-    public ConstantPoolInfo parent() {
-        return constantPool[parent];
+    public String superName() {
+        return superName;
     }
 
     public int interfaceCount() {
         return interfaces.length;
     }
 
-    public ConstantPoolInfo interfaceInfo(int index) {
-        return constantPool[index];
+    public String interfaceName(int index) {
+        return interfaces[index];
     }
 
     public int fieldCount() {
         return fields.length;
     }
 
-    public FieldInfo fieldInfo(int index) {
+    public FieldInfo field(int index) {
         return fields[index];
     }
 
@@ -101,7 +83,7 @@ public class ClassInfo implements Accessible {
         return methods.length;
     }
 
-    public MethodInfo methodInfo(int index) {
+    public MethodInfo method(int index) {
         return methods[index];
     }
 
@@ -109,7 +91,7 @@ public class ClassInfo implements Accessible {
         return attributes.length;
     }
 
-    public AttributeInfo attributeInfo(int index) {
+    public AttributeInfo attribute(int index) {
         return attributes[index];
     }
 }

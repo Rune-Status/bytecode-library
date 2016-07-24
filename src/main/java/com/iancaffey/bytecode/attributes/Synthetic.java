@@ -9,7 +9,7 @@ import com.iancaffey.bytecode.AttributeInfo;
  * @since 1.0
  */
 public class Synthetic extends AttributeInfo {
-    public Synthetic(int nameIndex) {
-        super(nameIndex, 0);
+    public Synthetic(String name) {
+        super(name, 0);
     }
 }

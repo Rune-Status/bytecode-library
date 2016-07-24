@@ -11,8 +11,8 @@ import com.iancaffey.bytecode.AttributeInfo;
 public class ConstantValue extends AttributeInfo {
     private final int valueIndex;
 
-    public ConstantValue(int nameIndex, int valueIndex) {
-        super(nameIndex, Short.BYTES);
+    public ConstantValue(String name, int valueIndex) {
+        super(name, Short.BYTES);
         this.valueIndex = valueIndex;
     }
 

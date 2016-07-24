@@ -9,14 +9,14 @@ package com.iancaffey.bytecode.attributes;
 public class LocalVariableInfo {
     private final int startIndex;
     private final int length;
-    private final int nameIndex;
+    private final String name;
     private final int typeIndex;
     private final int index;
 
-    public LocalVariableInfo(int startIndex, int length, int nameIndex, int typeIndex, int index) {
+    public LocalVariableInfo(int startIndex, int length, String name, int typeIndex, int index) {
         this.startIndex = startIndex;
         this.length = length;
-        this.nameIndex = nameIndex;
+        this.name = name;
         this.typeIndex = typeIndex;
         this.index = index;
     }
@@ -29,8 +29,8 @@ public class LocalVariableInfo {
         return length;
     }
 
-    public int nameIndex() {
-        return nameIndex;
+    public String name() {
+        return name;
     }
 
     public int typeIndex() {

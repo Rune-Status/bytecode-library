@@ -7,16 +7,16 @@ package com.iancaffey.bytecode;
  * @since 1.0
  */
 public class AttributeInfo {
-    private final int nameIndex;
+    private final String name;
     private final int infoLength;
 
-    public AttributeInfo(int nameIndex, int infoLength) {
-        this.nameIndex = nameIndex;
+    public AttributeInfo(String name, int infoLength) {
+        this.name = name;
         this.infoLength = infoLength;
     }
 
-    public int nameIndex() {
-        return nameIndex;
+    public String name() {
+        return name;
     }
 
     public int infoLength() {

@@ -9,20 +9,20 @@ import com.iancaffey.bytecode.attributes.ElementValue;
  * @since 1.0
  */
 public class EnumValue extends ElementValue {
-    private final int typeNameIndex;
-    private final int valueNameIndex;
+    private final int typename;
+    private final int valuename;
 
-    public EnumValue(int tag, int typeNameIndex, int valueNameIndex) {
+    public EnumValue(int tag, int typename, int valuename) {
         super(tag);
-        this.typeNameIndex = typeNameIndex;
-        this.valueNameIndex = valueNameIndex;
+        this.typename = typename;
+        this.valuename = valuename;
     }
 
-    public int typeNameIndex() {
-        return typeNameIndex;
+    public int typename() {
+        return typename;
     }
 
-    public int valueNameIndex() {
-        return valueNameIndex;
+    public int valuename() {
+        return valuename;
     }
 }
