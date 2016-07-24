@@ -3,7 +3,7 @@ package com.iancaffey.bytecode.constants;
 import com.iancaffey.bytecode.ConstantPoolInfo;
 
 /**
- * MethodHandleInfoAdapter
+ * MethodHandleInfoHandler
  *
  * @author Ian Caffey
  * @since 1.0
