@@ -1,6 +1,9 @@
 package com.iancaffey.bytecode.util;
 
+import java.util.Arrays;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Type
@@ -19,33 +22,18 @@ public class Type {
     public static final Pattern TYPE_VARIABLE_SIGNATURE = Pattern.compile(String.format("T%s;", IDENTIFIER));
 
     private static Pattern baseType() {
-        StringBuilder builder = new StringBuilder();
-        Primitive[] primitives = Primitive.values();
-        for (int i = 0; i < primitives.length; i++) {
-            builder.append(primitives[i].value());
-            if (i != primitives.length - 1)
-                builder.append('|');
-        }
-        return Pattern.compile(String.format("[%s]{1}", builder.toString()));
+        return Pattern.compile(String.format("[%s]{1}",
+                Arrays.stream(Primitive.values()).
+                        map(Primitive::value).
+                        map(String::valueOf).
+                        collect(Collectors.joining("|"))));
     }
 
     private static Pattern identifier() {
-        StringBuilder builder = new StringBuilder();
-        Literal[] literals = Literal.values();
-        Keyword[] keywords = Keyword.values();
-        for (int i = 0; i < literals.length; i++) {
-            Literal literal = literals[i];
-            builder.append(literal.value());
-            if (i != literals.length - 1 || keywords.length > 0)
-                builder.append('|');
-        }
-        for (int i = 0; i < keywords.length; i++) {
-            Keyword keyword = keywords[i];
-            builder.append(keyword.value());
-            if (i != keywords.length - 1)
-                builder.append('|');
-        }
-        return Pattern.compile(String.format(NEGATION_FORMAT, builder.toString()) + IDENTIFIER_FORMAT);
+        return Pattern.compile(String.format(NEGATION_FORMAT,
+                Stream.concat(Arrays.stream(Literal.values()).map(Literal::value),
+                        Arrays.stream(Keyword.values()).map(Keyword::value)).
+                        collect(Collectors.joining("|"))) + IDENTIFIER_FORMAT);
     }
 
     public static String getTypeIdentifier(Class<?> c) {
