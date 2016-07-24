@@ -43,6 +43,8 @@ public class BytecodeReader<M extends BytecodeModel, V extends BytecodeVisitor> 
     }
 
     public void accept(V visitor) throws IOException {
+        if (visitor == null)
+            throw new IllegalArgumentException();
         if (!controller.canRead(index))
             throw new BufferUnderflowException();
         visitor.begin();
