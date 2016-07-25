@@ -7,15 +7,15 @@ import com.iancaffey.bytecode.lang.ClassVisitor;
 import java.io.IOException;
 
 /**
- * SourceHandler
+ * HeaderHandler
  *
  * @author Ian Caffey
  * @since 1.0
  */
-public class SourceHandler implements BytecodeHandler<ClassReader, ClassVisitor> {
+public class HeaderHandler implements BytecodeHandler<ClassReader, ClassVisitor> {
     private final BytecodeHandler<ClassReader, ClassVisitor> handler;
 
-    public SourceHandler() {
+    public HeaderHandler() {
         this.handler = new ConstantPoolHandler();
     }
 
