@@ -1,4 +1,3 @@
-import com.iancaffey.bytecode.lang.BytecodeModel;
 import com.iancaffey.bytecode.lang.BytecodeReader;
 import com.iancaffey.bytecode.lang.BytecodeVisitor;
 import org.junit.Assert;
@@ -20,11 +19,15 @@ public class VisitorTest {
     @Test
     public void visitorTest() throws IOException {
         byte[] data = new byte[]{2, 0, 1, 0, 2, 0, 3, 0, 4, 0, 3, 0, 2, 0, 1, 0, 4, 0, 5, 0, 3, 0, 4, 0, 2, 0, 3, 0};
-        BytecodeReader<BytecodeModel, ByteVisitor> r = new BytecodeReader<>(data, (reader, visitor) -> {
-            byte[] b = new byte[reader.available()];
-            reader.readFully(b);
-            visitor.visit(b);
-        });
+        BytecodeReader<ByteVisitor> r = new BytecodeReader<ByteVisitor>(data) {
+            @Override
+            public BytecodeReader<ByteVisitor> accept(ByteVisitor visitor) throws IOException {
+                byte[] b = new byte[available()];
+                readFully(b);
+                visitor.visit(b);
+                return this;
+            }
+        };
         r.accept(buffer -> Assert.assertArrayEquals(data, buffer));
     }
 }

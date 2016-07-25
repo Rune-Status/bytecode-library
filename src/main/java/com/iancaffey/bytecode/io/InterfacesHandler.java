@@ -3,8 +3,7 @@ package com.iancaffey.bytecode.io;
 import com.iancaffey.bytecode.ConstantPoolInfo;
 import com.iancaffey.bytecode.constants.ClassInfo;
 import com.iancaffey.bytecode.constants.UTF8Info;
-import com.iancaffey.bytecode.lang.BytecodeReader;
-import com.iancaffey.bytecode.lang.ClassModel;
+import com.iancaffey.bytecode.lang.ClassReader;
 import com.iancaffey.bytecode.lang.ClassVisitor;
 
 import java.io.IOException;
@@ -15,9 +14,9 @@ import java.io.IOException;
  * @author Ian Caffey
  * @since 1.0
  */
-public class InterfacesHandler implements BytecodeHandler<BytecodeReader<ClassModel, ClassVisitor>, ClassVisitor> {
+public class InterfacesHandler implements BytecodeHandler<ClassReader, ClassVisitor> {
     @Override
-    public void accept(BytecodeReader<ClassModel, ClassVisitor> reader, ClassVisitor visitor) throws IOException {
+    public void accept(ClassReader reader, ClassVisitor visitor) throws IOException {
         int length = reader.readUnsignedShort();
         String[] interfaces = new String[length];
         for (int i = 0; i < interfaces.length; i++) {

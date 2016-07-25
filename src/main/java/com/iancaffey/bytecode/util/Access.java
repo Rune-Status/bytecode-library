@@ -1,6 +1,8 @@
 package com.iancaffey.bytecode.util;
 
 import java.util.EnumSet;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * Access
@@ -26,17 +28,18 @@ public enum Access {
         this.mask = mask;
     }
 
-    public static EnumSet<Access> of(Accessible accessible) {
+    public static Set<Access> of(Accessible accessible) {
         if (accessible == null)
             throw new IllegalArgumentException();
         return Access.of(accessible.access());
     }
 
-    public static EnumSet<Access> of(int access) {
-        EnumSet<Access> set = EnumSet.noneOf(Access.class);
-        for (Access a : Access.values())
-            if (a.marked(access))
-                set.add(a);
+    public static Set<Access> of(int access) {
+        EnumSet<Access> set = EnumSet.allOf(Access.class);
+        Iterator<Access> it = set.iterator();
+        while (it.hasNext())
+            if (!it.next().marked(access))
+                it.remove();
         return set;
     }
 

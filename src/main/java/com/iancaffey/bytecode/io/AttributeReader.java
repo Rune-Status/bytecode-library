@@ -1,9 +1,7 @@
 package com.iancaffey.bytecode.io;
 
 import com.iancaffey.bytecode.AttributeInfo;
-import com.iancaffey.bytecode.lang.BytecodeReader;
-import com.iancaffey.bytecode.lang.ClassModel;
-import com.iancaffey.bytecode.lang.ClassVisitor;
+import com.iancaffey.bytecode.lang.ClassReader;
 
 import java.io.IOException;
 
@@ -26,7 +24,10 @@ public class AttributeReader {
         return adapter;
     }
 
-    public AttributeInfo read(BytecodeReader<ClassModel, ClassVisitor> reader) throws IOException {
-        throw new UnsupportedOperationException();
+    public AttributeInfo read(ClassReader reader) throws IOException {
+        int nameIndex = reader.readUnsignedShort();
+        int length = reader.readInt();
+        System.out.println(nameIndex + " : " + length);
+        throw new IOException("MethodInfo not implemented yet.");
     }
 }

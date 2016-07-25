@@ -11,7 +11,7 @@ import com.iancaffey.bytecode.MethodInfo;
  * @author Ian Caffey
  * @since 1.0
  */
-public class ClassModel implements BytecodeModel {
+public class ClassModel {
     public int magic;
     public int major;
     public int minor;
