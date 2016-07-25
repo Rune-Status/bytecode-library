@@ -1,8 +1,8 @@
 package com.iancaffey.bytecode.lang;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Collection;
+import java.util.stream.Stream;
 
 /**
  * ClassVisitor
@@ -12,10 +12,14 @@ import java.util.stream.Collectors;
  */
 public interface ClassVisitor extends BytecodeVisitor {
     public static ClassVisitor of(ClassVisitor... visitors) {
-        return ClassVisitor.of(Arrays.asList(visitors));
+        return ClassVisitor.of(Arrays.stream(visitors));
     }
 
-    public static ClassVisitor of(List<ClassVisitor> visitors) {
+    public static ClassVisitor of(Collection<ClassVisitor> visitors) {
+        return ClassVisitor.of(visitors.stream());
+    }
+
+    public static ClassVisitor of(Stream<ClassVisitor> visitors) {
         return new ClassVisitor() {
             @Override
             public void begin() {
@@ -29,12 +33,12 @@ public interface ClassVisitor extends BytecodeVisitor {
 
             @Override
             public FieldVisitor visitField(int access, String name, String description) {
-                return FieldVisitor.of(visitors.stream().map(visitor -> visitor.visitField(access, name, description)).collect(Collectors.toList()));
+                return FieldVisitor.of(visitors.map(visitor -> visitor.visitField(access, name, description)));
             }
 
             @Override
             public MethodVisitor visitMethod(int access, String name, String description) {
-                return MethodVisitor.of(visitors.stream().map(visitor -> visitor.visitMethod(access, name, description)).collect(Collectors.toList()));
+                return MethodVisitor.of(visitors.map(visitor -> visitor.visitMethod(access, name, description)));
             }
 
             @Override

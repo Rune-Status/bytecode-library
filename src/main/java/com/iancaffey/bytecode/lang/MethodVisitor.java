@@ -1,8 +1,9 @@
 package com.iancaffey.bytecode.lang;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * MethodVisitor
@@ -12,10 +13,14 @@ import java.util.List;
  */
 public interface MethodVisitor extends BytecodeVisitor {
     public static MethodVisitor of(MethodVisitor... visitors) {
-        return MethodVisitor.of(Arrays.asList(visitors));
+        return MethodVisitor.of(Arrays.stream(visitors));
     }
 
-    public static MethodVisitor of(List<MethodVisitor> visitors) {
+    public static MethodVisitor of(Collection<MethodVisitor> visitors) {
+        return MethodVisitor.of(visitors.stream());
+    }
+
+    public static MethodVisitor of(Stream<MethodVisitor> visitors) {
         return new MethodVisitor() {
             @Override
             public void begin() {
@@ -24,7 +29,6 @@ public interface MethodVisitor extends BytecodeVisitor {
 
             @Override
             public void end() {
-                Collections.reverse(visitors);
                 visitors.forEach(MethodVisitor::end);
             }
         };
