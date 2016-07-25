@@ -10,7 +10,8 @@ import java.io.IOException;
  * @since 1.0
  */
 public class A {
-    public int count;
+    public static final long CONST = 12121212;
+    public long count;
     public String name;
     public Object obj;
 

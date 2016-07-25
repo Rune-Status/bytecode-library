@@ -27,36 +27,44 @@ public interface ClassVisitor extends BytecodeVisitor {
             }
 
             @Override
-            public void visit(int access, int major, int minor, String name, String superName, String[] interfaces) {
-                visitors.forEach(visitor -> visit(access, major, minor, name, superName, interfaces));
+            public ConstantPoolVisitor visitConstantPool(int count) {
+                return ConstantPoolVisitor.of(visitors.map(visitor -> visitor.visitConstantPool(count)));
             }
 
             @Override
-            public FieldVisitor visitField(int access, String name, String description) {
-                return FieldVisitor.of(visitors.map(visitor -> visitor.visitField(access, name, description)));
+            public void visit(int major, int minor, int access, int nameIndex, int parentNameIndex, int[] interfaceIndexes) {
+                visitors.forEach(visitor -> visitor.visit(major, minor, access, nameIndex, parentNameIndex, interfaceIndexes));
             }
 
             @Override
-            public MethodVisitor visitMethod(int access, String name, String description) {
-                return MethodVisitor.of(visitors.map(visitor -> visitor.visitMethod(access, name, description)));
+            public FieldVisitor visitFields(int count) {
+                return FieldVisitor.of(visitors.map(visitor -> visitor.visitFields(count)));
+            }
+
+            @Override
+            public MethodVisitor visitMethods(int count) {
+                return MethodVisitor.of(visitors.map(visitor -> visitor.visitMethods(count)));
+            }
+
+            @Override
+            public AttributeVisitor visitAttributes(int count) {
+                return AttributeVisitor.of(visitors.map(visitor -> visitor.visitAttributes(count)));
             }
 
             @Override
             public void end() {
-                visitors.forEach(ClassVisitor::begin);
+                visitors.forEach(ClassVisitor::end);
             }
         };
     }
 
-    public default void visit(int access, int major, int minor, String name, String superName, String[] interfaces) {
+    public ConstantPoolVisitor visitConstantPool(int count);
 
-    }
+    public void visit(int major, int minor, int access, int nameIndex, int parentNameIndex, int[] interfaceIndexes);
 
-    public default FieldVisitor visitField(int access, String name, String description) {
-        return null;
-    }
+    public FieldVisitor visitFields(int count);
 
-    public default MethodVisitor visitMethod(int access, String name, String description) {
-        return null;
-    }
+    public MethodVisitor visitMethods(int count);
+
+    public AttributeVisitor visitAttributes(int count);
 }

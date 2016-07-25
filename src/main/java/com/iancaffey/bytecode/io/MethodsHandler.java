@@ -1,9 +1,9 @@
 package com.iancaffey.bytecode.io;
 
-import com.iancaffey.bytecode.AttributeInfo;
-import com.iancaffey.bytecode.MethodInfo;
+import com.iancaffey.bytecode.lang.BytecodeHandler;
 import com.iancaffey.bytecode.lang.ClassReader;
 import com.iancaffey.bytecode.lang.ClassVisitor;
+import com.iancaffey.bytecode.lang.MethodVisitor;
 
 import java.io.IOException;
 
@@ -14,7 +14,7 @@ import java.io.IOException;
  * @since 1.0
  */
 public class MethodsHandler implements BytecodeHandler<ClassReader, ClassVisitor> {
-    private final BytecodeHandler<ClassReader, ClassVisitor> handler;
+    private final BytecodeHandler<ClassReader, MethodVisitor> handler;
 
     public MethodsHandler() {
         this.handler = new MethodInfoHandler();
@@ -22,11 +22,11 @@ public class MethodsHandler implements BytecodeHandler<ClassReader, ClassVisitor
 
     @Override
     public void accept(ClassReader reader, ClassVisitor visitor) throws IOException {
-        int length = reader.readUnsignedShort();
-        reader.model.methods = new MethodInfo[length];
-        reader.model.methodAttributeIndexes = new int[length];
-        reader.model.methodAttributes = new AttributeInfo[length][];
-        for (reader.model.methodsIndex = 0; reader.model.methodsIndex < length; reader.model.methodsIndex++)
-            handler.accept(reader, visitor);
+        int count = reader.readUnsignedShort();
+        MethodVisitor methodVisitor = visitor.visitMethods(count);
+        methodVisitor.begin();
+        for (int i = 0; i < count; i++)
+            handler.accept(reader, methodVisitor);
+        methodVisitor.end();
     }
 }

@@ -12,10 +12,10 @@ public class Code extends AttributeInfo {
     private final int stackDepthLimit;
     private final int localCountLimit;
     private final byte[] data;
-    private final ExceptionTable[] exceptions;
+    private final ExceptionHandler[] exceptions;
     private final AttributeInfo[] attributes;
 
-    public Code(String name, int infoLength, int stackDepthLimit, int localCountLimit, byte[] data, ExceptionTable[] exceptions, AttributeInfo... attributes) {
+    public Code(String name, int infoLength, int stackDepthLimit, int localCountLimit, byte[] data, ExceptionHandler[] exceptions, AttributeInfo... attributes) {
         super(name, infoLength);
         this.stackDepthLimit = stackDepthLimit;
         this.localCountLimit = localCountLimit;
@@ -44,7 +44,7 @@ public class Code extends AttributeInfo {
         return exceptions.length;
     }
 
-    public ExceptionTable exceptionTable(int index) {
+    public ExceptionHandler exceptionTable(int index) {
         return exceptions[index];
     }
 

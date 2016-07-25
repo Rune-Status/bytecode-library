@@ -9,7 +9,6 @@ import com.iancaffey.bytecode.util.Accessible;
  * @since 1.0
  */
 public class ClassInfo implements Accessible {
-    public static final int MAGIC = 0xCAFEBABE;
     private final int magic;
     private final int major;
     private final int minor;

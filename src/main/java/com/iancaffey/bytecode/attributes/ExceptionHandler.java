@@ -1,18 +1,18 @@
 package com.iancaffey.bytecode.attributes;
 
 /**
- * ExceptionTable
+ * ExceptionHandler
  *
  * @author Ian Caffey
  * @since 1.0
  */
-public class ExceptionTable {
+public class ExceptionHandler {
     private final int startIndex;
     private final int endIndex;
     private final int entryIndex;
     private final int typeIndex;
 
-    public ExceptionTable(int startIndex, int endIndex, int entryIndex, int typeIndex) {
+    public ExceptionHandler(int startIndex, int endIndex, int entryIndex, int typeIndex) {
         this.startIndex = startIndex;
         this.endIndex = endIndex;
         this.entryIndex = entryIndex;

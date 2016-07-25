@@ -1,9 +1,9 @@
 package com.iancaffey.bytecode.io;
 
-import com.iancaffey.bytecode.AttributeInfo;
-import com.iancaffey.bytecode.FieldInfo;
+import com.iancaffey.bytecode.lang.BytecodeHandler;
 import com.iancaffey.bytecode.lang.ClassReader;
 import com.iancaffey.bytecode.lang.ClassVisitor;
+import com.iancaffey.bytecode.lang.FieldVisitor;
 
 import java.io.IOException;
 
@@ -14,7 +14,7 @@ import java.io.IOException;
  * @since 1.0
  */
 public class FieldsHandler implements BytecodeHandler<ClassReader, ClassVisitor> {
-    private final BytecodeHandler<ClassReader, ClassVisitor> handler;
+    private final BytecodeHandler<ClassReader, FieldVisitor> handler;
 
     public FieldsHandler() {
         this.handler = new FieldInfoHandler();
@@ -22,11 +22,11 @@ public class FieldsHandler implements BytecodeHandler<ClassReader, ClassVisitor>
 
     @Override
     public void accept(ClassReader reader, ClassVisitor visitor) throws IOException {
-        int length = reader.readUnsignedShort();
-        reader.model.fields = new FieldInfo[length];
-        reader.model.fieldAttributeIndexes = new int[length];
-        reader.model.fieldAttributes = new AttributeInfo[length][];
-        for (reader.model.fieldsIndex = 0; reader.model.fieldsIndex < length; reader.model.fieldsIndex++)
-            handler.accept(reader, visitor);
+        int count = reader.readUnsignedShort();
+        FieldVisitor fieldVisitor = visitor.visitFields(count);
+        fieldVisitor.begin();
+        for (int i = 0; i < count; i++)
+            handler.accept(reader, fieldVisitor);
+        fieldVisitor.end();
     }
 }

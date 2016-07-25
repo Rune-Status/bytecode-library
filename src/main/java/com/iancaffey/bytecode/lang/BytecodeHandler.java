@@ -1,7 +1,4 @@
-package com.iancaffey.bytecode.io;
-
-import com.iancaffey.bytecode.lang.BytecodeReader;
-import com.iancaffey.bytecode.lang.BytecodeVisitor;
+package com.iancaffey.bytecode.lang;
 
 import java.io.IOException;
 import java.util.Arrays;

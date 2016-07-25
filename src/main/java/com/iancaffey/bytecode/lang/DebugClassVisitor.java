@@ -13,29 +13,41 @@ import java.util.Arrays;
 public class DebugClassVisitor implements ClassVisitor {
     @Override
     public void begin() {
-        System.out.println("Visited begin");
+        System.out.println("Class [BEGIN]");
     }
 
     @Override
-    public void visit(int access, int major, int minor, String name, String superName, String[] interfaces) {
-        System.out.printf("Class[access=%s, version=%d.%d, name=%s, superName=%s, interfaces=%s]\n",
-                Access.of(access).toString().toLowerCase(), major, minor, name, superName, Arrays.toString(interfaces));
+    public void visit(int major, int minor, int access, int nameIndex, int parentNameIndex, int[] interfaces) {
+        System.out.printf("Class[access=%s, version=%d.%d, nameIndex=%s, superNameIndex=%s, interfaces=%s]\n",
+                Access.of(access).toString().toLowerCase(), major, minor, nameIndex, parentNameIndex, Arrays.toString(interfaces));
     }
 
     @Override
-    public FieldVisitor visitField(int access, String name, String description) {
-        System.out.printf("Field[access=%s, name=%s, description=%s]\n", Access.of(access).toString().toLowerCase(), name, description);
+    public ConstantPoolVisitor visitConstantPool(int count) {
+        System.out.printf("ConstantPool [count=%d]\n", count);
+        return new DebugConstantPoolVisitor();
+    }
+
+    @Override
+    public FieldVisitor visitFields(int count) {
+        System.out.printf("Fields [count=%d]\n", count);
         return new DebugFieldVisitor();
     }
 
     @Override
-    public MethodVisitor visitMethod(int access, String name, String description) {
-        System.out.printf("Field[access=%s, name=%s, description=%s]\n", Access.of(access).toString().toLowerCase(), name, description);
+    public MethodVisitor visitMethods(int count) {
+        System.out.printf("Methods [count=%d]\n", count);
         return new DebugMethodVisitor();
     }
 
     @Override
+    public AttributeVisitor visitAttributes(int count) {
+        System.out.printf("Attributes [count=%d]\n", count);
+        return new DebugAttributeVisitor();
+    }
+
+    @Override
     public void end() {
-        System.out.println("Visited end");
+        System.out.println("Class [END]");
     }
 }
