@@ -27,9 +27,16 @@ public interface ExceptionVisitor extends BytecodeVisitor {
             }
 
             @Override
+            public void visit(int startIndex, int endIndex, int handlerIndex, int catchIndex) {
+                visitors.forEach(visitor -> visitor.visit(startIndex, endIndex, handlerIndex, catchIndex));
+            }
+
+            @Override
             public void end() {
                 visitors.forEach(ExceptionVisitor::end);
             }
         };
     }
+
+    public void visit(int startIndex, int endIndex, int handlerIndex, int catchIndex);
 }

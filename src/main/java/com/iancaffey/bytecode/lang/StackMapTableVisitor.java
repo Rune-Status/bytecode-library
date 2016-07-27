@@ -1,7 +1,5 @@
 package com.iancaffey.bytecode.lang;
 
-import com.iancaffey.bytecode.attributes.VerificationTypeInfo;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Stream;
@@ -12,7 +10,6 @@ import java.util.stream.Stream;
  * @author Ian Caffey
  * @since 1.0
  */
-//TODO:VerificationInfo and FullFrame visitors
 public interface StackMapTableVisitor extends BytecodeVisitor {
     public static StackMapTableVisitor of(StackMapTableVisitor... visitors) {
         return StackMapTableVisitor.of(Arrays.stream(visitors));
@@ -35,13 +32,13 @@ public interface StackMapTableVisitor extends BytecodeVisitor {
             }
 
             @Override
-            public void visitSingleStackItemFrame(VerificationTypeInfo info) {
-                visitors.forEach(visitor -> visitor.visitSingleStackItemFrame(info));
+            public VerificationTypeInfoVisitor visitSingleStackItemFrame() {
+                return VerificationTypeInfoVisitor.of(visitors.map(StackMapTableVisitor::visitSingleStackItemFrame));
             }
 
             @Override
-            public void visitSingleStackItemFrameExtended(int offset, VerificationTypeInfo info) {
-                visitors.forEach(visitor -> visitor.visitSingleStackItemFrameExtended(offset, info));
+            public VerificationTypeInfoVisitor visitSingleStackItemFrameExtended(int offset) {
+                return VerificationTypeInfoVisitor.of(visitors.map(visitor -> visitor.visitSingleStackItemFrameExtended(offset)));
             }
 
             @Override
@@ -55,13 +52,13 @@ public interface StackMapTableVisitor extends BytecodeVisitor {
             }
 
             @Override
-            public void visitAppendFrame(int type, int offset, VerificationTypeInfo[] info) {
-                visitors.forEach(visitor -> visitor.visitAppendFrame(type, offset, info));
+            public VerificationTypeInfoVisitor visitAppendFrame(int type, int offset, int count) {
+                return VerificationTypeInfoVisitor.of(visitors.map(visitor -> visitor.visitAppendFrame(type, offset, count)));
             }
 
             @Override
-            public void visitFullFrame(int offset, VerificationTypeInfo[] localInfo, VerificationTypeInfo[] stackInfo) {
-                visitors.forEach(visitor -> visitor.visitFullFrame(offset, localInfo, stackInfo));
+            public FullFrameVisitor visitFullFrame(int offset) {
+                return FullFrameVisitor.of(visitors.map(visitor -> visitor.visitFullFrame(offset)));
             }
 
             @Override
@@ -73,15 +70,15 @@ public interface StackMapTableVisitor extends BytecodeVisitor {
 
     public void visitSameFrame(int type);
 
-    public void visitSingleStackItemFrame(VerificationTypeInfo info);
+    public VerificationTypeInfoVisitor visitSingleStackItemFrame();
 
-    public void visitSingleStackItemFrameExtended(int offset, VerificationTypeInfo info);
+    public VerificationTypeInfoVisitor visitSingleStackItemFrameExtended(int offset);
 
     public void visitChopFrame(int type, int offset);
 
     public void visitSameFrameExtended(int offset);
 
-    public void visitAppendFrame(int type, int offset, VerificationTypeInfo[] info);
+    public VerificationTypeInfoVisitor visitAppendFrame(int type, int offset, int count);
 
-    public void visitFullFrame(int offset, VerificationTypeInfo[] localInfo, VerificationTypeInfo[] stackInfo);
+    public FullFrameVisitor visitFullFrame(int offset);
 }

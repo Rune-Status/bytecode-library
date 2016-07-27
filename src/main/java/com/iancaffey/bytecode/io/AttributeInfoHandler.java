@@ -18,5 +18,6 @@ public class AttributeInfoHandler implements BytecodeHandler<ClassReader, Attrib
         int nameIndex = reader.readUnsignedShort();
         int length = reader.readInt();
         //TODO:Attribute parsing
+        throw new UnsupportedOperationException("Attribute info not supported.");
     }
 }
