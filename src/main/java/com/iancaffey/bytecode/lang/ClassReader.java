@@ -36,13 +36,11 @@ public class ClassReader extends BytecodeReader<ClassVisitor> {
 
     @Override
     public ClassReader accept(ClassVisitor visitor) throws IOException {
-        if (visitor != null) {
-            visitor.begin();
-            handler.accept(this, visitor);
-            visitor.end();
-        } else {
-            handler.accept(this, null);
-        }
+        if (visitor == null)
+            return this;
+        visitor.begin();
+        handler.accept(this, visitor);
+        visitor.end();
         return this;
     }
 }
