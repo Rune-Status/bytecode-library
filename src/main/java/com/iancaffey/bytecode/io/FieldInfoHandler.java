@@ -25,12 +25,22 @@ public class FieldInfoHandler implements BytecodeHandler<ClassReader, FieldVisit
         int access = reader.readUnsignedShort();
         int nameIndex = reader.readUnsignedShort();
         int descriptorIndex = reader.readUnsignedShort();
-        visitor.visit(access, nameIndex, descriptorIndex);
         int attributeCount = reader.readUnsignedShort();
-        AttributeVisitor attributeVisitor = visitor.visitAttributes(attributeCount);
-        attributeVisitor.begin();
-        for (int i = 0; i < attributeCount; i++)
-            handler.accept(reader, attributeVisitor);
-        attributeVisitor.end();
+        if (visitor != null) {
+            visitor.visit(access, nameIndex, descriptorIndex);
+            AttributeVisitor attributeVisitor = visitor.visitAttributes(attributeCount);
+            if (attributeVisitor != null) {
+                attributeVisitor.begin();
+                for (int i = 0; i < attributeCount; i++)
+                    handler.accept(reader, attributeVisitor);
+                attributeVisitor.end();
+            } else {
+                for (int i = 0; i < attributeCount; i++)
+                    handler.accept(reader, null);
+            }
+        } else {
+            for (int i = 0; i < attributeCount; i++)
+                handler.accept(reader, null);
+        }
     }
 }

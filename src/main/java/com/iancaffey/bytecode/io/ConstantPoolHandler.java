@@ -3,7 +3,7 @@ package com.iancaffey.bytecode.io;
 import com.iancaffey.bytecode.lang.BytecodeHandler;
 import com.iancaffey.bytecode.lang.ClassReader;
 import com.iancaffey.bytecode.lang.ClassVisitor;
-import com.iancaffey.bytecode.lang.ConstantPoolVisitor;
+import com.iancaffey.bytecode.lang.ConstantPoolInfoVisitor;
 
 import java.io.IOException;
 
@@ -29,7 +29,7 @@ public class ConstantPoolHandler implements BytecodeHandler<ClassReader, ClassVi
     public static final int METHOD_TYPE = 16;
     public static final int INVOKE_DYNAMIC = 18;
     private static final int INFO_HANDLER_SIZE = INVOKE_DYNAMIC + 1;
-    private final BytecodeHandler<ClassReader, ConstantPoolVisitor>[] handlers;
+    private final BytecodeHandler<ClassReader, ConstantPoolInfoVisitor>[] handlers;
 
     public ConstantPoolHandler() {
         this.handlers = new BytecodeHandler[INFO_HANDLER_SIZE];
@@ -52,16 +52,16 @@ public class ConstantPoolHandler implements BytecodeHandler<ClassReader, ClassVi
     @Override
     public void accept(ClassReader reader, ClassVisitor visitor) throws IOException {
         int count = reader.readUnsignedShort();
-        ConstantPoolVisitor constantPoolVisitor = visitor.visitConstantPool(count);
-        constantPoolVisitor.begin();
+        ConstantPoolInfoVisitor constantPoolInfoVisitor = visitor.visitConstantPool(count);
+        constantPoolInfoVisitor.begin();
         for (int i = 1; i < count; i++) {
             int tag = reader.readUnsignedByte();
             if (tag >= handlers.length || handlers[tag] == null)
                 throw new IllegalStateException("Unable to locate handler for constant pool info entry: " + tag);
-            handlers[tag].accept(reader, constantPoolVisitor);
+            handlers[tag].accept(reader, constantPoolInfoVisitor);
             if (tag == ConstantPoolHandler.LONG || tag == ConstantPoolHandler.DOUBLE)
                 i++;
         }
-        constantPoolVisitor.end();
+        constantPoolInfoVisitor.end();
     }
 }

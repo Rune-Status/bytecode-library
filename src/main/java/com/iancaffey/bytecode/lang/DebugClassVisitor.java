@@ -23,9 +23,9 @@ public class DebugClassVisitor implements ClassVisitor {
     }
 
     @Override
-    public ConstantPoolVisitor visitConstantPool(int count) {
+    public ConstantPoolInfoVisitor visitConstantPool(int count) {
         System.out.printf("ConstantPool [count=%d]\n", count);
-        return new DebugConstantPoolVisitor();
+        return new DebugConstantPoolInfoVisitor();
     }
 
     @Override
@@ -43,7 +43,7 @@ public class DebugClassVisitor implements ClassVisitor {
     @Override
     public AttributeVisitor visitAttributes(int count) {
         System.out.printf("Attributes [count=%d]\n", count);
-        return new DebugAttributeVisitor();
+        return null;
     }
 
     @Override

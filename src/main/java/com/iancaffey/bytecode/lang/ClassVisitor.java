@@ -27,8 +27,8 @@ public interface ClassVisitor extends BytecodeVisitor {
             }
 
             @Override
-            public ConstantPoolVisitor visitConstantPool(int count) {
-                return ConstantPoolVisitor.of(visitors.map(visitor -> visitor.visitConstantPool(count)));
+            public ConstantPoolInfoVisitor visitConstantPool(int count) {
+                return ConstantPoolInfoVisitor.of(visitors.map(visitor -> visitor.visitConstantPool(count)));
             }
 
             @Override
@@ -58,7 +58,7 @@ public interface ClassVisitor extends BytecodeVisitor {
         };
     }
 
-    public ConstantPoolVisitor visitConstantPool(int count);
+    public ConstantPoolInfoVisitor visitConstantPool(int count);
 
     public void visit(int major, int minor, int access, int nameIndex, int parentNameIndex, int[] interfaceIndexes);
 

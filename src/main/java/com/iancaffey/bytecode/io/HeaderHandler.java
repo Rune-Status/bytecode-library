@@ -24,7 +24,8 @@ public class HeaderHandler implements BytecodeHandler<ClassReader, ClassVisitor>
         int magic = reader.readInt();
         int minor = reader.readUnsignedShort();
         int major = reader.readUnsignedShort();
-        handler.accept(reader, visitor);
+        if (visitor != null)
+            handler.accept(reader, visitor);
         int access = reader.readUnsignedShort();
         int nameIndex = reader.readUnsignedShort();
         int parentNameIndex = reader.readUnsignedShort();
@@ -32,6 +33,7 @@ public class HeaderHandler implements BytecodeHandler<ClassReader, ClassVisitor>
         int[] interfaceIndexes = new int[length];
         for (int i = 0; i < interfaceIndexes.length; i++)
             interfaceIndexes[i] = reader.readUnsignedShort();
-        visitor.visit(access, major, minor, nameIndex, parentNameIndex, interfaceIndexes);
+        if (visitor != null)
+            visitor.visit(access, major, minor, nameIndex, parentNameIndex, interfaceIndexes);
     }
 }

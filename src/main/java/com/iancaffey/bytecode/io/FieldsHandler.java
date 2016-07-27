@@ -23,10 +23,15 @@ public class FieldsHandler implements BytecodeHandler<ClassReader, ClassVisitor>
     @Override
     public void accept(ClassReader reader, ClassVisitor visitor) throws IOException {
         int count = reader.readUnsignedShort();
-        FieldVisitor fieldVisitor = visitor.visitFields(count);
-        fieldVisitor.begin();
-        for (int i = 0; i < count; i++)
-            handler.accept(reader, fieldVisitor);
-        fieldVisitor.end();
+        if (visitor != null) {
+            FieldVisitor fieldVisitor = visitor.visitFields(count);
+            fieldVisitor.begin();
+            for (int i = 0; i < count; i++)
+                handler.accept(reader, fieldVisitor);
+            fieldVisitor.end();
+        } else {
+            for (int i = 0; i < count; i++)
+                handler.accept(reader, null);
+        }
     }
 }

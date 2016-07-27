@@ -1,6 +1,6 @@
 package com.iancaffey.bytecode.lang;
 
-import com.iancaffey.bytecode.attributes.*;
+import com.iancaffey.bytecode.attributes.ElementValue;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -12,7 +12,7 @@ import java.util.stream.Stream;
  * @author Ian Caffey
  * @since 1.0
  */
-//TODO:Convert object[] visit methods to count methods returns a visitor to the array element type
+//TODO:Element value visitor
 public interface AttributeVisitor extends BytecodeVisitor {
     public static AttributeVisitor of(AttributeVisitor... visitors) {
         return AttributeVisitor.of(Arrays.stream(visitors));
@@ -30,6 +30,121 @@ public interface AttributeVisitor extends BytecodeVisitor {
             }
 
             @Override
+            public void visitConstantValue(int index) {
+                visitors.forEach(visitor -> visitor.visitConstantValue(index));
+            }
+
+            @Override
+            public CodeVisitor visitCode() {
+                return CodeVisitor.of(visitors.map(AttributeVisitor::visitCode));
+            }
+
+            @Override
+            public StackMapTableVisitor visitStackMapTable(int count) {
+                return StackMapTableVisitor.of(visitors.map(visitor -> visitor.visitStackMapTable(count)));
+            }
+
+            @Override
+            public void visitExceptions(int[] exceptionIndexes) {
+                visitors.forEach(visitor -> visitor.visitExceptions(exceptionIndexes));
+            }
+
+            @Override
+            public InnerClassInfoVisitor visitInnerClasses(int count) {
+                return InnerClassInfoVisitor.of(visitors.map(visitor -> visitor.visitInnerClasses(count)));
+            }
+
+            @Override
+            public void visitEnclosingMethod(int classIndex, int methodIndex) {
+                visitors.forEach(visitor -> visitor.visitEnclosingMethod(classIndex, methodIndex));
+            }
+
+            @Override
+            public void visitSynthetic() {
+                visitors.forEach(AttributeVisitor::visitSynthetic);
+            }
+
+            @Override
+            public void visitSignature(int index) {
+                visitors.forEach(visitor -> visitor.visitSignature(index));
+            }
+
+            @Override
+            public void visitSourceFile(int index) {
+                visitors.forEach(visitor -> visitor.visitSourceFile(index));
+            }
+
+            @Override
+            public void visitSourceDebugExtension(byte[] data) {
+                visitors.forEach(visitor -> visitor.visitSourceDebugExtension(data));
+            }
+
+            @Override
+            public LineInfoVisitor visitLineNumberTable(int count) {
+                return LineInfoVisitor.of(visitors.map(visitor -> visitor.visitLineNumberTable(count)));
+            }
+
+            @Override
+            public LocalVariableInfoVisitor visitLocalVariableTable(int count) {
+                return LocalVariableInfoVisitor.of(visitors.map(visitor -> visitor.visitLocalVariableTable(count)));
+            }
+
+            @Override
+            public LocalVariableTypeInfoVisitor visitLocalVariableTypeTable(int count) {
+                return LocalVariableTypeInfoVisitor.of(visitors.map(visitor -> visitor.visitLocalVariableTypeTable(count)));
+            }
+
+            @Override
+            public void visitDeprecated() {
+                visitors.forEach(AttributeVisitor::visitDeprecated);
+            }
+
+            @Override
+            public AttributeVisitor visitRuntimeVisibleAnnotations(int count) {
+                return AttributeVisitor.of(visitors.map(visitor -> visitor.visitRuntimeVisibleAnnotations(count)));
+            }
+
+            @Override
+            public AttributeVisitor visitRuntimeInvisibleAnnotations(int count) {
+                return AttributeVisitor.of(visitors.map(visitor -> visitor.visitRuntimeInvisibleAnnotations(count)));
+            }
+
+            @Override
+            public ParameterVisitor visitRuntimeVisibleParameterAnnotations(int count) {
+                return ParameterVisitor.of(visitors.map(visitor -> visitor.visitRuntimeVisibleParameterAnnotations(count)));
+            }
+
+            @Override
+            public ParameterVisitor visitRuntimeInvisibleParameterAnnotations(int count) {
+                return ParameterVisitor.of(visitors.map(visitor -> visitor.visitRuntimeInvisibleParameterAnnotations(count)));
+            }
+
+            @Override
+            public TypeAnnotationVisitor visitRuntimeVisibleTypeAnnotations(int count) {
+                return TypeAnnotationVisitor.of(visitors.map(visitor -> visitor.visitRuntimeVisibleTypeAnnotations(count)));
+            }
+
+            @Override
+            public TypeAnnotationVisitor visitRuntimeInvisibleTypeAnnotations(int count) {
+                return TypeAnnotationVisitor.of(visitors.map(visitor -> visitor.visitRuntimeInvisibleTypeAnnotations(count)));
+            }
+
+            @Override
+            public void visitAnnotationDefault(ElementValue value) {
+                visitors.forEach(visitor -> visitor.visitAnnotationDefault(value));
+            }
+
+            @Override
+            public BootstrapMethodVisitor visitBootstrapMethods(int count) {
+                return BootstrapMethodVisitor.of(visitors.map(visitor -> visitor.visitBootstrapMethods(count)));
+            }
+
+            @Override
+            public MethodParameterVisitor visitMethodParameters(int count) {
+                return MethodParameterVisitor.of(visitors.map(visitor -> visitor.visitMethodParameters(count)));
+            }
+
+            @Override
             public void end() {
                 visitors.forEach(AttributeVisitor::end);
             }
@@ -38,13 +153,13 @@ public interface AttributeVisitor extends BytecodeVisitor {
 
     public void visitConstantValue(int index);
 
-    public AttributeVisitor visitCode(int maxStack, int maxLocals, byte[] code, ExceptionHandler[] exceptionTable, int attributeCount);
+    public CodeVisitor visitCode();
 
     public StackMapTableVisitor visitStackMapTable(int count);
 
     public void visitExceptions(int[] exceptionIndexes);
 
-    public void visitInnerClasses(InnerClassInfo[] innerClasses);
+    public InnerClassInfoVisitor visitInnerClasses(int count);
 
     public void visitEnclosingMethod(int classIndex, int methodIndex);
 
@@ -56,29 +171,29 @@ public interface AttributeVisitor extends BytecodeVisitor {
 
     public void visitSourceDebugExtension(byte[] data);
 
-    public void visitLineNumberTable(LineInfo[] info);
+    public LineInfoVisitor visitLineNumberTable(int count);
 
-    public void visitLocalVariableTable(LocalVariableInfo[] info);
+    public LocalVariableInfoVisitor visitLocalVariableTable(int count);
 
-    public void visitLocalVariableTypeTable(LocalVariableTypeInfo[] info);
+    public LocalVariableTypeInfoVisitor visitLocalVariableTypeTable(int count);
 
     public void visitDeprecated();
 
-    public void visitRuntimeVisibleAnnotations(Annotation[] annotations);
+    public AttributeVisitor visitRuntimeVisibleAnnotations(int count);
 
-    public void visitRuntimeInvisibleAnnotations(Annotation[] annotations);
+    public AttributeVisitor visitRuntimeInvisibleAnnotations(int count);
 
-    public void visitRuntimeVisibleParameterAnnotations(Annotation[][] annotations);
+    public ParameterVisitor visitRuntimeVisibleParameterAnnotations(int count);
 
-    public void visitRuntimeInvisibleParameterAnnotations(Annotation[][] annotations);
+    public ParameterVisitor visitRuntimeInvisibleParameterAnnotations(int count);
 
-    public void visitRuntimeVisibleTypeAnnotations(Annotation[] annotations); //TODO:TypeAnnotation
+    public TypeAnnotationVisitor visitRuntimeVisibleTypeAnnotations(int count);
 
-    public void visitRuntimeInvisibleTypeAnnotations(Annotation[] annotations); //TODO:TypeAnnotation
+    public TypeAnnotationVisitor visitRuntimeInvisibleTypeAnnotations(int count);
 
     public void visitAnnotationDefault(ElementValue value);
 
-    public void visitBootstrapMethods(BootstrapMethodInfo[] info);
+    public BootstrapMethodVisitor visitBootstrapMethods(int count);
 
-    public void visitMethodParameters(Object[] parameters); //TODO:Parameter
+    public MethodParameterVisitor visitMethodParameters(int count);
 }

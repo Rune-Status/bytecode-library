@@ -1,12 +1,12 @@
 package com.iancaffey.bytecode.lang;
 
 /**
- * DebugConstantPoolVisitor
+ * DebugConstantPoolInfoVisitor
  *
  * @author Ian Caffey
  * @since 1.0
  */
-public class DebugConstantPoolVisitor implements ConstantPoolVisitor {
+public class DebugConstantPoolInfoVisitor implements ConstantPoolInfoVisitor {
     private int index;
 
     @Override

@@ -5,25 +5,25 @@ import java.util.Collection;
 import java.util.stream.Stream;
 
 /**
- * ConstantPoolVisitor
+ * ConstantPoolInfoVisitor
  *
  * @author Ian Caffey
  * @since 1.0
  */
-public interface ConstantPoolVisitor extends BytecodeVisitor {
-    public static ConstantPoolVisitor of(ConstantPoolVisitor... visitors) {
-        return ConstantPoolVisitor.of(Arrays.stream(visitors));
+public interface ConstantPoolInfoVisitor extends BytecodeVisitor {
+    public static ConstantPoolInfoVisitor of(ConstantPoolInfoVisitor... visitors) {
+        return ConstantPoolInfoVisitor.of(Arrays.stream(visitors));
     }
 
-    public static ConstantPoolVisitor of(Collection<ConstantPoolVisitor> visitors) {
-        return ConstantPoolVisitor.of(visitors.stream());
+    public static ConstantPoolInfoVisitor of(Collection<ConstantPoolInfoVisitor> visitors) {
+        return ConstantPoolInfoVisitor.of(visitors.stream());
     }
 
-    public static ConstantPoolVisitor of(Stream<ConstantPoolVisitor> visitors) {
-        return new ConstantPoolVisitor() {
+    public static ConstantPoolInfoVisitor of(Stream<ConstantPoolInfoVisitor> visitors) {
+        return new ConstantPoolInfoVisitor() {
             @Override
             public void begin() {
-                visitors.forEach(ConstantPoolVisitor::begin);
+                visitors.forEach(ConstantPoolInfoVisitor::begin);
             }
 
             @Override
@@ -98,7 +98,7 @@ public interface ConstantPoolVisitor extends BytecodeVisitor {
 
             @Override
             public void end() {
-                visitors.forEach(ConstantPoolVisitor::end);
+                visitors.forEach(ConstantPoolInfoVisitor::end);
             }
         };
     }

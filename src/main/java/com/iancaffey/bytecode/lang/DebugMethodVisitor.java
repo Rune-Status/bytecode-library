@@ -22,7 +22,7 @@ public class DebugMethodVisitor implements MethodVisitor {
     @Override
     public AttributeVisitor visitAttributes(int count) {
         System.out.printf("Attributes [count=%d]\n", count);
-        return new DebugAttributeVisitor();
+        return null;
     }
 
     @Override
