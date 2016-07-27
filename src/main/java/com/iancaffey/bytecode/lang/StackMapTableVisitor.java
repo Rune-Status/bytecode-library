@@ -32,8 +32,8 @@ public interface StackMapTableVisitor extends BytecodeVisitor {
             }
 
             @Override
-            public VerificationTypeInfoVisitor visitSingleStackItemFrame() {
-                return VerificationTypeInfoVisitor.of(visitors.map(StackMapTableVisitor::visitSingleStackItemFrame));
+            public VerificationTypeInfoVisitor visitSingleStackItemFrame(int type) {
+                return VerificationTypeInfoVisitor.of(visitors.map(visitor -> visitor.visitSingleStackItemFrame(type)));
             }
 
             @Override
@@ -70,7 +70,7 @@ public interface StackMapTableVisitor extends BytecodeVisitor {
 
     public void visitSameFrame(int type);
 
-    public VerificationTypeInfoVisitor visitSingleStackItemFrame();
+    public VerificationTypeInfoVisitor visitSingleStackItemFrame(int type);
 
     public VerificationTypeInfoVisitor visitSingleStackItemFrameExtended(int offset);
 
