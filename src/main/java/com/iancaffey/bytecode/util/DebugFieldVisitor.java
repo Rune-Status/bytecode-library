@@ -20,7 +20,7 @@ public class DebugFieldVisitor extends DebugVisitor implements FieldVisitor {
 
     @Override
     public void visit(int access, int nameIndex, int descriptorIndex) {
-        log(String.format("%-25s[access=%s, nameIndex=%s, descriptorIndex=%s]", "Field", Access.of(access).toString().toLowerCase(), nameIndex, descriptorIndex), 1);
+        log(String.format("Field [access=%s, nameIndex=%s, descriptorIndex=%s]", Access.of(access).toString().toLowerCase(), nameIndex, descriptorIndex), 1);
     }
 
     @Override

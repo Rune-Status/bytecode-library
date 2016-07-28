@@ -27,12 +27,12 @@ public class DebugAttributeVisitor extends DebugVisitor implements AttributeVisi
 
     @Override
     public void visitConstantValue(int valueIndex) {
-        log(String.format("%-25s[index=%d, valueIndex=%d]", "ConstantValue", index++, valueIndex), 1);
+        log(String.format("ConstantValue [index=%d, valueIndex=%d]", index++, valueIndex), 1);
     }
 
     @Override
     public CodeVisitor visitCode() {
-        log(String.format("%-25s[index=%d]", "Code", index++), 1);
+        log(String.format("Code [index=%d]", index++), 1);
         return new DebugCodeVisitor(indent() + 1);
     }
 

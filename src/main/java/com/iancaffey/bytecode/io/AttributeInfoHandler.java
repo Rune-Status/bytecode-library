@@ -47,6 +47,7 @@ public class AttributeInfoHandler implements BytecodeHandler<ClassReader, Attrib
         this.handlers = new HashMap<>();
         handlers.put(CONSTANT_VALUE, new ConstantValueHandler());
         handlers.put(CODE, new CodeHandler(this));
+        handlers.put(STACK_MAP_TABLE, new StackMapTableHandler());
     }
 
     @Override

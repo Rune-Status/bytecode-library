@@ -21,8 +21,8 @@ public class DebugClassVisitor extends DebugVisitor implements ClassVisitor {
 
     @Override
     public void visit(int major, int minor, int access, int nameIndex, int parentNameIndex, int[] interfaces) {
-        log(String.format("%-25s[access=%s, version=%d.%d, nameIndex=%s, superNameIndex=%s, interfaces=%s]",
-                "Class", Access.of(access).toString().toLowerCase(), major, minor, nameIndex, parentNameIndex, Arrays.toString(interfaces)), 1);
+        log(String.format("Class [access=%s, version=%d.%d, nameIndex=%s, superNameIndex=%s, interfaces=%s]",
+                Access.of(access).toString().toLowerCase(), major, minor, nameIndex, parentNameIndex, Arrays.toString(interfaces)), 1);
     }
 
     @Override

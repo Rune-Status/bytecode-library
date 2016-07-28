@@ -20,7 +20,7 @@ public class DebugMethodVisitor extends DebugVisitor implements MethodVisitor {
 
     @Override
     public void visit(int access, int nameIndex, int descriptorIndex) {
-        log(String.format("%-25s[access=%s, nameIndex=%s, descriptorIndex=%s]", "Method", Access.of(access).toString().toLowerCase(), nameIndex, descriptorIndex), 1);
+        log(String.format("Method [access=%s, nameIndex=%s, descriptorIndex=%s]", Access.of(access).toString().toLowerCase(), nameIndex, descriptorIndex), 1);
     }
 
     @Override

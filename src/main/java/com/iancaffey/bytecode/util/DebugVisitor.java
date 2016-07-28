@@ -39,11 +39,11 @@ public class DebugVisitor implements BytecodeVisitor {
 
     @Override
     public void begin() {
-        log(type + " [BEGIN]");
+        log("[BEGIN] " + type);
     }
 
     @Override
     public void end() {
-        log(type + " [END]");
+        log("[END] " + type);
     }
 }
