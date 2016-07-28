@@ -97,12 +97,12 @@ public class DebugAttributeVisitor extends DebugVisitor implements AttributeVisi
     }
 
     @Override
-    public AttributeVisitor visitRuntimeVisibleAnnotations(int count) {
+    public AnnotationVisitor visitRuntimeVisibleAnnotations(int count) {
         return null;
     }
 
     @Override
-    public AttributeVisitor visitRuntimeInvisibleAnnotations(int count) {
+    public AnnotationVisitor visitRuntimeInvisibleAnnotations(int count) {
         return null;
     }
 
