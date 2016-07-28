@@ -1,10 +1,6 @@
 package com.iancaffey.bytecode.io;
 
-import com.iancaffey.bytecode.BytecodeHandler;
-import com.iancaffey.bytecode.ClassReader;
-import com.iancaffey.bytecode.ClassVisitor;
-import com.iancaffey.bytecode.FieldVisitor;
-import com.iancaffey.bytecode.util.ConstantPoolCache;
+import com.iancaffey.bytecode.*;
 
 import java.io.IOException;
 
@@ -17,22 +13,17 @@ import java.io.IOException;
 public class FieldsHandler implements BytecodeHandler<ClassReader, ClassVisitor> {
     private final BytecodeHandler<ClassReader, FieldVisitor> handler;
 
-    public FieldsHandler(ConstantPoolCache cache) {
-        this.handler = new FieldInfoHandler(cache);
+    public FieldsHandler(BytecodeHandler<ClassReader, AttributeVisitor> handler) {
+        this.handler = new FieldInfoHandler(handler);
     }
 
     @Override
     public void accept(ClassReader reader, ClassVisitor visitor) throws IOException {
         int count = reader.readUnsignedShort();
-        if (visitor != null) {
-            FieldVisitor fieldVisitor = visitor.visitFields(count);
-            fieldVisitor.begin();
-            for (int i = 0; i < count; i++)
-                handler.accept(reader, fieldVisitor);
-            fieldVisitor.end();
-        } else {
-            for (int i = 0; i < count; i++)
-                handler.accept(reader, null);
-        }
+        FieldVisitor fieldVisitor = visitor.visitFields(count);
+        fieldVisitor.begin();
+        for (int i = 0; i < count; i++)
+            handler.accept(reader, fieldVisitor);
+        fieldVisitor.end();
     }
 }

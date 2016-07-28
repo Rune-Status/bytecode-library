@@ -27,9 +27,16 @@ public interface LocalVariableTypeInfoVisitor extends BytecodeVisitor {
             }
 
             @Override
+            public void visit(int startIndex, int length, int nameIndex, int signatureIndex, int index) {
+                visitors.forEach(visitor -> visitor.visit(startIndex, length, nameIndex, signatureIndex, index));
+            }
+
+            @Override
             public void end() {
                 visitors.forEach(LocalVariableTypeInfoVisitor::end);
             }
         };
     }
+
+    public void visit(int startIndex, int length, int nameIndex, int signatureIndex, int index);
 }

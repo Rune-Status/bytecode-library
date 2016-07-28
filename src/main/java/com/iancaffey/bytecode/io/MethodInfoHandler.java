@@ -4,7 +4,6 @@ import com.iancaffey.bytecode.AttributeVisitor;
 import com.iancaffey.bytecode.BytecodeHandler;
 import com.iancaffey.bytecode.ClassReader;
 import com.iancaffey.bytecode.MethodVisitor;
-import com.iancaffey.bytecode.util.ConstantPoolCache;
 
 import java.io.IOException;
 
@@ -17,8 +16,8 @@ import java.io.IOException;
 public class MethodInfoHandler implements BytecodeHandler<ClassReader, MethodVisitor> {
     private final BytecodeHandler<ClassReader, AttributeVisitor> handler;
 
-    public MethodInfoHandler(ConstantPoolCache cache) {
-        this.handler = new AttributeInfoHandler(cache);
+    public MethodInfoHandler(BytecodeHandler<ClassReader, AttributeVisitor> handler) {
+        this.handler = handler;
     }
 
     @Override

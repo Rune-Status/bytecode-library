@@ -1,6 +1,7 @@
-package com.iancaffey.bytecode.io;
+package com.iancaffey.bytecode.io.attribute;
 
 import com.iancaffey.bytecode.*;
+import com.iancaffey.bytecode.util.AttributeHandler;
 
 import java.io.IOException;
 import java.nio.BufferUnderflowException;
@@ -11,7 +12,7 @@ import java.nio.BufferUnderflowException;
  * @author Ian Caffey
  * @since 1.0
  */
-public class CodeHandler implements BytecodeHandler<ClassReader, AttributeVisitor> {
+public class CodeHandler implements AttributeHandler {
     private final BytecodeHandler<ClassReader, AttributeVisitor> handler;
 
     public CodeHandler(BytecodeHandler<ClassReader, AttributeVisitor> handler) {
@@ -19,7 +20,7 @@ public class CodeHandler implements BytecodeHandler<ClassReader, AttributeVisito
     }
 
     @Override
-    public void accept(ClassReader reader, AttributeVisitor visitor) throws IOException {
+    public void accept(ClassReader reader, AttributeVisitor visitor, int length) throws IOException {
         CodeVisitor codeVisitor = visitor.visitCode();
         codeVisitor.begin();
         int maxStack = reader.readUnsignedShort();

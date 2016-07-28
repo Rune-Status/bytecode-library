@@ -27,9 +27,16 @@ public interface InnerClassInfoVisitor extends BytecodeVisitor {
             }
 
             @Override
+            public void visit(int innerClassInfoIndex, int outerClassInfoIndex, int innerNameIndex, int innerClassAccess) {
+                visitors.forEach(visitor -> visitor.visit(innerClassInfoIndex, outerClassInfoIndex, innerNameIndex, innerClassAccess));
+            }
+
+            @Override
             public void end() {
                 visitors.forEach(InnerClassInfoVisitor::end);
             }
         };
     }
+
+    public void visit(int innerClassInfoIndex, int outerClassInfoIndex, int innerNameIndex, int innerClassAccess);
 }

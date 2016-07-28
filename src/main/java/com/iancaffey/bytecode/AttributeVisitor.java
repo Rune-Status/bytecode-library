@@ -77,8 +77,8 @@ public interface AttributeVisitor extends BytecodeVisitor {
             }
 
             @Override
-            public LineInfoVisitor visitLineNumberTable(int count) {
-                return LineInfoVisitor.of(visitors.map(visitor -> visitor.visitLineNumberTable(count)));
+            public LineNumberInfoVisitor visitLineNumberTable(int count) {
+                return LineNumberInfoVisitor.of(visitors.map(visitor -> visitor.visitLineNumberTable(count)));
             }
 
             @Override
@@ -97,23 +97,23 @@ public interface AttributeVisitor extends BytecodeVisitor {
             }
 
             @Override
-            public AttributeVisitor visitRuntimeVisibleAnnotations(int count) {
-                return AttributeVisitor.of(visitors.map(visitor -> visitor.visitRuntimeVisibleAnnotations(count)));
+            public AnnotationVisitor visitRuntimeVisibleAnnotations(int count) {
+                return AnnotationVisitor.of(visitors.map(visitor -> visitor.visitRuntimeVisibleAnnotations(count)));
             }
 
             @Override
-            public AttributeVisitor visitRuntimeInvisibleAnnotations(int count) {
-                return AttributeVisitor.of(visitors.map(visitor -> visitor.visitRuntimeInvisibleAnnotations(count)));
+            public AnnotationVisitor visitRuntimeInvisibleAnnotations(int count) {
+                return AnnotationVisitor.of(visitors.map(visitor -> visitor.visitRuntimeInvisibleAnnotations(count)));
             }
 
             @Override
-            public ParameterVisitor visitRuntimeVisibleParameterAnnotations(int count) {
-                return ParameterVisitor.of(visitors.map(visitor -> visitor.visitRuntimeVisibleParameterAnnotations(count)));
+            public ParameterAnnotationVisitor visitRuntimeVisibleParameterAnnotations(int count) {
+                return ParameterAnnotationVisitor.of(visitors.map(visitor -> visitor.visitRuntimeVisibleParameterAnnotations(count)));
             }
 
             @Override
-            public ParameterVisitor visitRuntimeInvisibleParameterAnnotations(int count) {
-                return ParameterVisitor.of(visitors.map(visitor -> visitor.visitRuntimeInvisibleParameterAnnotations(count)));
+            public ParameterAnnotationVisitor visitRuntimeInvisibleParameterAnnotations(int count) {
+                return ParameterAnnotationVisitor.of(visitors.map(visitor -> visitor.visitRuntimeInvisibleParameterAnnotations(count)));
             }
 
             @Override
@@ -168,7 +168,7 @@ public interface AttributeVisitor extends BytecodeVisitor {
 
     public void visitSourceDebugExtension(byte[] data);
 
-    public LineInfoVisitor visitLineNumberTable(int count);
+    public LineNumberInfoVisitor visitLineNumberTable(int count);
 
     public LocalVariableInfoVisitor visitLocalVariableTable(int count);
 
@@ -176,13 +176,13 @@ public interface AttributeVisitor extends BytecodeVisitor {
 
     public void visitDeprecated();
 
-    public AttributeVisitor visitRuntimeVisibleAnnotations(int count);
+    public AnnotationVisitor visitRuntimeVisibleAnnotations(int count);
 
-    public AttributeVisitor visitRuntimeInvisibleAnnotations(int count);
+    public AnnotationVisitor visitRuntimeInvisibleAnnotations(int count);
 
-    public ParameterVisitor visitRuntimeVisibleParameterAnnotations(int count);
+    public ParameterAnnotationVisitor visitRuntimeVisibleParameterAnnotations(int count);
 
-    public ParameterVisitor visitRuntimeInvisibleParameterAnnotations(int count);
+    public ParameterAnnotationVisitor visitRuntimeInvisibleParameterAnnotations(int count);
 
     public TypeAnnotationVisitor visitRuntimeVisibleTypeAnnotations(int count);
 

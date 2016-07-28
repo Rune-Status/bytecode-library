@@ -3,6 +3,8 @@ package com.iancaffey.bytecode.io;
 import com.iancaffey.bytecode.AttributeVisitor;
 import com.iancaffey.bytecode.BytecodeHandler;
 import com.iancaffey.bytecode.ClassReader;
+import com.iancaffey.bytecode.io.attribute.*;
+import com.iancaffey.bytecode.util.AttributeHandler;
 import com.iancaffey.bytecode.util.ConstantPoolCache;
 
 import java.io.IOException;
@@ -40,7 +42,7 @@ public class AttributeInfoHandler implements BytecodeHandler<ClassReader, Attrib
     public static final String BOOTSTRAP_METHODS = "BootstrapMethods";
     public static final String METHOD_PARAMETERS = "MethodParameters";
     private final ConstantPoolCache cache;
-    private final Map<String, BytecodeHandler<ClassReader, AttributeVisitor>> handlers;
+    private final Map<String, AttributeHandler> handlers;
 
     public AttributeInfoHandler(ConstantPoolCache cache) {
         this.cache = cache;
@@ -48,6 +50,26 @@ public class AttributeInfoHandler implements BytecodeHandler<ClassReader, Attrib
         handlers.put(CONSTANT_VALUE, new ConstantValueHandler());
         handlers.put(CODE, new CodeHandler(this));
         handlers.put(STACK_MAP_TABLE, new StackMapTableHandler());
+        handlers.put(EXCEPTIONS, new ExceptionsHandler());
+        handlers.put(INNER_CLASSES, new InnerClassesHandler());
+        handlers.put(ENCLOSING_METHOD, new EnclosingMethodHandler());
+        handlers.put(SYNTHETIC, new SyntheticHandler());
+        handlers.put(SIGNATURE, new SignatureHandler());
+        handlers.put(SOURCE_FILE, new SourceFileHandler());
+        handlers.put(SOURCE_DEBUG_EXTENSION, new SourceDebugExtensionHandler());
+        handlers.put(LINE_NUMBER_TABLE, new LineNumberTableHandler());
+        handlers.put(LOCAL_VARIABLE_TABLE, new LocalVariableTableHandler());
+        handlers.put(LOCAL_VARIABLE_TYPE_TABLE, new LocalVariableTypeTableHandler());
+        handlers.put(DEPRECATED, new DeprecatedHandler());
+        handlers.put(RUNTIME_VISIBLE_ANNOTATIONS, new RuntimeVisibleAnnotationsHandler(handler));
+        handlers.put(RUNTIME_INVISIBLE_ANNOTATIONS, new RuntimeInvisibleAnnotationsHandler());
+        handlers.put(RUNTIME_VISIBLE_PARAMETER_ANNOTATIONS, new RuntimeVisibleParameterAnnotationsHandler());
+        handlers.put(RUNTIME_INVISIBLE_PARAMETER_ANNOTATIONS, new RuntimeInvisibleParameterAnnotationsHandler());
+        handlers.put(RUNTIME_VISIBLE_TYPE_ANNOTATIONS, new RuntimeVisibleTypeAnnotationsHandler());
+        handlers.put(RUNTIME_INVISIBLE_TYPE_ANNOTATIONS, new RuntimeInvisibleTypeAnnotationsHandler());
+        handlers.put(ANNOTATION_DEFAULT, new AnnotationDefaultHandler());
+        handlers.put(BOOTSTRAP_METHODS, new BootstrapMethodsHandler());
+        handlers.put(METHOD_PARAMETERS, new MethodParametersHandler());
     }
 
     @Override
@@ -57,6 +79,6 @@ public class AttributeInfoHandler implements BytecodeHandler<ClassReader, Attrib
         String name = cache.strings[nameIndex];
         if (!handlers.containsKey(name))
             throw new IllegalStateException("Unable to locate handler for attribute: " + name);
-        handlers.get(name).accept(reader, visitor);
+        handlers.get(name).accept(reader, visitor, length);
     }
 }

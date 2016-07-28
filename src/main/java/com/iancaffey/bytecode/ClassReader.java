@@ -1,9 +1,6 @@
 package com.iancaffey.bytecode;
 
-import com.iancaffey.bytecode.io.AttributesHandler;
-import com.iancaffey.bytecode.io.FieldsHandler;
-import com.iancaffey.bytecode.io.HeaderHandler;
-import com.iancaffey.bytecode.io.MethodsHandler;
+import com.iancaffey.bytecode.io.*;
 import com.iancaffey.bytecode.util.ConstantPoolCache;
 import com.iancaffey.bytecode.util.Type;
 
@@ -22,19 +19,22 @@ public class ClassReader extends BytecodeReader<ClassVisitor> {
     public ClassReader(byte[] data) {
         super(data);
         ConstantPoolCache cache = new ConstantPoolCache();
-        this.handler = BytecodeHandler.of(new HeaderHandler(cache), new FieldsHandler(cache), new MethodsHandler(cache), new AttributesHandler(cache));
+        BytecodeHandler<ClassReader, AttributeVisitor> handler = new AttributeInfoHandler(cache);
+        this.handler = BytecodeHandler.of(new HeaderHandler(cache), new FieldsHandler(handler), new MethodsHandler(handler), new AttributesHandler(handler));
     }
 
     public ClassReader(byte[] data, int offset, int length) {
         super(data, offset, length);
         ConstantPoolCache cache = new ConstantPoolCache();
-        this.handler = BytecodeHandler.of(new HeaderHandler(cache), new FieldsHandler(cache), new MethodsHandler(cache), new AttributesHandler(cache));
+        BytecodeHandler<ClassReader, AttributeVisitor> handler = new AttributeInfoHandler(cache);
+        this.handler = BytecodeHandler.of(new HeaderHandler(cache), new FieldsHandler(handler), new MethodsHandler(handler), new AttributesHandler(handler));
     }
 
     public ClassReader(InputStream stream) {
         super(stream);
         ConstantPoolCache cache = new ConstantPoolCache();
-        this.handler = BytecodeHandler.of(new HeaderHandler(cache), new FieldsHandler(cache), new MethodsHandler(cache), new AttributesHandler(cache));
+        BytecodeHandler<ClassReader, AttributeVisitor> handler = new AttributeInfoHandler(cache);
+        this.handler = BytecodeHandler.of(new HeaderHandler(cache), new FieldsHandler(handler), new MethodsHandler(handler), new AttributesHandler(handler));
     }
 
     public static ClassReader of(Class<?> c) {

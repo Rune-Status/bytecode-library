@@ -1,6 +1,7 @@
-package com.iancaffey.bytecode.io;
+package com.iancaffey.bytecode.io.attribute;
 
 import com.iancaffey.bytecode.*;
+import com.iancaffey.bytecode.util.AttributeHandler;
 
 import java.io.IOException;
 
@@ -10,7 +11,7 @@ import java.io.IOException;
  * @author Ian Caffey
  * @since 1.0
  */
-public class StackMapTableHandler implements BytecodeHandler<ClassReader, AttributeVisitor> {
+public class StackMapTableHandler implements AttributeHandler {
     private final BytecodeHandler<ClassReader, VerificationTypeInfoVisitor> handler;
 
     public StackMapTableHandler() {
@@ -18,7 +19,7 @@ public class StackMapTableHandler implements BytecodeHandler<ClassReader, Attrib
     }
 
     @Override
-    public void accept(ClassReader reader, AttributeVisitor visitor) throws IOException {
+    public void accept(ClassReader reader, AttributeVisitor visitor, int length) throws IOException {
         int count = reader.readUnsignedShort();
         StackMapTableVisitor stackMapTableVisitor = visitor.visitStackMapTable(count);
         stackMapTableVisitor.begin();

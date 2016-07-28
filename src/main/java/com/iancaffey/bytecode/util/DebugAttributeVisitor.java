@@ -77,7 +77,7 @@ public class DebugAttributeVisitor extends DebugVisitor implements AttributeVisi
     }
 
     @Override
-    public LineInfoVisitor visitLineNumberTable(int count) {
+    public LineNumberInfoVisitor visitLineNumberTable(int count) {
         return null;
     }
 
@@ -107,12 +107,12 @@ public class DebugAttributeVisitor extends DebugVisitor implements AttributeVisi
     }
 
     @Override
-    public ParameterVisitor visitRuntimeVisibleParameterAnnotations(int count) {
+    public ParameterAnnotationVisitor visitRuntimeVisibleParameterAnnotations(int count) {
         return null;
     }
 
     @Override
-    public ParameterVisitor visitRuntimeInvisibleParameterAnnotations(int count) {
+    public ParameterAnnotationVisitor visitRuntimeInvisibleParameterAnnotations(int count) {
         return null;
     }
 

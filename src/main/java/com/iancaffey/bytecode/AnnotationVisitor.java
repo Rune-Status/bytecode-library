@@ -27,9 +27,16 @@ public interface AnnotationVisitor extends BytecodeVisitor {
             }
 
             @Override
+            public ElementValueVisitor visit(int nameIndex) {
+                return ElementValueVisitor.of(visitors.map(visitor -> visitor.visit(nameIndex)));
+            }
+
+            @Override
             public void end() {
                 visitors.forEach(AnnotationVisitor::end);
             }
         };
     }
+
+    public ElementValueVisitor visit(int nameIndex);
 }

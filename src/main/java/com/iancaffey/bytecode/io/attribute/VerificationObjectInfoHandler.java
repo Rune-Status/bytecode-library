@@ -1,4 +1,4 @@
-package com.iancaffey.bytecode.io;
+package com.iancaffey.bytecode.io.attribute;
 
 import com.iancaffey.bytecode.BytecodeHandler;
 import com.iancaffey.bytecode.ClassReader;
@@ -7,14 +7,14 @@ import com.iancaffey.bytecode.VerificationTypeInfoVisitor;
 import java.io.IOException;
 
 /**
- * VerificationTypeInfoHandler
+ * VerificationObjectInfoHandler
  *
  * @author Ian Caffey
  * @since 1.0
  */
-public class VerificationTypeInfoHandler implements BytecodeHandler<ClassReader, VerificationTypeInfoVisitor> {
+public class VerificationObjectInfoHandler implements BytecodeHandler<ClassReader, VerificationTypeInfoVisitor> {
     @Override
     public void accept(ClassReader reader, VerificationTypeInfoVisitor visitor) throws IOException {
-        throw new UnsupportedOperationException("Verification type info not implemented.");
+        visitor.visitObject(reader.readUnsignedShort());
     }
 }
