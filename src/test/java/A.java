@@ -1,5 +1,5 @@
-import com.iancaffey.bytecode.lang.ClassReader;
-import com.iancaffey.bytecode.lang.DebugClassVisitor;
+import com.iancaffey.bytecode.ClassReader;
+import com.iancaffey.bytecode.util.DebugClassVisitor;
 
 import java.io.IOException;
 

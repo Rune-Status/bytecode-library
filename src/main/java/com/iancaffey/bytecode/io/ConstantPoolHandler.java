@@ -1,9 +1,10 @@
 package com.iancaffey.bytecode.io;
 
-import com.iancaffey.bytecode.lang.BytecodeHandler;
-import com.iancaffey.bytecode.lang.ClassReader;
-import com.iancaffey.bytecode.lang.ClassVisitor;
-import com.iancaffey.bytecode.lang.ConstantPoolInfoVisitor;
+import com.iancaffey.bytecode.BytecodeHandler;
+import com.iancaffey.bytecode.ClassReader;
+import com.iancaffey.bytecode.ClassVisitor;
+import com.iancaffey.bytecode.ConstantPoolInfoVisitor;
+import com.iancaffey.bytecode.util.ConstantPoolCache;
 
 import java.io.IOException;
 
@@ -30,10 +31,12 @@ public class ConstantPoolHandler implements BytecodeHandler<ClassReader, ClassVi
     public static final int INVOKE_DYNAMIC = 18;
     private static final int INFO_HANDLER_SIZE = INVOKE_DYNAMIC + 1;
     private final BytecodeHandler<ClassReader, ConstantPoolInfoVisitor>[] handlers;
+    private final ConstantPoolCache cache;
 
-    public ConstantPoolHandler() {
+    public ConstantPoolHandler(ConstantPoolCache cache) {
+        this.cache = cache;
         this.handlers = new BytecodeHandler[INFO_HANDLER_SIZE];
-        handlers[ConstantPoolHandler.UTF8] = new UTF8InfoHandler();
+        handlers[ConstantPoolHandler.UTF8] = new UTF8InfoHandler(cache);
         handlers[ConstantPoolHandler.INTEGER] = new IntegerInfoHandler();
         handlers[ConstantPoolHandler.FLOAT] = new FloatInfoHandler();
         handlers[ConstantPoolHandler.LONG] = new LongInfoHandler();
@@ -54,7 +57,9 @@ public class ConstantPoolHandler implements BytecodeHandler<ClassReader, ClassVi
         int count = reader.readUnsignedShort();
         ConstantPoolInfoVisitor constantPoolInfoVisitor = visitor.visitConstantPool(count);
         constantPoolInfoVisitor.begin();
+        cache.strings = new String[count];
         for (int i = 1; i < count; i++) {
+            cache.index = i;
             int tag = reader.readUnsignedByte();
             if (tag >= handlers.length || handlers[tag] == null)
                 throw new IllegalStateException("Unable to locate handler for constant pool info entry: " + tag);

@@ -1,9 +1,10 @@
 package com.iancaffey.bytecode.io;
 
-import com.iancaffey.bytecode.lang.AttributeVisitor;
-import com.iancaffey.bytecode.lang.BytecodeHandler;
-import com.iancaffey.bytecode.lang.ClassReader;
-import com.iancaffey.bytecode.lang.ClassVisitor;
+import com.iancaffey.bytecode.AttributeVisitor;
+import com.iancaffey.bytecode.BytecodeHandler;
+import com.iancaffey.bytecode.ClassReader;
+import com.iancaffey.bytecode.ClassVisitor;
+import com.iancaffey.bytecode.util.ConstantPoolCache;
 
 import java.io.IOException;
 
@@ -16,8 +17,8 @@ import java.io.IOException;
 public class AttributesHandler implements BytecodeHandler<ClassReader, ClassVisitor> {
     private final BytecodeHandler<ClassReader, AttributeVisitor> handler;
 
-    public AttributesHandler() {
-        this.handler = new AttributeInfoHandler();
+    public AttributesHandler(ConstantPoolCache cache) {
+        this.handler = new AttributeInfoHandler(cache);
     }
 
     @Override

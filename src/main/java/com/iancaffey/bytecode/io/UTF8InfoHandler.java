@@ -1,8 +1,9 @@
 package com.iancaffey.bytecode.io;
 
-import com.iancaffey.bytecode.lang.BytecodeHandler;
-import com.iancaffey.bytecode.lang.ClassReader;
-import com.iancaffey.bytecode.lang.ConstantPoolInfoVisitor;
+import com.iancaffey.bytecode.BytecodeHandler;
+import com.iancaffey.bytecode.ClassReader;
+import com.iancaffey.bytecode.ConstantPoolInfoVisitor;
+import com.iancaffey.bytecode.util.ConstantPoolCache;
 
 import java.io.IOException;
 
@@ -13,8 +14,16 @@ import java.io.IOException;
  * @since 1.0
  */
 public class UTF8InfoHandler implements BytecodeHandler<ClassReader, ConstantPoolInfoVisitor> {
+    private final ConstantPoolCache cache;
+
+    public UTF8InfoHandler(ConstantPoolCache cache) {
+        this.cache = cache;
+    }
+
     @Override
     public void accept(ClassReader reader, ConstantPoolInfoVisitor visitor) throws IOException {
-        visitor.visitUTF8(reader.readUTF());
+        String value = reader.readUTF();
+        cache.strings[cache.index] = value;
+        visitor.visitUTF8(value);
     }
 }

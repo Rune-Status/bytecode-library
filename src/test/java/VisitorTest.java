@@ -1,5 +1,5 @@
-import com.iancaffey.bytecode.lang.BytecodeReader;
-import com.iancaffey.bytecode.lang.BytecodeVisitor;
+import com.iancaffey.bytecode.BytecodeReader;
+import com.iancaffey.bytecode.BytecodeVisitor;
 import org.junit.Assert;
 import org.junit.Test;
 
