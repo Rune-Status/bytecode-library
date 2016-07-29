@@ -1,6 +1,6 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.LocalVariableVisitor;
+import com.iancaffey.bytecode.io.attribute.LocalVariableVisitor;
 import com.iancaffey.bytecode.util.DebugVisitor;
 
 /**

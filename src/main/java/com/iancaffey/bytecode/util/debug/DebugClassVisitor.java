@@ -1,6 +1,10 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.*;
+import com.iancaffey.bytecode.ClassVisitor;
+import com.iancaffey.bytecode.ConstantPoolVisitor;
+import com.iancaffey.bytecode.FieldVisitor;
+import com.iancaffey.bytecode.MethodVisitor;
+import com.iancaffey.bytecode.io.AttributeVisitor;
 import com.iancaffey.bytecode.util.Access;
 import com.iancaffey.bytecode.util.DebugVisitor;
 
@@ -28,9 +32,9 @@ public class DebugClassVisitor extends DebugVisitor implements ClassVisitor {
     }
 
     @Override
-    public ConstantPoolInfoVisitor visitConstantPool(int count) {
+    public ConstantPoolVisitor visitConstantPool(int count) {
         log(String.format("ConstantPool [count=%d]", count), 1);
-        return new DebugConstantPoolInfoVisitor(indent() + 1);
+        return new DebugConstantPoolVisitor(indent() + 1);
     }
 
     @Override

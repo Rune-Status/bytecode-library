@@ -1,5 +1,8 @@
 package com.iancaffey.bytecode;
 
+import com.iancaffey.bytecode.io.AttributeVisitor;
+import com.iancaffey.bytecode.io.BytecodeVisitor;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Stream;

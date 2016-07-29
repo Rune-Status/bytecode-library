@@ -1,8 +1,7 @@
 package com.iancaffey.bytecode.io.attribute;
 
-import com.iancaffey.bytecode.AttributeVisitor;
 import com.iancaffey.bytecode.ClassReader;
-import com.iancaffey.bytecode.LineNumberInfoVisitor;
+import com.iancaffey.bytecode.io.AttributeVisitor;
 import com.iancaffey.bytecode.util.AttributeHandler;
 
 import java.io.IOException;

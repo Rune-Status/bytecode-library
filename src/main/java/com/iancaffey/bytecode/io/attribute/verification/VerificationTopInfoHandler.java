@@ -1,8 +1,8 @@
 package com.iancaffey.bytecode.io.attribute.verification;
 
-import com.iancaffey.bytecode.BytecodeHandler;
 import com.iancaffey.bytecode.ClassReader;
-import com.iancaffey.bytecode.VerificationTypeHandler;
+import com.iancaffey.bytecode.io.BytecodeHandler;
+import com.iancaffey.bytecode.io.attribute.VerificationTypeVisitor;
 
 import java.io.IOException;
 
@@ -12,9 +12,9 @@ import java.io.IOException;
  * @author Ian Caffey
  * @since 1.0
  */
-public class VerificationTopInfoHandler implements BytecodeHandler<ClassReader, VerificationTypeHandler> {
+public class VerificationTopInfoHandler implements BytecodeHandler<ClassReader, VerificationTypeVisitor> {
     @Override
-    public void accept(ClassReader reader, VerificationTypeHandler visitor) throws IOException {
+    public void accept(ClassReader reader, VerificationTypeVisitor visitor) throws IOException {
         visitor.visitTop();
     }
 }

@@ -1,6 +1,8 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.*;
+import com.iancaffey.bytecode.io.AttributeVisitor;
+import com.iancaffey.bytecode.io.attribute.*;
+import com.iancaffey.bytecode.io.attribute.annotation.TypeAnnotationVisitor;
 import com.iancaffey.bytecode.util.DebugVisitor;
 
 /**

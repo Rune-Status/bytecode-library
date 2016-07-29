@@ -1,6 +1,6 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.BootstrapMethodVisitor;
+import com.iancaffey.bytecode.io.attribute.BootstrapMethodVisitor;
 import com.iancaffey.bytecode.util.DebugVisitor;
 
 /**
@@ -20,6 +20,6 @@ public class DebugBootstrapMethodVisitor extends DebugVisitor implements Bootstr
 
     @Override
     public void visit(int index, int[] argumentIndexes) {
-        
+
     }
 }

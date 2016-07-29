@@ -1,7 +1,5 @@
 package com.iancaffey.bytecode.io;
 
-import com.iancaffey.bytecode.AttributeVisitor;
-import com.iancaffey.bytecode.BytecodeHandler;
 import com.iancaffey.bytecode.ClassReader;
 import com.iancaffey.bytecode.ClassVisitor;
 

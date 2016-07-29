@@ -1,8 +1,8 @@
 package com.iancaffey.bytecode.io.attribute.target;
 
-import com.iancaffey.bytecode.BytecodeHandler;
 import com.iancaffey.bytecode.ClassReader;
-import com.iancaffey.bytecode.TypeTargetVisitor;
+import com.iancaffey.bytecode.io.BytecodeHandler;
+import com.iancaffey.bytecode.io.attribute.annotation.TypeTargetVisitor;
 
 import java.io.IOException;
 

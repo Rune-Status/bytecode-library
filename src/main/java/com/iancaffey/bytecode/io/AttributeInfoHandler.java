@@ -1,6 +1,6 @@
 package com.iancaffey.bytecode.io;
 
-import com.iancaffey.bytecode.*;
+import com.iancaffey.bytecode.ClassReader;
 import com.iancaffey.bytecode.io.attribute.*;
 import com.iancaffey.bytecode.io.attribute.annotation.*;
 import com.iancaffey.bytecode.util.AttributeHandler;

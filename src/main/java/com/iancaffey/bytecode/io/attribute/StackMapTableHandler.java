@@ -1,6 +1,9 @@
 package com.iancaffey.bytecode.io.attribute;
 
-import com.iancaffey.bytecode.*;
+import com.iancaffey.bytecode.ClassReader;
+import com.iancaffey.bytecode.io.AttributeVisitor;
+import com.iancaffey.bytecode.io.BytecodeHandler;
+import com.iancaffey.bytecode.io.FullFrameVisitor;
 import com.iancaffey.bytecode.util.AttributeHandler;
 
 import java.io.IOException;
@@ -12,10 +15,10 @@ import java.io.IOException;
  * @since 1.0
  */
 public class StackMapTableHandler implements AttributeHandler {
-    private final BytecodeHandler<ClassReader, VerificationTypeHandler> handler;
+    private final BytecodeHandler<ClassReader, VerificationTypeVisitor> handler;
 
     public StackMapTableHandler() {
-        this.handler = new VerificationTypeInfoHandler();
+        this.handler = new VerificationTypeHandler();
     }
 
     @Override
@@ -44,23 +47,23 @@ public class StackMapTableHandler implements AttributeHandler {
             } else if (tag < 255) {
                 int offset = reader.readUnsignedShort();
                 int infoCount = type - 251;
-                VerificationTypeHandler verificationTypeHandler = stackMapTableVisitor.visitAppendFrame(type, offset, infoCount);
-                verificationTypeHandler.begin();
+                VerificationTypeVisitor verificationTypeVisitor = stackMapTableVisitor.visitAppendFrame(type, offset, infoCount);
+                verificationTypeVisitor.begin();
                 for (int j = 0; j < infoCount; j++)
-                    handler.accept(reader, verificationTypeHandler);
-                verificationTypeHandler.end();
+                    handler.accept(reader, verificationTypeVisitor);
+                verificationTypeVisitor.end();
             } else {
                 int offset = reader.readUnsignedShort();
                 FullFrameVisitor fullFrameVisitor = stackMapTableVisitor.visitFullFrame(offset);
                 fullFrameVisitor.begin();
                 int locals = reader.readUnsignedShort();
-                VerificationTypeHandler localVisitor = fullFrameVisitor.visitLocals(locals);
+                VerificationTypeVisitor localVisitor = fullFrameVisitor.visitLocals(locals);
                 localVisitor.begin();
                 for (int j = 0; j < locals; j++)
                     handler.accept(reader, localVisitor);
                 localVisitor.end();
                 int stack = reader.readUnsignedShort();
-                VerificationTypeHandler stackVisitor = fullFrameVisitor.visitStack(stack);
+                VerificationTypeVisitor stackVisitor = fullFrameVisitor.visitStack(stack);
                 stackVisitor.begin();
                 for (int j = 0; j < locals; j++)
                     handler.accept(reader, stackVisitor);

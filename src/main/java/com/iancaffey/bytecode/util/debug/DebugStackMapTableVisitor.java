@@ -1,8 +1,8 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.FullFrameVisitor;
-import com.iancaffey.bytecode.StackMapTableVisitor;
-import com.iancaffey.bytecode.VerificationTypeHandler;
+import com.iancaffey.bytecode.io.FullFrameVisitor;
+import com.iancaffey.bytecode.io.attribute.StackMapTableVisitor;
+import com.iancaffey.bytecode.io.attribute.VerificationTypeVisitor;
 import com.iancaffey.bytecode.util.DebugVisitor;
 
 /**
@@ -26,13 +26,13 @@ public class DebugStackMapTableVisitor extends DebugVisitor implements StackMapT
     }
 
     @Override
-    public VerificationTypeHandler visitSingleStackItemFrame(int type) {
-        return new DebugVerificationTypeHandler(indent() + 1);
+    public VerificationTypeVisitor visitSingleStackItemFrame(int type) {
+        return new DebugVerificationTypeVisitor(indent() + 1);
     }
 
     @Override
-    public VerificationTypeHandler visitSingleStackItemFrameExtended(int offset) {
-        return new DebugVerificationTypeHandler(indent() + 1);
+    public VerificationTypeVisitor visitSingleStackItemFrameExtended(int offset) {
+        return new DebugVerificationTypeVisitor(indent() + 1);
     }
 
     @Override
@@ -46,8 +46,8 @@ public class DebugStackMapTableVisitor extends DebugVisitor implements StackMapT
     }
 
     @Override
-    public VerificationTypeHandler visitAppendFrame(int type, int offset, int count) {
-        return new DebugVerificationTypeHandler(indent() + 1);
+    public VerificationTypeVisitor visitAppendFrame(int type, int offset, int count) {
+        return new DebugVerificationTypeVisitor(indent() + 1);
     }
 
     @Override

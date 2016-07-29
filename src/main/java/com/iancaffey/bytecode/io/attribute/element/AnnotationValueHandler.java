@@ -1,9 +1,9 @@
 package com.iancaffey.bytecode.io.attribute.element;
 
-import com.iancaffey.bytecode.AnnotationVisitor;
-import com.iancaffey.bytecode.BytecodeHandler;
 import com.iancaffey.bytecode.ClassReader;
-import com.iancaffey.bytecode.ElementValueVisitor;
+import com.iancaffey.bytecode.io.BytecodeHandler;
+import com.iancaffey.bytecode.io.attribute.AnnotationVisitor;
+import com.iancaffey.bytecode.io.attribute.ElementValueVisitor;
 
 import java.io.IOException;
 

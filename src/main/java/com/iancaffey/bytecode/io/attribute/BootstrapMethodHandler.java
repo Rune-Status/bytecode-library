@@ -1,8 +1,7 @@
 package com.iancaffey.bytecode.io.attribute;
 
-import com.iancaffey.bytecode.BootstrapMethodVisitor;
-import com.iancaffey.bytecode.BytecodeHandler;
 import com.iancaffey.bytecode.ClassReader;
+import com.iancaffey.bytecode.io.BytecodeHandler;
 
 import java.io.IOException;
 

@@ -1,6 +1,6 @@
 package com.iancaffey.bytecode.util;
 
-import com.iancaffey.bytecode.BytecodeVisitor;
+import com.iancaffey.bytecode.io.BytecodeVisitor;
 
 /**
  * DebugVisitor

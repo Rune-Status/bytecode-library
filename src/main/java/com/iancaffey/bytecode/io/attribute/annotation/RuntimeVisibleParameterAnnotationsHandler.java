@@ -1,6 +1,10 @@
 package com.iancaffey.bytecode.io.attribute.annotation;
 
-import com.iancaffey.bytecode.*;
+import com.iancaffey.bytecode.ClassReader;
+import com.iancaffey.bytecode.io.AttributeVisitor;
+import com.iancaffey.bytecode.io.BytecodeHandler;
+import com.iancaffey.bytecode.io.attribute.AnnotationVisitor;
+import com.iancaffey.bytecode.io.attribute.ParameterAnnotationVisitor;
 import com.iancaffey.bytecode.util.AttributeHandler;
 
 import java.io.IOException;
