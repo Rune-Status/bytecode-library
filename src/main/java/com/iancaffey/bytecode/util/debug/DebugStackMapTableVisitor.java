@@ -1,8 +1,9 @@
-package com.iancaffey.bytecode.util;
+package com.iancaffey.bytecode.util.debug;
 
 import com.iancaffey.bytecode.FullFrameVisitor;
 import com.iancaffey.bytecode.StackMapTableVisitor;
 import com.iancaffey.bytecode.VerificationTypeHandler;
+import com.iancaffey.bytecode.util.DebugVisitor;
 
 /**
  * DebugStackMapTableVisitor

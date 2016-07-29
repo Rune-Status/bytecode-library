@@ -1,7 +1,8 @@
-package com.iancaffey.bytecode.util;
+package com.iancaffey.bytecode.util.debug;
 
 import com.iancaffey.bytecode.ElementValuePairVisitor;
 import com.iancaffey.bytecode.ElementValueVisitor;
+import com.iancaffey.bytecode.util.DebugVisitor;
 
 /**
  * DebugElementValueVisitor

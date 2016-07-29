@@ -1,6 +1,8 @@
-package com.iancaffey.bytecode.util;
+package com.iancaffey.bytecode.util.debug;
 
 import com.iancaffey.bytecode.*;
+import com.iancaffey.bytecode.util.Access;
+import com.iancaffey.bytecode.util.DebugVisitor;
 
 import java.util.Arrays;
 

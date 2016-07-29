@@ -1,6 +1,7 @@
-package com.iancaffey.bytecode.util;
+package com.iancaffey.bytecode.util.debug;
 
 import com.iancaffey.bytecode.BootstrapMethodVisitor;
+import com.iancaffey.bytecode.util.DebugVisitor;
 
 /**
  * DebugBootstrapMethodVisitor

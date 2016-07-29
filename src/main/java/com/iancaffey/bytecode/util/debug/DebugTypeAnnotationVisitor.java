@@ -1,9 +1,10 @@
-package com.iancaffey.bytecode.util;
+package com.iancaffey.bytecode.util.debug;
 
 import com.iancaffey.bytecode.AnnotationVisitor;
 import com.iancaffey.bytecode.TypeAnnotationVisitor;
 import com.iancaffey.bytecode.TypePathVisitor;
 import com.iancaffey.bytecode.TypeTargetVisitor;
+import com.iancaffey.bytecode.util.DebugVisitor;
 
 /**
  * DebugTypeAnnotationVisitor

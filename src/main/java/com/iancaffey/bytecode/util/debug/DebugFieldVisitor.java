@@ -1,7 +1,9 @@
-package com.iancaffey.bytecode.util;
+package com.iancaffey.bytecode.util.debug;
 
 import com.iancaffey.bytecode.AttributeVisitor;
 import com.iancaffey.bytecode.FieldVisitor;
+import com.iancaffey.bytecode.util.Access;
+import com.iancaffey.bytecode.util.DebugVisitor;
 
 /**
  * DebugFieldVisitor

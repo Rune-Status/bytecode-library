@@ -1,7 +1,8 @@
-package com.iancaffey.bytecode.util;
+package com.iancaffey.bytecode.util.debug;
 
 import com.iancaffey.bytecode.LocalVariableTargetVisitor;
 import com.iancaffey.bytecode.TypeTargetVisitor;
+import com.iancaffey.bytecode.util.DebugVisitor;
 
 /**
  * DebugTypeTargetVisitor
