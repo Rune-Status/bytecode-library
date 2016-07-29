@@ -1,8 +1,8 @@
 package com.iancaffey.bytecode.io.constant;
 
-import com.iancaffey.bytecode.ClassReader;
-import com.iancaffey.bytecode.ConstantPoolVisitor;
 import com.iancaffey.bytecode.io.BytecodeHandler;
+import com.iancaffey.bytecode.io.ClassReader;
+import com.iancaffey.bytecode.io.ConstantPoolVisitor;
 import com.iancaffey.bytecode.util.ConstantPoolCache;
 
 import java.io.IOException;

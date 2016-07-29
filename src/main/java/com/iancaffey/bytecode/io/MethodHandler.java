@@ -1,30 +1,27 @@
-package com.iancaffey.bytecode;
-
-import com.iancaffey.bytecode.io.AttributeVisitor;
-import com.iancaffey.bytecode.io.BytecodeHandler;
+package com.iancaffey.bytecode.io;
 
 import java.io.IOException;
 
 /**
- * FieldHandler
+ * MethodHandler
  *
  * @author Ian Caffey
  * @since 1.0
  */
-public class FieldHandler implements BytecodeHandler<ClassReader, FieldVisitor> {
+public class MethodHandler implements BytecodeHandler<ClassReader, MethodVisitor> {
     private final BytecodeHandler<ClassReader, AttributeVisitor> handler;
 
-    public FieldHandler(BytecodeHandler<ClassReader, AttributeVisitor> handler) {
+    public MethodHandler(BytecodeHandler<ClassReader, AttributeVisitor> handler) {
         this.handler = handler;
     }
 
     @Override
-    public void accept(ClassReader reader, FieldVisitor visitor) throws IOException {
+    public void accept(ClassReader reader, MethodVisitor visitor) throws IOException {
         int access = reader.readUnsignedShort();
         int nameIndex = reader.readUnsignedShort();
         int descriptorIndex = reader.readUnsignedShort();
-        int attributeCount = reader.readUnsignedShort();
         visitor.visit(access, nameIndex, descriptorIndex);
+        int attributeCount = reader.readUnsignedShort();
         AttributeVisitor attributeVisitor = visitor.visitAttributes(attributeCount);
         attributeVisitor.begin();
         for (int i = 0; i < attributeCount; i++)

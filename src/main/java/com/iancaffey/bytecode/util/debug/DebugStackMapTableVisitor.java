@@ -1,6 +1,6 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.io.FullFrameVisitor;
+import com.iancaffey.bytecode.io.attribute.FullFrameVisitor;
 import com.iancaffey.bytecode.io.attribute.StackMapTableVisitor;
 import com.iancaffey.bytecode.io.attribute.VerificationTypeVisitor;
 import com.iancaffey.bytecode.util.DebugVisitor;

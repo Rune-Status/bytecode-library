@@ -1,7 +1,6 @@
 package com.iancaffey.bytecode.io.attribute;
 
 import com.iancaffey.bytecode.io.BytecodeVisitor;
-import com.iancaffey.bytecode.io.FullFrameVisitor;
 
 import java.util.Arrays;
 import java.util.Collection;

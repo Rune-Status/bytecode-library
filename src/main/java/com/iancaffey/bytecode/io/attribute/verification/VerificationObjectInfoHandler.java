@@ -1,7 +1,7 @@
 package com.iancaffey.bytecode.io.attribute.verification;
 
-import com.iancaffey.bytecode.ClassReader;
 import com.iancaffey.bytecode.io.BytecodeHandler;
+import com.iancaffey.bytecode.io.ClassReader;
 import com.iancaffey.bytecode.io.attribute.VerificationTypeVisitor;
 
 import java.io.IOException;

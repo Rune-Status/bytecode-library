@@ -1,7 +1,4 @@
-package com.iancaffey.bytecode;
-
-import com.iancaffey.bytecode.io.AttributeVisitor;
-import com.iancaffey.bytecode.io.BytecodeHandler;
+package com.iancaffey.bytecode.io;
 
 import java.io.IOException;
 

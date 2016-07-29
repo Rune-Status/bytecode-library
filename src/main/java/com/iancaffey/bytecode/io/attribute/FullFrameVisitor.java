@@ -1,6 +1,6 @@
-package com.iancaffey.bytecode.io;
+package com.iancaffey.bytecode.io.attribute;
 
-import com.iancaffey.bytecode.io.attribute.VerificationTypeVisitor;
+import com.iancaffey.bytecode.io.BytecodeVisitor;
 
 import java.util.Arrays;
 import java.util.Collection;

@@ -1,32 +1,29 @@
-package com.iancaffey.bytecode;
-
-import com.iancaffey.bytecode.io.AttributeVisitor;
-import com.iancaffey.bytecode.io.BytecodeVisitor;
+package com.iancaffey.bytecode.io;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Stream;
 
 /**
- * MethodVisitor
+ * FieldVisitor
  *
  * @author Ian Caffey
  * @since 1.0
  */
-public interface MethodVisitor extends BytecodeVisitor {
-    public static MethodVisitor of(MethodVisitor... visitors) {
-        return MethodVisitor.of(Arrays.stream(visitors));
+public interface FieldVisitor extends BytecodeVisitor {
+    public static FieldVisitor of(FieldVisitor... visitors) {
+        return FieldVisitor.of(Arrays.stream(visitors));
     }
 
-    public static MethodVisitor of(Collection<MethodVisitor> visitors) {
-        return MethodVisitor.of(visitors.stream());
+    public static FieldVisitor of(Collection<FieldVisitor> visitors) {
+        return FieldVisitor.of(visitors.stream());
     }
 
-    public static MethodVisitor of(Stream<MethodVisitor> visitors) {
-        return new MethodVisitor() {
+    public static FieldVisitor of(Stream<FieldVisitor> visitors) {
+        return new FieldVisitor() {
             @Override
             public void begin() {
-                visitors.forEach(MethodVisitor::begin);
+                visitors.forEach(FieldVisitor::begin);
             }
 
             @Override
@@ -41,7 +38,7 @@ public interface MethodVisitor extends BytecodeVisitor {
 
             @Override
             public void end() {
-                visitors.forEach(MethodVisitor::end);
+                visitors.forEach(FieldVisitor::end);
             }
         };
     }

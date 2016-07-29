@@ -1,6 +1,5 @@
-package com.iancaffey.bytecode;
+package com.iancaffey.bytecode.io;
 
-import com.iancaffey.bytecode.io.*;
 import com.iancaffey.bytecode.util.ConstantPoolCache;
 import com.iancaffey.bytecode.util.Type;
 

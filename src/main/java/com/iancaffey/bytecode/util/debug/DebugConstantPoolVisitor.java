@@ -1,6 +1,6 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.ConstantPoolVisitor;
+import com.iancaffey.bytecode.io.ConstantPoolVisitor;
 import com.iancaffey.bytecode.util.DebugVisitor;
 
 /**

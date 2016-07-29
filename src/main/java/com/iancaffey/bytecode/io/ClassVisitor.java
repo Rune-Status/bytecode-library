@@ -1,7 +1,4 @@
-package com.iancaffey.bytecode;
-
-import com.iancaffey.bytecode.io.AttributeVisitor;
-import com.iancaffey.bytecode.io.BytecodeVisitor;
+package com.iancaffey.bytecode.io;
 
 import java.util.Arrays;
 import java.util.Collection;

@@ -1,4 +1,4 @@
-import com.iancaffey.bytecode.ClassReader;
+import com.iancaffey.bytecode.io.ClassReader;
 import com.iancaffey.bytecode.util.debug.DebugClassVisitor;
 
 import java.io.IOException;
