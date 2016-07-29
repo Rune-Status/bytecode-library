@@ -1,6 +1,9 @@
 package com.iancaffey.bytecode.util;
 
+import com.iancaffey.bytecode.AnnotationVisitor;
 import com.iancaffey.bytecode.TypeAnnotationVisitor;
+import com.iancaffey.bytecode.TypePathVisitor;
+import com.iancaffey.bytecode.TypeTargetVisitor;
 
 /**
  * DebugTypeAnnotationVisitor
@@ -15,5 +18,20 @@ public class DebugTypeAnnotationVisitor extends DebugVisitor implements TypeAnno
 
     public DebugTypeAnnotationVisitor(int indent) {
         super("TypeAnnotation", indent);
+    }
+
+    @Override
+    public TypeTargetVisitor visitTarget() {
+        return new DebugTypeTargetVisitor();
+    }
+
+    @Override
+    public TypePathVisitor visitPath() {
+        return new DebugTypePathVisitor();
+    }
+
+    @Override
+    public AnnotationVisitor visitAnnotation() {
+        return new DebugAnnotationVisitor();
     }
 }

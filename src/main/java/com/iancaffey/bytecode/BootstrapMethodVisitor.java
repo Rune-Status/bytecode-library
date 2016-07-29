@@ -27,9 +27,16 @@ public interface BootstrapMethodVisitor extends BytecodeVisitor {
             }
 
             @Override
+            public void visit(int index, int[] argumentIndexes) {
+                visitors.forEach(visitor -> visitor.visit(index, argumentIndexes));
+            }
+
+            @Override
             public void end() {
                 visitors.forEach(BootstrapMethodVisitor::end);
             }
         };
     }
+
+    public void visit(int index, int[] argumentIndexes);
 }

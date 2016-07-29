@@ -16,4 +16,9 @@ public class DebugBootstrapMethodVisitor extends DebugVisitor implements Bootstr
     public DebugBootstrapMethodVisitor(int indent) {
         super("BootstrapMethod", indent);
     }
+
+    @Override
+    public void visit(int index, int[] argumentIndexes) {
+        
+    }
 }

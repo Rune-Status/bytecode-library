@@ -27,9 +27,30 @@ public interface TypeAnnotationVisitor extends BytecodeVisitor {
             }
 
             @Override
+            public TypeTargetVisitor visitTarget() {
+                return TypeTargetVisitor.of(visitors.map(TypeAnnotationVisitor::visitTarget));
+            }
+
+            @Override
+            public TypePathVisitor visitPath() {
+                return TypePathVisitor.of(visitors.map(TypeAnnotationVisitor::visitPath));
+            }
+
+            @Override
+            public AnnotationVisitor visitAnnotation() {
+                return AnnotationVisitor.of(visitors.map(TypeAnnotationVisitor::visitAnnotation));
+            }
+
+            @Override
             public void end() {
                 visitors.forEach(TypeAnnotationVisitor::end);
             }
         };
     }
+
+    public TypeTargetVisitor visitTarget();
+
+    public TypePathVisitor visitPath();
+
+    public AnnotationVisitor visitAnnotation();
 }

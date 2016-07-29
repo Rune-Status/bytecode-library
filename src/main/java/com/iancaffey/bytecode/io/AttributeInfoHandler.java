@@ -46,7 +46,8 @@ public class AttributeInfoHandler implements BytecodeHandler<ClassReader, Attrib
     public AttributeInfoHandler(ConstantPoolCache cache) {
         this.cache = cache;
         this.handlers = new HashMap<>();
-        BytecodeHandler<ClassReader,AnnotationVisitor> handler = new AnnotationHandler();
+        BytecodeHandler<ClassReader, AnnotationVisitor> handler = new AnnotationHandler();
+        BytecodeHandler<ClassReader, TypeAnnotationVisitor> typeHandler = new TypeAnnotationHandler();
         handlers.put(CONSTANT_VALUE, new ConstantValueHandler());
         handlers.put(CODE, new CodeHandler(this));
         handlers.put(STACK_MAP_TABLE, new StackMapTableHandler());
@@ -62,12 +63,12 @@ public class AttributeInfoHandler implements BytecodeHandler<ClassReader, Attrib
         handlers.put(LOCAL_VARIABLE_TYPE_TABLE, new LocalVariableTypeTableHandler());
         handlers.put(DEPRECATED, new DeprecatedHandler());
         handlers.put(RUNTIME_VISIBLE_ANNOTATIONS, new RuntimeVisibleAnnotationsHandler(handler));
-        handlers.put(RUNTIME_INVISIBLE_ANNOTATIONS, new RuntimeInvisibleAnnotationsHandler());
-        handlers.put(RUNTIME_VISIBLE_PARAMETER_ANNOTATIONS, new RuntimeVisibleParameterAnnotationsHandler());
-        handlers.put(RUNTIME_INVISIBLE_PARAMETER_ANNOTATIONS, new RuntimeInvisibleParameterAnnotationsHandler());
-        handlers.put(RUNTIME_VISIBLE_TYPE_ANNOTATIONS, new RuntimeVisibleTypeAnnotationsHandler());
-        handlers.put(RUNTIME_INVISIBLE_TYPE_ANNOTATIONS, new RuntimeInvisibleTypeAnnotationsHandler());
-        handlers.put(ANNOTATION_DEFAULT, new AnnotationDefaultHandler());
+        handlers.put(RUNTIME_INVISIBLE_ANNOTATIONS, new RuntimeInvisibleAnnotationsHandler(handler));
+        handlers.put(RUNTIME_VISIBLE_PARAMETER_ANNOTATIONS, new RuntimeVisibleParameterAnnotationsHandler(handler));
+        handlers.put(RUNTIME_INVISIBLE_PARAMETER_ANNOTATIONS, new RuntimeInvisibleParameterAnnotationsHandler(handler));
+        handlers.put(RUNTIME_VISIBLE_TYPE_ANNOTATIONS, new RuntimeVisibleTypeAnnotationsHandler(typeHandler));
+        handlers.put(RUNTIME_INVISIBLE_TYPE_ANNOTATIONS, new RuntimeInvisibleTypeAnnotationsHandler(typeHandler));
+        handlers.put(ANNOTATION_DEFAULT, new AnnotationDefaultHandler(new ElementValueHandler(handler)));
         handlers.put(BOOTSTRAP_METHODS, new BootstrapMethodsHandler());
         handlers.put(METHOD_PARAMETERS, new MethodParametersHandler());
     }

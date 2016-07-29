@@ -2,6 +2,7 @@ package com.iancaffey.bytecode.io.attribute;
 
 import com.iancaffey.bytecode.AttributeVisitor;
 import com.iancaffey.bytecode.ClassReader;
+import com.iancaffey.bytecode.MethodParameterVisitor;
 import com.iancaffey.bytecode.util.AttributeHandler;
 
 import java.io.IOException;
@@ -15,6 +16,11 @@ import java.io.IOException;
 public class MethodParametersHandler implements AttributeHandler {
     @Override
     public void accept(ClassReader reader, AttributeVisitor visitor, int length) throws IOException {
-        throw new UnsupportedOperationException();
+        int count = reader.readUnsignedByte();
+        MethodParameterVisitor methodParameterVisitor = visitor.visitMethodParameters(count);
+        methodParameterVisitor.begin();
+        for (int i = 0; i < count; i++)
+            methodParameterVisitor.visit(reader.readUnsignedShort(), reader.readUnsignedShort());
+        methodParameterVisitor.end();
     }
 }
