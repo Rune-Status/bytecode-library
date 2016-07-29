@@ -26,7 +26,7 @@ public class DebugTypeAnnotationVisitor extends DebugVisitor implements TypeAnno
     }
 
     @Override
-    public TypePathVisitor visitPath() {
+    public TypePathVisitor visitPath(int count) {
         return new DebugTypePathVisitor();
     }
 

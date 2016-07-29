@@ -27,25 +27,25 @@ public class DebugClassVisitor extends DebugVisitor implements ClassVisitor {
 
     @Override
     public ConstantPoolInfoVisitor visitConstantPool(int count) {
-        log(String.format("ConstantPool [count=%d]", count), 2);
-        return new DebugConstantPoolInfoVisitor(indent() + 2);
+        log(String.format("ConstantPool [count=%d]", count), 1);
+        return new DebugConstantPoolInfoVisitor(indent() + 1);
     }
 
     @Override
     public FieldVisitor visitFields(int count) {
-        log(String.format("Fields [count=%d]", count), 2);
-        return new DebugFieldVisitor(indent() + 2);
+        log(String.format("Fields [count=%d]", count), 1);
+        return new DebugFieldVisitor(indent() + 1);
     }
 
     @Override
     public MethodVisitor visitMethods(int count) {
-        log(String.format("Methods [count=%d]", count), 2);
-        return new DebugMethodVisitor(indent() + 2);
+        log(String.format("Methods [count=%d]", count), 1);
+        return new DebugMethodVisitor(indent() + 1);
     }
 
     @Override
     public AttributeVisitor visitAttributes(int count) {
-        log(String.format("Attributes [count=%d]", count), 2);
-        return new DebugAttributeVisitor(indent() + 2);
+        log(String.format("Attributes [count=%d]", count), 1);
+        return new DebugAttributeVisitor(indent() + 1);
     }
 }

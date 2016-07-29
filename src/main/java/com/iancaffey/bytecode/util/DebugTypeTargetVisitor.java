@@ -19,7 +19,7 @@ public class DebugTypeTargetVisitor extends DebugVisitor implements TypeTargetVi
     }
 
     @Override
-    public void visitParameter(int index) {
+    public void visitTypeParameter(int index) {
 
     }
 
@@ -29,7 +29,7 @@ public class DebugTypeTargetVisitor extends DebugVisitor implements TypeTargetVi
     }
 
     @Override
-    public void visitBoundParameterType(int parameterIndex, int boundIndex) {
+    public void visitTypeParameterBound(int parameterIndex, int boundIndex) {
 
     }
 

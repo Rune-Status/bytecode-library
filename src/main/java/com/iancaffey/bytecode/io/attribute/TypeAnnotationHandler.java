@@ -1,8 +1,6 @@
 package com.iancaffey.bytecode.io.attribute;
 
-import com.iancaffey.bytecode.BytecodeHandler;
-import com.iancaffey.bytecode.ClassReader;
-import com.iancaffey.bytecode.TypeAnnotationVisitor;
+import com.iancaffey.bytecode.*;
 
 import java.io.IOException;
 
@@ -15,6 +13,15 @@ import java.io.IOException;
 public class TypeAnnotationHandler implements BytecodeHandler<ClassReader, TypeAnnotationVisitor> {
     @Override
     public void accept(ClassReader reader, TypeAnnotationVisitor visitor) throws IOException {
-        throw new UnsupportedOperationException();
+        int tag = reader.readUnsignedByte();
+        if (true)
+            throw new UnsupportedOperationException();
+        //read target
+        TypePathVisitor typePathVisitor = visitor.visitPath(reader.readUnsignedByte());
+        typePathVisitor.begin();
+        typePathVisitor.end();
+        AnnotationVisitor annotationVisitor = visitor.visitAnnotation();
+        annotationVisitor.begin();
+        annotationVisitor.end();
     }
 }

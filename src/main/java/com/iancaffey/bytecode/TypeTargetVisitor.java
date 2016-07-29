@@ -27,8 +27,8 @@ public interface TypeTargetVisitor extends BytecodeVisitor {
             }
 
             @Override
-            public void visitParameter(int index) {
-                visitors.forEach(visitor -> visitor.visitParameter(index));
+            public void visitTypeParameter(int index) {
+                visitors.forEach(visitor -> visitor.visitTypeParameter(index));
             }
 
             @Override
@@ -37,8 +37,8 @@ public interface TypeTargetVisitor extends BytecodeVisitor {
             }
 
             @Override
-            public void visitBoundParameterType(int parameterIndex, int boundIndex) {
-                visitors.forEach(visitor -> visitor.visitBoundParameterType(parameterIndex, boundIndex));
+            public void visitTypeParameterBound(int parameterIndex, int boundIndex) {
+                visitors.forEach(visitor -> visitor.visitTypeParameterBound(parameterIndex, boundIndex));
             }
 
             @Override
@@ -83,11 +83,11 @@ public interface TypeTargetVisitor extends BytecodeVisitor {
         };
     }
 
-    public void visitParameter(int index);
+    public void visitTypeParameter(int index);
 
     public void visitSuperType(int index);
 
-    public void visitBoundParameterType(int parameterIndex, int boundIndex);
+    public void visitTypeParameterBound(int parameterIndex, int boundIndex);
 
     public void visitEmpty();
 
