@@ -2,7 +2,8 @@ package com.iancaffey.bytecode.io.attribute;
 
 import com.iancaffey.bytecode.BytecodeHandler;
 import com.iancaffey.bytecode.ClassReader;
-import com.iancaffey.bytecode.VerificationTypeInfoVisitor;
+import com.iancaffey.bytecode.VerificationTypeHandler;
+import com.iancaffey.bytecode.io.attribute.verification.*;
 
 import java.io.IOException;
 
@@ -12,7 +13,7 @@ import java.io.IOException;
  * @author Ian Caffey
  * @since 1.0
  */
-public class VerificationTypeInfoHandler implements BytecodeHandler<ClassReader, VerificationTypeInfoVisitor> {
+public class VerificationTypeInfoHandler implements BytecodeHandler<ClassReader, VerificationTypeHandler> {
     public static final int TOP = 0;
     public static final int INTEGER = 1;
     public static final int FLOAT = 2;
@@ -23,7 +24,7 @@ public class VerificationTypeInfoHandler implements BytecodeHandler<ClassReader,
     public static final int OBJECT = 7;
     public static final int UNINITIALIZED = 8;
     private static final int INFO_HANDLER_SIZE = UNINITIALIZED + 1;
-    private final BytecodeHandler<ClassReader, VerificationTypeInfoVisitor>[] handlers;
+    private final BytecodeHandler<ClassReader, VerificationTypeHandler>[] handlers;
 
     public VerificationTypeInfoHandler() {
         this.handlers = new BytecodeHandler[INFO_HANDLER_SIZE];
@@ -40,7 +41,7 @@ public class VerificationTypeInfoHandler implements BytecodeHandler<ClassReader,
     }
 
     @Override
-    public void accept(ClassReader reader, VerificationTypeInfoVisitor visitor) throws IOException {
+    public void accept(ClassReader reader, VerificationTypeHandler visitor) throws IOException {
         int tag = reader.readUnsignedByte();
         if (tag < 0 || tag >= INFO_HANDLER_SIZE || handlers[tag] == null)
             throw new IllegalStateException("Unable to locate handler for verification type info entry: " + tag);

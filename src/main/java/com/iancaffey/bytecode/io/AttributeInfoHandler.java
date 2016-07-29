@@ -1,10 +1,8 @@
 package com.iancaffey.bytecode.io;
 
-import com.iancaffey.bytecode.AttributeVisitor;
-import com.iancaffey.bytecode.BytecodeHandler;
-import com.iancaffey.bytecode.ClassReader;
-import com.iancaffey.bytecode.ElementValueVisitor;
+import com.iancaffey.bytecode.*;
 import com.iancaffey.bytecode.io.attribute.*;
+import com.iancaffey.bytecode.io.attribute.annotation.*;
 import com.iancaffey.bytecode.util.AttributeHandler;
 import com.iancaffey.bytecode.util.ConstantPoolCache;
 
@@ -48,7 +46,7 @@ public class AttributeInfoHandler implements BytecodeHandler<ClassReader, Attrib
     public AttributeInfoHandler(ConstantPoolCache cache) {
         this.cache = cache;
         this.handlers = new HashMap<>();
-        BytecodeHandler<ClassReader, ElementValueVisitor> handler = new ElementValueHandler();
+        BytecodeHandler<ClassReader,AnnotationVisitor> handler = new AnnotationHandler();
         handlers.put(CONSTANT_VALUE, new ConstantValueHandler());
         handlers.put(CODE, new CodeHandler(this));
         handlers.put(STACK_MAP_TABLE, new StackMapTableHandler());

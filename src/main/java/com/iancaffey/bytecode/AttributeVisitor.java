@@ -47,8 +47,8 @@ public interface AttributeVisitor extends BytecodeVisitor {
             }
 
             @Override
-            public InnerClassInfoVisitor visitInnerClasses(int count) {
-                return InnerClassInfoVisitor.of(visitors.map(visitor -> visitor.visitInnerClasses(count)));
+            public InnerClassVisitor visitInnerClasses(int count) {
+                return InnerClassVisitor.of(visitors.map(visitor -> visitor.visitInnerClasses(count)));
             }
 
             @Override
@@ -82,13 +82,13 @@ public interface AttributeVisitor extends BytecodeVisitor {
             }
 
             @Override
-            public LocalVariableInfoVisitor visitLocalVariableTable(int count) {
-                return LocalVariableInfoVisitor.of(visitors.map(visitor -> visitor.visitLocalVariableTable(count)));
+            public LocalVariableVisitor visitLocalVariableTable(int count) {
+                return LocalVariableVisitor.of(visitors.map(visitor -> visitor.visitLocalVariableTable(count)));
             }
 
             @Override
-            public LocalVariableTypeInfoVisitor visitLocalVariableTypeTable(int count) {
-                return LocalVariableTypeInfoVisitor.of(visitors.map(visitor -> visitor.visitLocalVariableTypeTable(count)));
+            public LocalVariableTypeVisitor visitLocalVariableTypeTable(int count) {
+                return LocalVariableTypeVisitor.of(visitors.map(visitor -> visitor.visitLocalVariableTypeTable(count)));
             }
 
             @Override
@@ -156,7 +156,7 @@ public interface AttributeVisitor extends BytecodeVisitor {
 
     public void visitExceptions(int[] exceptionIndexes);
 
-    public InnerClassInfoVisitor visitInnerClasses(int count);
+    public InnerClassVisitor visitInnerClasses(int count);
 
     public void visitEnclosingMethod(int classIndex, int methodIndex);
 
@@ -170,9 +170,9 @@ public interface AttributeVisitor extends BytecodeVisitor {
 
     public LineNumberInfoVisitor visitLineNumberTable(int count);
 
-    public LocalVariableInfoVisitor visitLocalVariableTable(int count);
+    public LocalVariableVisitor visitLocalVariableTable(int count);
 
-    public LocalVariableTypeInfoVisitor visitLocalVariableTypeTable(int count);
+    public LocalVariableTypeVisitor visitLocalVariableTypeTable(int count);
 
     public void visitDeprecated();
 

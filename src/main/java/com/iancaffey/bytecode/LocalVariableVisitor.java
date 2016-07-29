@@ -5,25 +5,25 @@ import java.util.Collection;
 import java.util.stream.Stream;
 
 /**
- * LocalVariableInfoVisitor
+ * LocalVariableVisitor
  *
  * @author Ian Caffey
  * @since 1.0
  */
-public interface LocalVariableInfoVisitor extends BytecodeVisitor {
-    public static LocalVariableInfoVisitor of(LocalVariableInfoVisitor... visitors) {
-        return LocalVariableInfoVisitor.of(Arrays.stream(visitors));
+public interface LocalVariableVisitor extends BytecodeVisitor {
+    public static LocalVariableVisitor of(LocalVariableVisitor... visitors) {
+        return LocalVariableVisitor.of(Arrays.stream(visitors));
     }
 
-    public static LocalVariableInfoVisitor of(Collection<LocalVariableInfoVisitor> visitors) {
-        return LocalVariableInfoVisitor.of(visitors.stream());
+    public static LocalVariableVisitor of(Collection<LocalVariableVisitor> visitors) {
+        return LocalVariableVisitor.of(visitors.stream());
     }
 
-    public static LocalVariableInfoVisitor of(Stream<LocalVariableInfoVisitor> visitors) {
-        return new LocalVariableInfoVisitor() {
+    public static LocalVariableVisitor of(Stream<LocalVariableVisitor> visitors) {
+        return new LocalVariableVisitor() {
             @Override
             public void begin() {
-                visitors.forEach(LocalVariableInfoVisitor::begin);
+                visitors.forEach(LocalVariableVisitor::begin);
             }
 
             @Override
@@ -33,7 +33,7 @@ public interface LocalVariableInfoVisitor extends BytecodeVisitor {
 
             @Override
             public void end() {
-                visitors.forEach(LocalVariableInfoVisitor::end);
+                visitors.forEach(LocalVariableVisitor::end);
             }
         };
     }

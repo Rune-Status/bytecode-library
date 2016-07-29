@@ -27,8 +27,8 @@ public interface AnnotationVisitor extends BytecodeVisitor {
             }
 
             @Override
-            public ElementValueVisitor visit(int nameIndex) {
-                return ElementValueVisitor.of(visitors.map(visitor -> visitor.visit(nameIndex)));
+            public ElementValuePairVisitor visit(int typeIndex, int count) {
+                return ElementValuePairVisitor.of(visitors.map(visitor -> visitor.visit(typeIndex, count)));
             }
 
             @Override
@@ -38,5 +38,5 @@ public interface AnnotationVisitor extends BytecodeVisitor {
         };
     }
 
-    public ElementValueVisitor visit(int nameIndex);
+    public ElementValuePairVisitor visit(int typeIndex, int count);
 }

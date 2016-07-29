@@ -32,13 +32,13 @@ public interface StackMapTableVisitor extends BytecodeVisitor {
             }
 
             @Override
-            public VerificationTypeInfoVisitor visitSingleStackItemFrame(int type) {
-                return VerificationTypeInfoVisitor.of(visitors.map(visitor -> visitor.visitSingleStackItemFrame(type)));
+            public VerificationTypeHandler visitSingleStackItemFrame(int type) {
+                return VerificationTypeHandler.of(visitors.map(visitor -> visitor.visitSingleStackItemFrame(type)));
             }
 
             @Override
-            public VerificationTypeInfoVisitor visitSingleStackItemFrameExtended(int offset) {
-                return VerificationTypeInfoVisitor.of(visitors.map(visitor -> visitor.visitSingleStackItemFrameExtended(offset)));
+            public VerificationTypeHandler visitSingleStackItemFrameExtended(int offset) {
+                return VerificationTypeHandler.of(visitors.map(visitor -> visitor.visitSingleStackItemFrameExtended(offset)));
             }
 
             @Override
@@ -52,8 +52,8 @@ public interface StackMapTableVisitor extends BytecodeVisitor {
             }
 
             @Override
-            public VerificationTypeInfoVisitor visitAppendFrame(int type, int offset, int count) {
-                return VerificationTypeInfoVisitor.of(visitors.map(visitor -> visitor.visitAppendFrame(type, offset, count)));
+            public VerificationTypeHandler visitAppendFrame(int type, int offset, int count) {
+                return VerificationTypeHandler.of(visitors.map(visitor -> visitor.visitAppendFrame(type, offset, count)));
             }
 
             @Override
@@ -70,15 +70,15 @@ public interface StackMapTableVisitor extends BytecodeVisitor {
 
     public void visitSameFrame(int type);
 
-    public VerificationTypeInfoVisitor visitSingleStackItemFrame(int type);
+    public VerificationTypeHandler visitSingleStackItemFrame(int type);
 
-    public VerificationTypeInfoVisitor visitSingleStackItemFrameExtended(int offset);
+    public VerificationTypeHandler visitSingleStackItemFrameExtended(int offset);
 
     public void visitChopFrame(int type, int offset);
 
     public void visitSameFrameExtended(int offset);
 
-    public VerificationTypeInfoVisitor visitAppendFrame(int type, int offset, int count);
+    public VerificationTypeHandler visitAppendFrame(int type, int offset, int count);
 
     public FullFrameVisitor visitFullFrame(int offset);
 }

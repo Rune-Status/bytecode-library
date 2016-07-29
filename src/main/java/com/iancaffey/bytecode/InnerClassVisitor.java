@@ -5,25 +5,25 @@ import java.util.Collection;
 import java.util.stream.Stream;
 
 /**
- * InnerClassInfoVisitor
+ * InnerClassVisitor
  *
  * @author Ian Caffey
  * @since 1.0
  */
-public interface InnerClassInfoVisitor extends BytecodeVisitor {
-    public static InnerClassInfoVisitor of(InnerClassInfoVisitor... visitors) {
-        return InnerClassInfoVisitor.of(Arrays.stream(visitors));
+public interface InnerClassVisitor extends BytecodeVisitor {
+    public static InnerClassVisitor of(InnerClassVisitor... visitors) {
+        return InnerClassVisitor.of(Arrays.stream(visitors));
     }
 
-    public static InnerClassInfoVisitor of(Collection<InnerClassInfoVisitor> visitors) {
-        return InnerClassInfoVisitor.of(visitors.stream());
+    public static InnerClassVisitor of(Collection<InnerClassVisitor> visitors) {
+        return InnerClassVisitor.of(visitors.stream());
     }
 
-    public static InnerClassInfoVisitor of(Stream<InnerClassInfoVisitor> visitors) {
-        return new InnerClassInfoVisitor() {
+    public static InnerClassVisitor of(Stream<InnerClassVisitor> visitors) {
+        return new InnerClassVisitor() {
             @Override
             public void begin() {
-                visitors.forEach(InnerClassInfoVisitor::begin);
+                visitors.forEach(InnerClassVisitor::begin);
             }
 
             @Override
@@ -33,7 +33,7 @@ public interface InnerClassInfoVisitor extends BytecodeVisitor {
 
             @Override
             public void end() {
-                visitors.forEach(InnerClassInfoVisitor::end);
+                visitors.forEach(InnerClassVisitor::end);
             }
         };
     }

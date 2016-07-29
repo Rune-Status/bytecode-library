@@ -38,7 +38,7 @@ public class DebugAttributeVisitor extends DebugVisitor implements AttributeVisi
 
     @Override
     public StackMapTableVisitor visitStackMapTable(int count) {
-        return null;
+        return new DebugStackMapTableVisitor(indent() + 1);
     }
 
     @Override
@@ -47,8 +47,8 @@ public class DebugAttributeVisitor extends DebugVisitor implements AttributeVisi
     }
 
     @Override
-    public InnerClassInfoVisitor visitInnerClasses(int count) {
-        return null;
+    public InnerClassVisitor visitInnerClasses(int count) {
+        return new DebugInnerClassVisitor(indent() + 1);
     }
 
     @Override
@@ -78,17 +78,17 @@ public class DebugAttributeVisitor extends DebugVisitor implements AttributeVisi
 
     @Override
     public LineNumberInfoVisitor visitLineNumberTable(int count) {
-        return null;
+        return new DebugLineNumberInfoVisitor(indent() + 1);
     }
 
     @Override
-    public LocalVariableInfoVisitor visitLocalVariableTable(int count) {
-        return null;
+    public LocalVariableVisitor visitLocalVariableTable(int count) {
+        return new DebugLocalVariableVisitor(indent() + 1);
     }
 
     @Override
-    public LocalVariableTypeInfoVisitor visitLocalVariableTypeTable(int count) {
-        return null;
+    public LocalVariableTypeVisitor visitLocalVariableTypeTable(int count) {
+        return new DebugLocalVariableTypeVisitor(indent() + 1);
     }
 
     @Override
@@ -98,46 +98,46 @@ public class DebugAttributeVisitor extends DebugVisitor implements AttributeVisi
 
     @Override
     public AnnotationVisitor visitRuntimeVisibleAnnotations(int count) {
-        return null;
+        return new DebugAnnotationVisitor(indent() + 1);
     }
 
     @Override
     public AnnotationVisitor visitRuntimeInvisibleAnnotations(int count) {
-        return null;
+        return new DebugAnnotationVisitor(indent() + 1);
     }
 
     @Override
     public ParameterAnnotationVisitor visitRuntimeVisibleParameterAnnotations(int count) {
-        return null;
+        return new DebugParameterAnnotationVisitor(indent() + 1);
     }
 
     @Override
     public ParameterAnnotationVisitor visitRuntimeInvisibleParameterAnnotations(int count) {
-        return null;
+        return new DebugParameterAnnotationVisitor(indent() + 1);
     }
 
     @Override
     public TypeAnnotationVisitor visitRuntimeVisibleTypeAnnotations(int count) {
-        return null;
+        return new DebugTypeAnnotationVisitor(indent() + 1);
     }
 
     @Override
     public TypeAnnotationVisitor visitRuntimeInvisibleTypeAnnotations(int count) {
-        return null;
+        return new DebugTypeAnnotationVisitor(indent() + 1);
     }
 
     @Override
     public ElementValueVisitor visitAnnotationDefault() {
-        return null;
+        return new DebugElementValueVisitor(indent() + 1);
     }
 
     @Override
     public BootstrapMethodVisitor visitBootstrapMethods(int count) {
-        return null;
+        return new DebugBootstrapMethodVisitor(indent() + 1);
     }
 
     @Override
     public MethodParameterVisitor visitMethodParameters(int count) {
-        return null;
+        return new DebugMethodParameterVisitor(indent() + 1);
     }
 }

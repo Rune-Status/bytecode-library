@@ -5,60 +5,60 @@ import java.util.Collection;
 import java.util.stream.Stream;
 
 /**
- * VerificationTypeInfoVisitor
+ * VerificationTypeHandler
  *
  * @author Ian Caffey
  * @since 1.0
  */
-public interface VerificationTypeInfoVisitor extends BytecodeVisitor {
-    public static VerificationTypeInfoVisitor of(VerificationTypeInfoVisitor... visitors) {
-        return VerificationTypeInfoVisitor.of(Arrays.stream(visitors));
+public interface VerificationTypeHandler extends BytecodeVisitor {
+    public static VerificationTypeHandler of(VerificationTypeHandler... visitors) {
+        return VerificationTypeHandler.of(Arrays.stream(visitors));
     }
 
-    public static VerificationTypeInfoVisitor of(Collection<VerificationTypeInfoVisitor> visitors) {
-        return VerificationTypeInfoVisitor.of(visitors.stream());
+    public static VerificationTypeHandler of(Collection<VerificationTypeHandler> visitors) {
+        return VerificationTypeHandler.of(visitors.stream());
     }
 
-    public static VerificationTypeInfoVisitor of(Stream<VerificationTypeInfoVisitor> visitors) {
-        return new VerificationTypeInfoVisitor() {
+    public static VerificationTypeHandler of(Stream<VerificationTypeHandler> visitors) {
+        return new VerificationTypeHandler() {
             @Override
             public void begin() {
-                visitors.forEach(VerificationTypeInfoVisitor::begin);
+                visitors.forEach(VerificationTypeHandler::begin);
             }
 
             @Override
             public void visitTop() {
-                visitors.forEach(VerificationTypeInfoVisitor::visitTop);
+                visitors.forEach(VerificationTypeHandler::visitTop);
             }
 
             @Override
             public void visitInteger() {
-                visitors.forEach(VerificationTypeInfoVisitor::visitInteger);
+                visitors.forEach(VerificationTypeHandler::visitInteger);
             }
 
             @Override
             public void visitFloat() {
-                visitors.forEach(VerificationTypeInfoVisitor::visitFloat);
+                visitors.forEach(VerificationTypeHandler::visitFloat);
             }
 
             @Override
             public void visitLong() {
-                visitors.forEach(VerificationTypeInfoVisitor::visitLong);
+                visitors.forEach(VerificationTypeHandler::visitLong);
             }
 
             @Override
             public void visitDouble() {
-                visitors.forEach(VerificationTypeInfoVisitor::visitDouble);
+                visitors.forEach(VerificationTypeHandler::visitDouble);
             }
 
             @Override
             public void visitNull() {
-                visitors.forEach(VerificationTypeInfoVisitor::visitNull);
+                visitors.forEach(VerificationTypeHandler::visitNull);
             }
 
             @Override
             public void visitUninitializedThis() {
-                visitors.forEach(VerificationTypeInfoVisitor::visitUninitializedThis);
+                visitors.forEach(VerificationTypeHandler::visitUninitializedThis);
             }
 
             @Override
@@ -73,7 +73,7 @@ public interface VerificationTypeInfoVisitor extends BytecodeVisitor {
 
             @Override
             public void end() {
-                visitors.forEach(VerificationTypeInfoVisitor::end);
+                visitors.forEach(VerificationTypeHandler::end);
             }
         };
     }

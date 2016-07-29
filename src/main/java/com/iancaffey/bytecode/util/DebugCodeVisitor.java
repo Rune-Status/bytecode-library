@@ -31,11 +31,11 @@ public class DebugCodeVisitor extends DebugVisitor implements CodeVisitor {
 
     @Override
     public ExceptionVisitor visitExceptionTable(int count) {
-        return null;
+        return new DebugExceptionVisitor(indent() + 1);
     }
 
     @Override
     public AttributeVisitor visitAttributes(int count) {
-        return null;
+        return new DebugAttributeVisitor(indent() + 1);
     }
 }

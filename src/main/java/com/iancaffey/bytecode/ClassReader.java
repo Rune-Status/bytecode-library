@@ -14,31 +14,28 @@ import java.io.InputStream;
  * @since 1.0
  */
 public class ClassReader extends BytecodeReader<ClassVisitor> {
-    private final BytecodeHandler<ClassReader, ClassVisitor> handler;
+    private final BytecodeHandler<ClassReader, ClassVisitor> handler = ClassReader.newHandler();
 
     public ClassReader(byte[] data) {
         super(data);
-        ConstantPoolCache cache = new ConstantPoolCache();
-        BytecodeHandler<ClassReader, AttributeVisitor> handler = new AttributeInfoHandler(cache);
-        this.handler = BytecodeHandler.of(new HeaderHandler(cache), new FieldsHandler(handler), new MethodsHandler(handler), new AttributesHandler(handler));
     }
 
     public ClassReader(byte[] data, int offset, int length) {
         super(data, offset, length);
-        ConstantPoolCache cache = new ConstantPoolCache();
-        BytecodeHandler<ClassReader, AttributeVisitor> handler = new AttributeInfoHandler(cache);
-        this.handler = BytecodeHandler.of(new HeaderHandler(cache), new FieldsHandler(handler), new MethodsHandler(handler), new AttributesHandler(handler));
     }
 
     public ClassReader(InputStream stream) {
         super(stream);
-        ConstantPoolCache cache = new ConstantPoolCache();
-        BytecodeHandler<ClassReader, AttributeVisitor> handler = new AttributeInfoHandler(cache);
-        this.handler = BytecodeHandler.of(new HeaderHandler(cache), new FieldsHandler(handler), new MethodsHandler(handler), new AttributesHandler(handler));
     }
 
     public static ClassReader of(Class<?> c) {
         return new ClassReader(ClassLoader.getSystemResourceAsStream(Type.getInternalForm(c) + ".class"));
+    }
+
+    public static BytecodeHandler<ClassReader, ClassVisitor> newHandler() {
+        ConstantPoolCache cache = new ConstantPoolCache();
+        BytecodeHandler<ClassReader, AttributeVisitor> handler = new AttributeInfoHandler(cache);
+        return BytecodeHandler.of(new HeaderHandler(cache), new FieldsHandler(handler), new MethodsHandler(handler), new AttributesHandler(handler));
     }
 
     @Override

@@ -27,13 +27,13 @@ public interface FullFrameVisitor extends BytecodeVisitor {
             }
 
             @Override
-            public VerificationTypeInfoVisitor visitLocals(int count) {
-                return VerificationTypeInfoVisitor.of(visitors.map(visitor -> visitor.visitLocals(count)));
+            public VerificationTypeHandler visitLocals(int count) {
+                return VerificationTypeHandler.of(visitors.map(visitor -> visitor.visitLocals(count)));
             }
 
             @Override
-            public VerificationTypeInfoVisitor visitStack(int count) {
-                return VerificationTypeInfoVisitor.of(visitors.map(visitor -> visitor.visitStack(count)));
+            public VerificationTypeHandler visitStack(int count) {
+                return VerificationTypeHandler.of(visitors.map(visitor -> visitor.visitStack(count)));
             }
 
             @Override
@@ -43,7 +43,7 @@ public interface FullFrameVisitor extends BytecodeVisitor {
         };
     }
 
-    public VerificationTypeInfoVisitor visitLocals(int count);
+    public VerificationTypeHandler visitLocals(int count);
 
-    public VerificationTypeInfoVisitor visitStack(int count);
+    public VerificationTypeHandler visitStack(int count);
 }
