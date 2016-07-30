@@ -1,6 +1,6 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.io.attribute.ExceptionVisitor;
+import com.iancaffey.bytecode.io.direct.attribute.ExceptionVisitor;
 import com.iancaffey.bytecode.util.DebugVisitor;
 
 /**
@@ -11,15 +11,14 @@ import com.iancaffey.bytecode.util.DebugVisitor;
  */
 public class DebugExceptionVisitor extends DebugVisitor implements ExceptionVisitor {
     public DebugExceptionVisitor() {
-        super("Exception");
     }
 
     public DebugExceptionVisitor(int indent) {
-        super("Exception", indent);
+        super(indent);
     }
 
     @Override
     public void visit(int startIndex, int endIndex, int handlerIndex, int catchIndex) {
-
+        log(String.format("Exception [startIndex=%d, endIndex=%d, handlerIndex=%d, catchIndex=%d]", startIndex, endIndex, handlerIndex, catchIndex), 1);
     }
 }

@@ -9,15 +9,13 @@ import com.iancaffey.bytecode.io.BytecodeVisitor;
  * @since 1.0
  */
 public class DebugVisitor implements BytecodeVisitor {
-    private final String type;
     private final int indent;
 
-    public DebugVisitor(String type) {
-        this(type, 0);
+    public DebugVisitor() {
+        this(0);
     }
 
-    public DebugVisitor(String type, int indent) {
-        this.type = type;
+    public DebugVisitor(int indent) {
         this.indent = indent;
     }
 
@@ -35,15 +33,5 @@ public class DebugVisitor implements BytecodeVisitor {
             builder.append('\t');
         builder.append(info);
         System.out.println(builder.toString());
-    }
-
-    @Override
-    public void begin() {
-        log("[BEGIN] " + type);
-    }
-
-    @Override
-    public void end() {
-        log("[END] " + type);
     }
 }

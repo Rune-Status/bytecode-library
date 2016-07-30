@@ -1,8 +1,8 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.io.attribute.FullFrameVisitor;
-import com.iancaffey.bytecode.io.attribute.StackMapTableVisitor;
-import com.iancaffey.bytecode.io.attribute.VerificationTypeVisitor;
+import com.iancaffey.bytecode.io.direct.attribute.FullFrameVisitor;
+import com.iancaffey.bytecode.io.direct.attribute.StackMapTableVisitor;
+import com.iancaffey.bytecode.io.direct.attribute.VerificationTypeVisitor;
 import com.iancaffey.bytecode.util.DebugVisitor;
 
 /**
@@ -13,45 +13,48 @@ import com.iancaffey.bytecode.util.DebugVisitor;
  */
 public class DebugStackMapTableVisitor extends DebugVisitor implements StackMapTableVisitor {
     public DebugStackMapTableVisitor() {
-        super("StackMapTable");
     }
 
     public DebugStackMapTableVisitor(int indent) {
-        super("StackMapTable", indent);
+        super(indent);
     }
 
     @Override
     public void visitSameFrame(int type) {
-        log(String.format("%-25s[type=%d]", "SameFrame", type), 1);
+        log(String.format("SameFrame [type=%d]", type), 1);
     }
 
     @Override
     public VerificationTypeVisitor visitSingleStackItemFrame(int type) {
+        log(String.format("SingleStackItemFrame [type=%d]", type), 1);
         return new DebugVerificationTypeVisitor(indent() + 1);
     }
 
     @Override
     public VerificationTypeVisitor visitSingleStackItemFrameExtended(int offset) {
+        log(String.format("SingleStackItemFrameExtended [offset=%d]", offset), 1);
         return new DebugVerificationTypeVisitor(indent() + 1);
     }
 
     @Override
     public void visitChopFrame(int type, int offset) {
-        log(String.format("%-25s[type=%d, offset=%d]", "ChopFrame", type, offset), 1);
+        log(String.format("ChopFrame [type=%d, offset=%d]", type, offset), 1);
     }
 
     @Override
     public void visitSameFrameExtended(int offset) {
-        log(String.format("%-25s[offset=%d]", "SameFrameExtended", offset), 1);
+        log(String.format("SameFrameExtended [offset=%d]", offset), 1);
     }
 
     @Override
     public VerificationTypeVisitor visitAppendFrame(int type, int offset, int count) {
+        log(String.format("AppendFrame [type=%d, offset=%d, count=%d]", type, offset, count), 1);
         return new DebugVerificationTypeVisitor(indent() + 1);
     }
 
     @Override
     public FullFrameVisitor visitFullFrame(int offset) {
+        log(String.format("FullFrame [offset=%d]", offset), 1);
         return new DebugFullFrameVisitor(indent() + 1);
     }
 }

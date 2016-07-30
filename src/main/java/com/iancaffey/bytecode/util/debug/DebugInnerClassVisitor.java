@@ -1,6 +1,6 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.io.attribute.InnerClassVisitor;
+import com.iancaffey.bytecode.io.direct.attribute.InnerClassVisitor;
 import com.iancaffey.bytecode.util.DebugVisitor;
 
 /**
@@ -11,15 +11,15 @@ import com.iancaffey.bytecode.util.DebugVisitor;
  */
 public class DebugInnerClassVisitor extends DebugVisitor implements InnerClassVisitor {
     public DebugInnerClassVisitor() {
-        super("InnerClass");
     }
 
     public DebugInnerClassVisitor(int indent) {
-        super("InnerClass", indent);
+        super(indent);
     }
 
     @Override
     public void visit(int innerClassInfoIndex, int outerClassInfoIndex, int innerNameIndex, int innerClassAccess) {
-
+        log(String.format("InnerClass [innerClassInfoIndex=%d, outerClassInfoIndex=%d, innerNameIndex=%d, innerClassAccess=%d]",
+                innerClassInfoIndex, outerClassInfoIndex, innerNameIndex, innerClassAccess), 1);
     }
 }

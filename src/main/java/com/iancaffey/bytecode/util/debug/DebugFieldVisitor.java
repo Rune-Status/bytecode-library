@@ -1,7 +1,7 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.io.AttributeVisitor;
-import com.iancaffey.bytecode.io.FieldVisitor;
+import com.iancaffey.bytecode.io.direct.AttributeVisitor;
+import com.iancaffey.bytecode.io.direct.FieldVisitor;
 import com.iancaffey.bytecode.util.Access;
 import com.iancaffey.bytecode.util.DebugVisitor;
 
@@ -13,11 +13,10 @@ import com.iancaffey.bytecode.util.DebugVisitor;
  */
 public class DebugFieldVisitor extends DebugVisitor implements FieldVisitor {
     public DebugFieldVisitor() {
-        super("Field");
     }
 
     public DebugFieldVisitor(int indent) {
-        super("Field", indent);
+        super(indent);
     }
 
     @Override
@@ -27,7 +26,8 @@ public class DebugFieldVisitor extends DebugVisitor implements FieldVisitor {
 
     @Override
     public AttributeVisitor visitAttributes(int count) {
-        log(String.format("Attributes [count=%d]", count), 2);
-        return new DebugAttributeVisitor(indent() + 2);
+        if (count > 0)
+            log(String.format("Attributes [count=%d]", count), 1);
+        return new DebugAttributeVisitor(indent() + 1);
     }
 }

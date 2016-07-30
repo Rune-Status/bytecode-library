@@ -1,9 +1,11 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.io.AttributeVisitor;
-import com.iancaffey.bytecode.io.attribute.*;
-import com.iancaffey.bytecode.io.attribute.annotation.TypeAnnotationVisitor;
+import com.iancaffey.bytecode.io.direct.AttributeVisitor;
+import com.iancaffey.bytecode.io.direct.attribute.*;
+import com.iancaffey.bytecode.io.direct.attribute.annotation.TypeAnnotationVisitor;
 import com.iancaffey.bytecode.util.DebugVisitor;
+
+import java.util.Arrays;
 
 /**
  * DebugAttributeVisitor
@@ -14,18 +16,11 @@ import com.iancaffey.bytecode.util.DebugVisitor;
 public class DebugAttributeVisitor extends DebugVisitor implements AttributeVisitor {
     private int index;
 
-    public DebugAttributeVisitor(int indent) {
-        super("Attributes", indent);
-    }
-
     public DebugAttributeVisitor() {
-        super("Attributes");
     }
 
-    @Override
-    public void begin() {
-        super.begin();
-        index = 0;
+    public DebugAttributeVisitor(int indent) {
+        super(indent);
     }
 
     @Override
@@ -41,106 +36,120 @@ public class DebugAttributeVisitor extends DebugVisitor implements AttributeVisi
 
     @Override
     public StackMapTableVisitor visitStackMapTable(int count) {
+        log(String.format("StackMapTable [index=%d, count=%d]", index++, count), 1);
         return new DebugStackMapTableVisitor(indent() + 1);
     }
 
     @Override
     public void visitExceptions(int[] exceptionIndexes) {
-
+        log(String.format("Exceptions [index=%d, indexes=%s]", index++, Arrays.toString(exceptionIndexes)), 1);
     }
 
     @Override
     public InnerClassVisitor visitInnerClasses(int count) {
+        log(String.format("InnerClasses [index=%d, count=%d]", index++, count), 1);
         return new DebugInnerClassVisitor(indent() + 1);
     }
 
     @Override
     public void visitEnclosingMethod(int classIndex, int methodIndex) {
-
+        log(String.format("EnclosingMethod [index=%d, classIndex=%d, methodIndex=%s]", index++, classIndex, methodIndex), 1);
     }
 
     @Override
     public void visitSynthetic() {
-
+        log(String.format("Synthetic [index=%d]", index++), 1);
     }
 
     @Override
     public void visitSignature(int index) {
-
+        log(String.format("Signature [index=%d, index=%d]", this.index++, index), 1);
     }
 
     @Override
     public void visitSourceFile(int index) {
-
+        log(String.format("SourceFile [index=%d, index=%d]", this.index++, index), 1);
     }
 
     @Override
     public void visitSourceDebugExtension(byte[] data) {
-
+        log(String.format("SourceDebugExtension [index=%d, data=%d]", index++, data.length), 1);
     }
 
     @Override
     public LineNumberInfoVisitor visitLineNumberTable(int count) {
+        log(String.format("LineNumberTable [index=%d, count=%d]", index++, count), 1);
         return new DebugLineNumberInfoVisitor(indent() + 1);
     }
 
     @Override
     public LocalVariableVisitor visitLocalVariableTable(int count) {
+        log(String.format("LocalVariableTabke [index=%d, count=%d]", index++, count), 1);
         return new DebugLocalVariableVisitor(indent() + 1);
     }
 
     @Override
     public LocalVariableTypeVisitor visitLocalVariableTypeTable(int count) {
+        log(String.format("LocalVariableTypeTable [index=%d, count=%d]", index++, count), 1);
         return new DebugLocalVariableTypeVisitor(indent() + 1);
     }
 
     @Override
     public void visitDeprecated() {
-
+        log(String.format("Deprecated [index=%d]", index++), 1);
     }
 
     @Override
     public AnnotationVisitor visitRuntimeVisibleAnnotations(int count) {
+        log(String.format("RuntimeVisibleAnnotations [index=%d, count=%d]", index++, count), 1);
         return new DebugAnnotationVisitor(indent() + 1);
     }
 
     @Override
     public AnnotationVisitor visitRuntimeInvisibleAnnotations(int count) {
+        log(String.format("RuntimeInvisibleAnnotations [index=%d, count=%d]", index++, count), 1);
         return new DebugAnnotationVisitor(indent() + 1);
     }
 
     @Override
     public ParameterAnnotationVisitor visitRuntimeVisibleParameterAnnotations(int count) {
+        log(String.format("RuntimeVisibleParameterAnnotations [index=%d, count=%d]", index++, count), 1);
         return new DebugParameterAnnotationVisitor(indent() + 1);
     }
 
     @Override
     public ParameterAnnotationVisitor visitRuntimeInvisibleParameterAnnotations(int count) {
+        log(String.format("RuntimeInvisibleParameterAnnotations [index=%d, count=%d]", index++, count), 1);
         return new DebugParameterAnnotationVisitor(indent() + 1);
     }
 
     @Override
     public TypeAnnotationVisitor visitRuntimeVisibleTypeAnnotations(int count) {
+        log(String.format("RuntimeVisibleTypeAnnotations [index=%d, count=%d]", index++, count), 1);
         return new DebugTypeAnnotationVisitor(indent() + 1);
     }
 
     @Override
     public TypeAnnotationVisitor visitRuntimeInvisibleTypeAnnotations(int count) {
+        log(String.format("RuntimeInvisibleTypeAnnotations [index=%d, count=%d]", index++, count), 1);
         return new DebugTypeAnnotationVisitor(indent() + 1);
     }
 
     @Override
     public ElementValueVisitor visitAnnotationDefault() {
+        log(String.format("AnnotationDefault [index=%d]", index++), 1);
         return new DebugElementValueVisitor(indent() + 1);
     }
 
     @Override
     public BootstrapMethodVisitor visitBootstrapMethods(int count) {
+        log(String.format("BootstrapMethods [index=%d, count=%d]", index++, count), 1);
         return new DebugBootstrapMethodVisitor(indent() + 1);
     }
 
     @Override
     public MethodParameterVisitor visitMethodParameters(int count) {
+        log(String.format("MethodParameters [index=%d, count=%d]", index++, count), 1);
         return new DebugMethodParameterVisitor(indent() + 1);
     }
 }

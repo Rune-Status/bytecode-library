@@ -1,7 +1,5 @@
 package com.iancaffey.bytecode.io;
 
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -11,16 +9,16 @@ import java.io.InputStream;
  * @author Ian Caffey
  * @since 1.0
  */
-public abstract class BytecodeReader<V extends BytecodeVisitor> extends DataInputStream {
+public abstract class BytecodeReader<V extends BytecodeVisitor> extends IndexedDataInputStream {
     public BytecodeReader(byte[] data) {
-        this(new ByteArrayInputStream(data));
+        super(data);
     }
 
     public BytecodeReader(byte[] data, int offset, int length) {
-        this(new ByteArrayInputStream(data, offset, length));
+        super(data, offset, length);
     }
 
-    public BytecodeReader(InputStream stream) {
+    public BytecodeReader(InputStream stream) throws IOException {
         super(stream);
     }
 

@@ -1,6 +1,6 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.io.attribute.MethodParameterVisitor;
+import com.iancaffey.bytecode.io.direct.attribute.MethodParameterVisitor;
 import com.iancaffey.bytecode.util.DebugVisitor;
 
 /**
@@ -11,15 +11,14 @@ import com.iancaffey.bytecode.util.DebugVisitor;
  */
 public class DebugMethodParameterVisitor extends DebugVisitor implements MethodParameterVisitor {
     public DebugMethodParameterVisitor() {
-        super("MethodParameter");
     }
 
     public DebugMethodParameterVisitor(int indent) {
-        super("MethodParameter", indent);
+        super(indent);
     }
 
     @Override
     public void visit(int nameIndex, int access) {
-
+        log(String.format("MethodParameter [nameIndex=%d, access=%d]", nameIndex, access), 1);
     }
 }

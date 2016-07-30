@@ -1,6 +1,6 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.io.attribute.LineNumberInfoVisitor;
+import com.iancaffey.bytecode.io.direct.attribute.LineNumberInfoVisitor;
 import com.iancaffey.bytecode.util.DebugVisitor;
 
 /**
@@ -11,15 +11,14 @@ import com.iancaffey.bytecode.util.DebugVisitor;
  */
 public class DebugLineNumberInfoVisitor extends DebugVisitor implements LineNumberInfoVisitor {
     public DebugLineNumberInfoVisitor() {
-        super("LineNumber");
     }
 
     public DebugLineNumberInfoVisitor(int indent) {
-        super("LineNumber", indent);
+        super(indent);
     }
 
     @Override
     public void visit(int startIndex, int number) {
-
+        log(String.format("LineNumber [startIndex=%d, number=%d]", startIndex, number), 1);
     }
 }

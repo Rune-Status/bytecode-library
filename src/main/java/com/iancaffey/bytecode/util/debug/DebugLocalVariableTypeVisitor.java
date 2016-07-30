@@ -1,6 +1,6 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.io.attribute.LocalVariableTypeVisitor;
+import com.iancaffey.bytecode.io.direct.attribute.LocalVariableTypeVisitor;
 import com.iancaffey.bytecode.util.DebugVisitor;
 
 /**
@@ -11,15 +11,15 @@ import com.iancaffey.bytecode.util.DebugVisitor;
  */
 public class DebugLocalVariableTypeVisitor extends DebugVisitor implements LocalVariableTypeVisitor {
     public DebugLocalVariableTypeVisitor() {
-        super("LocalVariableType");
     }
 
     public DebugLocalVariableTypeVisitor(int indent) {
-        super("LocalVariableType", indent);
+        super(indent);
     }
 
     @Override
     public void visit(int startIndex, int length, int nameIndex, int signatureIndex, int index) {
-
+        log(String.format("LocalVariableTypeIndex [startIndex=%d, length=%d, nameIndex=%d, signatureIndex=%d, index=%d]",
+                startIndex, length, nameIndex, signatureIndex, index), 1);
     }
 }

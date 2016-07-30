@@ -1,9 +1,9 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.io.attribute.AnnotationVisitor;
-import com.iancaffey.bytecode.io.attribute.annotation.TypeAnnotationVisitor;
-import com.iancaffey.bytecode.io.attribute.annotation.TypePathVisitor;
-import com.iancaffey.bytecode.io.attribute.annotation.TypeTargetVisitor;
+import com.iancaffey.bytecode.io.direct.attribute.AnnotationVisitor;
+import com.iancaffey.bytecode.io.direct.attribute.annotation.TypeAnnotationVisitor;
+import com.iancaffey.bytecode.io.direct.attribute.annotation.TypePathVisitor;
+import com.iancaffey.bytecode.io.direct.attribute.annotation.TypeTargetVisitor;
 import com.iancaffey.bytecode.util.DebugVisitor;
 
 /**
@@ -14,25 +14,27 @@ import com.iancaffey.bytecode.util.DebugVisitor;
  */
 public class DebugTypeAnnotationVisitor extends DebugVisitor implements TypeAnnotationVisitor {
     public DebugTypeAnnotationVisitor() {
-        super("TypeAnnotation");
     }
 
     public DebugTypeAnnotationVisitor(int indent) {
-        super("TypeAnnotation", indent);
+        super(indent);
     }
 
     @Override
     public TypeTargetVisitor visitTarget() {
-        return new DebugTypeTargetVisitor();
+        log("TypeTarget", 1);
+        return new DebugTypeTargetVisitor(indent() + 1);
     }
 
     @Override
     public TypePathVisitor visitPath(int count) {
-        return new DebugTypePathVisitor();
+        log(String.format("TypePath [count=%d]", count), 1);
+        return new DebugTypePathVisitor(indent() + 1);
     }
 
     @Override
     public AnnotationVisitor visitAnnotation() {
-        return new DebugAnnotationVisitor();
+        log("Annotation", 1);
+        return new DebugAnnotationVisitor(indent() + 1);
     }
 }

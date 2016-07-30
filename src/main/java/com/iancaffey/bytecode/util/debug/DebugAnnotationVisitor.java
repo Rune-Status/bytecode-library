@@ -1,7 +1,7 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.io.attribute.AnnotationVisitor;
-import com.iancaffey.bytecode.io.attribute.ElementValuePairVisitor;
+import com.iancaffey.bytecode.io.direct.attribute.AnnotationVisitor;
+import com.iancaffey.bytecode.io.direct.attribute.ElementValuePairVisitor;
 import com.iancaffey.bytecode.util.DebugVisitor;
 
 /**
@@ -12,15 +12,15 @@ import com.iancaffey.bytecode.util.DebugVisitor;
  */
 public class DebugAnnotationVisitor extends DebugVisitor implements AnnotationVisitor {
     public DebugAnnotationVisitor() {
-        super("Annotation");
     }
 
     public DebugAnnotationVisitor(int indent) {
-        super("Annotation", indent);
+        super(indent);
     }
 
     @Override
     public ElementValuePairVisitor visit(int typeIndex, int count) {
+        log(String.format("Annotation [typeIndex=%d, count=%d]", typeIndex, count), 1);
         return new DebugElementValuePairVisitor(indent() + 1);
     }
 }

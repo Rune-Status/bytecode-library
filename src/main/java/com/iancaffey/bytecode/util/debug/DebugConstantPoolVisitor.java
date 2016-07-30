@@ -1,6 +1,6 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.io.ConstantPoolVisitor;
+import com.iancaffey.bytecode.io.direct.ConstantPoolVisitor;
 import com.iancaffey.bytecode.util.DebugVisitor;
 
 /**
@@ -10,20 +10,13 @@ import com.iancaffey.bytecode.util.DebugVisitor;
  * @since 1.0
  */
 public class DebugConstantPoolVisitor extends DebugVisitor implements ConstantPoolVisitor {
-    private int index;
+    private int index = 1;
 
     public DebugConstantPoolVisitor() {
-        super("ConstantPool");
     }
 
     public DebugConstantPoolVisitor(int indent) {
-        super("ConstantPool", indent);
-    }
-
-    @Override
-    public void begin() {
-        super.begin();
-        index = 1;
+        super(indent);
     }
 
     @Override

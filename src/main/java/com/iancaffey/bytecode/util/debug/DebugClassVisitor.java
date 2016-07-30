@@ -1,6 +1,6 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.io.*;
+import com.iancaffey.bytecode.io.direct.*;
 import com.iancaffey.bytecode.util.Access;
 import com.iancaffey.bytecode.util.DebugVisitor;
 
@@ -14,40 +14,39 @@ import java.util.Arrays;
  */
 public class DebugClassVisitor extends DebugVisitor implements ClassVisitor {
     public DebugClassVisitor() {
-        super("Class");
     }
 
     public DebugClassVisitor(int indent) {
-        super("Class", indent);
+        super(indent);
     }
 
     @Override
     public void visit(int major, int minor, int access, int nameIndex, int parentNameIndex, int[] interfaces) {
         log(String.format("Class [access=%s, version=%d.%d, nameIndex=%s, superNameIndex=%s, interfaces=%s]",
-                Access.of(access).toString().toLowerCase(), major, minor, nameIndex, parentNameIndex, Arrays.toString(interfaces)), 1);
+                Access.of(access).toString().toLowerCase(), major, minor, nameIndex, parentNameIndex, Arrays.toString(interfaces)));
     }
 
     @Override
     public ConstantPoolVisitor visitConstantPool(int count) {
-        log(String.format("ConstantPool [count=%d]", count), 1);
-        return new DebugConstantPoolVisitor(indent() + 1);
+        log(String.format("ConstantPool [count=%d]", count));
+        return new DebugConstantPoolVisitor(indent());
     }
 
     @Override
     public FieldVisitor visitFields(int count) {
-        log(String.format("Fields [count=%d]", count), 1);
-        return new DebugFieldVisitor(indent() + 1);
+        log(String.format("Fields [count=%d]", count));
+        return new DebugFieldVisitor(indent());
     }
 
     @Override
     public MethodVisitor visitMethods(int count) {
-        log(String.format("Methods [count=%d]", count), 1);
-        return new DebugMethodVisitor(indent() + 1);
+        log(String.format("Methods [count=%d]", count));
+        return new DebugMethodVisitor(indent());
     }
 
     @Override
     public AttributeVisitor visitAttributes(int count) {
-        log(String.format("Attributes [count=%d]", count), 1);
-        return new DebugAttributeVisitor(indent() + 1);
+        log(String.format("Attributes [count=%d]", count));
+        return new DebugAttributeVisitor(indent());
     }
 }

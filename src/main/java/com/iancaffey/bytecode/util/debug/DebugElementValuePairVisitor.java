@@ -1,7 +1,7 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.io.attribute.ElementValuePairVisitor;
-import com.iancaffey.bytecode.io.attribute.ElementValueVisitor;
+import com.iancaffey.bytecode.io.direct.attribute.ElementValuePairVisitor;
+import com.iancaffey.bytecode.io.direct.attribute.ElementValueVisitor;
 import com.iancaffey.bytecode.util.DebugVisitor;
 
 /**
@@ -12,15 +12,15 @@ import com.iancaffey.bytecode.util.DebugVisitor;
  */
 public class DebugElementValuePairVisitor extends DebugVisitor implements ElementValuePairVisitor {
     public DebugElementValuePairVisitor() {
-        super("ElementValuePair");
     }
 
     public DebugElementValuePairVisitor(int indent) {
-        super("ElementValuePair", indent);
+        super(indent);
     }
 
     @Override
     public ElementValueVisitor visit(int index) {
+        log(String.format("ElementValue [index=%d, ]", index), 1);
         return new DebugElementValueVisitor(indent() + 1);
     }
 }
