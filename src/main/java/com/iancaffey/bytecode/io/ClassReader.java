@@ -4,6 +4,7 @@ import com.iancaffey.bytecode.ClassInfo;
 import com.iancaffey.bytecode.io.direct.ClassModelHandler;
 import com.iancaffey.bytecode.io.direct.ClassModelVisitor;
 import com.iancaffey.bytecode.io.fast.ClassInfoHandler;
+import com.iancaffey.bytecode.io.fast.ClassVisitor;
 import com.iancaffey.bytecode.util.Type;
 import com.sun.org.apache.bcel.internal.util.ClassLoader;
 
@@ -20,7 +21,7 @@ public class ClassReader {
     private ClassReader() {
     }
 
-    public static BytecodeReader<ClassInfo> fast(Class<?> c) throws IOException {
+    public static BytecodeReader<ClassVisitor> fast(Class<?> c) throws IOException {
         return new FastClassReader(ClassLoader.getSystemResourceAsStream(Type.getInternalForm(c) + ".class"));
     }
 
@@ -28,7 +29,7 @@ public class ClassReader {
         return new DirectClassReader(ClassLoader.getSystemResourceAsStream(Type.getInternalForm(c) + ".class"));
     }
 
-    public static class FastClassReader extends BytecodeReader<ClassInfo> {
+    public static class FastClassReader extends BytecodeReader<ClassVisitor> {
 
         public FastClassReader(byte[] data) {
             super(data);
@@ -43,11 +44,10 @@ public class ClassReader {
         }
 
         @Override
-        public ClassInfo accept(ClassInfo visitor) throws IOException {
+        public void accept(ClassVisitor visitor) throws IOException {
             if (visitor == null)
                 throw new IllegalArgumentException();
             ClassInfoHandler.accept(this, visitor);
-            return visitor;
         }
     }
 
@@ -65,11 +65,10 @@ public class ClassReader {
         }
 
         @Override
-        public ClassModelVisitor accept(ClassModelVisitor visitor) throws IOException {
+        public void accept(ClassModelVisitor visitor) throws IOException {
             if (visitor == null)
                 throw new IllegalArgumentException();
             ClassModelHandler.accept(this, visitor);
-            return visitor;
         }
     }
 }

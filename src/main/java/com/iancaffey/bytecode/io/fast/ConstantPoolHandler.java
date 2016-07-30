@@ -13,7 +13,7 @@ import java.io.IOException;
  * @since 1.0
  */
 public class ConstantPoolHandler {
-    public static void accept(BytecodeReader<ClassInfo> reader, ClassInfo visitor, ClassInfoModel model) throws IOException {
+    public static void accept(BytecodeReader<ClassVisitor> reader, ClassInfo visitor, ClassInfoModel model) throws IOException {
 
     }
 }
