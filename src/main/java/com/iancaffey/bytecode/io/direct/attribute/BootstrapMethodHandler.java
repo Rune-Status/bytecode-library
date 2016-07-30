@@ -1,7 +1,7 @@
 package com.iancaffey.bytecode.io.direct.attribute;
 
 import com.iancaffey.bytecode.io.BytecodeReader;
-import com.iancaffey.bytecode.io.direct.ClassVisitor;
+import com.iancaffey.bytecode.io.direct.ClassModelVisitor;
 
 import java.io.IOException;
 
@@ -12,7 +12,7 @@ import java.io.IOException;
  * @since 1.0
  */
 public class BootstrapMethodHandler {
-    public static void accept(BytecodeReader<ClassVisitor> reader, BootstrapMethodVisitor visitor) throws IOException {
+    public static void accept(BytecodeReader<ClassModelVisitor> reader, BootstrapMethodVisitor visitor) throws IOException {
         int index = reader.readUnsignedShort();
         int count = reader.readUnsignedShort();
         int[] parameterIndexes = new int[count];

@@ -6,22 +6,22 @@ import com.iancaffey.bytecode.util.ConstantPoolCache;
 import java.io.IOException;
 
 /**
- * FieldsHandler
+ * FieldModelsHandler
  *
  * @author Ian Caffey
  * @since 1.0
  */
-public class FieldsHandler {
-    public static void accept(BytecodeReader<ClassVisitor> reader, ClassVisitor visitor, ConstantPoolCache cache) throws IOException {
+public class FieldModelsHandler {
+    public static void accept(BytecodeReader<ClassModelVisitor> reader, ClassModelVisitor visitor, ConstantPoolCache cache) throws IOException {
         int count = reader.readUnsignedShort();
-        FieldVisitor fieldVisitor = visitor.visitFields(count);
+        FieldModelVisitor fieldVisitor = visitor.visitFields(count);
         for (int i = 0; i < count; i++) {
             int access = reader.readUnsignedShort();
             int nameIndex = reader.readUnsignedShort();
             int descriptorIndex = reader.readUnsignedShort();
             int attributeCount = reader.readUnsignedShort();
             fieldVisitor.visit(access, nameIndex, descriptorIndex);
-            AttributeVisitor attributeVisitor = fieldVisitor.visitAttributes(attributeCount);
+            AttributeModelVisitor attributeVisitor = fieldVisitor.visitAttributes(attributeCount);
             for (int j = 0; j < attributeCount; j++)
                 AttributeInfoHandler.accept(reader, attributeVisitor, cache);
         }

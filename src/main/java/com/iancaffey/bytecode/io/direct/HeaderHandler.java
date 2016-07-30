@@ -12,7 +12,7 @@ import java.io.IOException;
  * @since 1.0
  */
 public class HeaderHandler {
-    public static void accept(BytecodeReader<ClassVisitor> reader, ClassVisitor visitor, ConstantPoolCache cache) throws IOException {
+    public static void accept(BytecodeReader<ClassModelVisitor> reader, ClassModelVisitor visitor, ConstantPoolCache cache) throws IOException {
         int magic = reader.readInt();
         int minor = reader.readUnsignedShort();
         int major = reader.readUnsignedShort();

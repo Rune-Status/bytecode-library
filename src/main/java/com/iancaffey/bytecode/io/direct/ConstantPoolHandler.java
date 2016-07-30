@@ -27,7 +27,7 @@ public class ConstantPoolHandler {
     public static final int METHOD_TYPE = 16;
     public static final int INVOKE_DYNAMIC = 18;
 
-    public static void accept(BytecodeReader<ClassVisitor> reader, ClassVisitor visitor, ConstantPoolCache cache) throws IOException {
+    public static void accept(BytecodeReader<ClassModelVisitor> reader, ClassModelVisitor visitor, ConstantPoolCache cache) throws IOException {
         int count = reader.readUnsignedShort();
         ConstantPoolVisitor constantPoolVisitor = visitor.visitConstantPool(count);
         cache.strings = new String[count];

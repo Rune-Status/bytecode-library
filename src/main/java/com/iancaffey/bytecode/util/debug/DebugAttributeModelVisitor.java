@@ -1,6 +1,6 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.io.direct.AttributeVisitor;
+import com.iancaffey.bytecode.io.direct.AttributeModelVisitor;
 import com.iancaffey.bytecode.io.direct.attribute.*;
 import com.iancaffey.bytecode.io.direct.attribute.annotation.TypeAnnotationVisitor;
 import com.iancaffey.bytecode.util.DebugVisitor;
@@ -8,18 +8,18 @@ import com.iancaffey.bytecode.util.DebugVisitor;
 import java.util.Arrays;
 
 /**
- * DebugAttributeVisitor
+ * DebugAttributeModelVisitor
  *
  * @author Ian Caffey
  * @since 1.0
  */
-public class DebugAttributeVisitor extends DebugVisitor implements AttributeVisitor {
+public class DebugAttributeModelVisitor extends DebugVisitor implements AttributeModelVisitor {
     private int index;
 
-    public DebugAttributeVisitor() {
+    public DebugAttributeModelVisitor() {
     }
 
-    public DebugAttributeVisitor(int indent) {
+    public DebugAttributeModelVisitor(int indent) {
         super(indent);
     }
 

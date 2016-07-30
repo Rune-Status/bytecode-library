@@ -1,8 +1,6 @@
 package com.iancaffey.bytecode.io.direct.attribute;
 
-import com.iancaffey.bytecode.io.BytecodeReader;
-import com.iancaffey.bytecode.io.direct.AttributeVisitor;
-import com.iancaffey.bytecode.io.direct.ClassVisitor;
+import com.iancaffey.bytecode.io.direct.AttributeModelVisitor;
 
 import java.io.IOException;
 
@@ -13,7 +11,7 @@ import java.io.IOException;
  * @since 1.0
  */
 public class DeprecatedHandler {
-    public static void accept(BytecodeReader<ClassVisitor> reader, AttributeVisitor visitor, int length) throws IOException {
+    public static void accept(AttributeModelVisitor visitor) throws IOException {
         visitor.visitDeprecated();
     }
 }

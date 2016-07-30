@@ -2,6 +2,7 @@ package com.iancaffey.bytecode.io.fast;
 
 import com.iancaffey.bytecode.ClassInfo;
 import com.iancaffey.bytecode.io.BytecodeReader;
+import com.iancaffey.bytecode.util.ClassInfoModel;
 
 import java.io.IOException;
 
@@ -12,7 +13,7 @@ import java.io.IOException;
  * @since 1.0
  */
 public class ConstantPoolHandler {
-    public static void accept(BytecodeReader<ClassInfoVisitor> reader, ClassInfo visitor) throws IOException {
+    public static void accept(BytecodeReader<ClassInfo> reader, ClassInfo visitor, ClassInfoModel model) throws IOException {
 
     }
 }

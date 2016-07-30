@@ -22,5 +22,5 @@ public abstract class BytecodeReader<V extends BytecodeVisitor> extends IndexedD
         super(stream);
     }
 
-    public abstract BytecodeReader<V> accept(V visitor) throws IOException;
+    public abstract V accept(V visitor) throws IOException;
 }

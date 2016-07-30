@@ -5,12 +5,12 @@ import com.iancaffey.bytecode.io.direct.attribute.*;
 import com.iancaffey.bytecode.io.direct.attribute.annotation.TypeAnnotationVisitor;
 
 /**
- * AttributeVisitor
+ * AttributeModelVisitor
  *
  * @author Ian Caffey
  * @since 1.0
  */
-public interface AttributeVisitor extends BytecodeVisitor {
+public interface AttributeModelVisitor extends BytecodeVisitor {
     public void visitConstantValue(int index);
 
     public CodeVisitor visitCode();

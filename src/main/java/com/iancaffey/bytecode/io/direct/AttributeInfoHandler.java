@@ -38,13 +38,13 @@ public class AttributeInfoHandler {
     public static final String BOOTSTRAP_METHODS = "BootstrapMethods";
     public static final String METHOD_PARAMETERS = "MethodParameters";
 
-    public static void accept(BytecodeReader<ClassVisitor> reader, AttributeVisitor visitor, ConstantPoolCache cache) throws IOException {
+    public static void accept(BytecodeReader<ClassModelVisitor> reader, AttributeModelVisitor visitor, ConstantPoolCache cache) throws IOException {
         int nameIndex = reader.readUnsignedShort();
         int length = reader.readInt();
         String name = cache.strings[nameIndex];
         switch (name) {
             case CONSTANT_VALUE:
-                ConstantValueHandler.accept(reader, visitor, length);
+                ConstantValueHandler.accept(reader, visitor);
                 break;
             case CODE:
                 CodeHandler.accept(reader, visitor, cache);
@@ -83,7 +83,7 @@ public class AttributeInfoHandler {
                 LocalVariableTypeTableHandler.accept(reader, visitor);
                 break;
             case DEPRECATED:
-                DeprecatedHandler.accept(reader, visitor, length);
+                DeprecatedHandler.accept(visitor);
                 break;
             case RUNTIME_VISIBLE_ANNOTATIONS:
                 RuntimeVisibleAnnotationsHandler.accept(reader, visitor);

@@ -1,7 +1,7 @@
 package com.iancaffey.bytecode.io.direct.attribute;
 
 import com.iancaffey.bytecode.io.BytecodeReader;
-import com.iancaffey.bytecode.io.direct.ClassVisitor;
+import com.iancaffey.bytecode.io.direct.ClassModelVisitor;
 
 import java.io.IOException;
 
@@ -22,7 +22,7 @@ public class VerificationTypeHandler {
     public static final int OBJECT = 7;
     public static final int UNINITIALIZED = 8;
 
-    public static void accept(BytecodeReader<ClassVisitor> reader, VerificationTypeVisitor visitor) throws IOException {
+    public static void accept(BytecodeReader<ClassModelVisitor> reader, VerificationTypeVisitor visitor) throws IOException {
         int tag = reader.readUnsignedByte();
         switch (tag) {
             case TOP:

@@ -2,8 +2,8 @@ package com.iancaffey.bytecode.io.direct.attribute;
 
 import com.iancaffey.bytecode.io.BytecodeReader;
 import com.iancaffey.bytecode.io.direct.AttributeInfoHandler;
-import com.iancaffey.bytecode.io.direct.AttributeVisitor;
-import com.iancaffey.bytecode.io.direct.ClassVisitor;
+import com.iancaffey.bytecode.io.direct.AttributeModelVisitor;
+import com.iancaffey.bytecode.io.direct.ClassModelVisitor;
 import com.iancaffey.bytecode.util.ConstantPoolCache;
 
 import java.io.IOException;
@@ -16,7 +16,7 @@ import java.nio.BufferUnderflowException;
  * @since 1.0
  */
 public class CodeHandler {
-    public static void accept(BytecodeReader<ClassVisitor> reader, AttributeVisitor visitor, ConstantPoolCache cache) throws IOException {
+    public static void accept(BytecodeReader<ClassModelVisitor> reader, AttributeModelVisitor visitor, ConstantPoolCache cache) throws IOException {
         CodeVisitor codeVisitor = visitor.visitCode();
         int maxStack = reader.readUnsignedShort();
         int maxLocals = reader.readUnsignedShort();
@@ -37,7 +37,7 @@ public class CodeHandler {
             exceptionVisitor.visit(startIndex, endIndex, handlerIndex, catchIndex);
         }
         int attributeCount = reader.readUnsignedShort();
-        AttributeVisitor attributeVisitor = codeVisitor.visitAttributes(attributeCount);
+        AttributeModelVisitor attributeVisitor = codeVisitor.visitAttributes(attributeCount);
         for (int i = 0; i < attributeCount; i++)
             AttributeInfoHandler.accept(reader, attributeVisitor, cache);
     }

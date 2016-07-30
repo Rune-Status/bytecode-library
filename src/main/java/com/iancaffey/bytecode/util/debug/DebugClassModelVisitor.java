@@ -7,16 +7,16 @@ import com.iancaffey.bytecode.util.DebugVisitor;
 import java.util.Arrays;
 
 /**
- * DebugClassVisitor
+ * DebugClassModelVisitor
  *
  * @author Ian Caffey
  * @since 1.0
  */
-public class DebugClassVisitor extends DebugVisitor implements ClassVisitor {
-    public DebugClassVisitor() {
+public class DebugClassModelVisitor extends DebugVisitor implements ClassModelVisitor {
+    public DebugClassModelVisitor() {
     }
 
-    public DebugClassVisitor(int indent) {
+    public DebugClassModelVisitor(int indent) {
         super(indent);
     }
 
@@ -33,20 +33,20 @@ public class DebugClassVisitor extends DebugVisitor implements ClassVisitor {
     }
 
     @Override
-    public FieldVisitor visitFields(int count) {
+    public FieldModelVisitor visitFields(int count) {
         log(String.format("Fields [count=%d]", count));
-        return new DebugFieldVisitor(indent());
+        return new DebugFieldModelVisitor(indent());
     }
 
     @Override
-    public MethodVisitor visitMethods(int count) {
+    public MethodModelVisitor visitMethods(int count) {
         log(String.format("Methods [count=%d]", count));
-        return new DebugMethodVisitor(indent());
+        return new DebugMethodModelVisitor(indent());
     }
 
     @Override
-    public AttributeVisitor visitAttributes(int count) {
+    public AttributeModelVisitor visitAttributes(int count) {
         log(String.format("Attributes [count=%d]", count));
-        return new DebugAttributeVisitor(indent());
+        return new DebugAttributeModelVisitor(indent());
     }
 }

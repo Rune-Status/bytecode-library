@@ -1,21 +1,21 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.io.direct.AttributeVisitor;
-import com.iancaffey.bytecode.io.direct.FieldVisitor;
+import com.iancaffey.bytecode.io.direct.AttributeModelVisitor;
+import com.iancaffey.bytecode.io.direct.FieldModelVisitor;
 import com.iancaffey.bytecode.util.Access;
 import com.iancaffey.bytecode.util.DebugVisitor;
 
 /**
- * DebugFieldVisitor
+ * DebugFieldModelVisitor
  *
  * @author Ian Caffey
  * @since 1.0
  */
-public class DebugFieldVisitor extends DebugVisitor implements FieldVisitor {
-    public DebugFieldVisitor() {
+public class DebugFieldModelVisitor extends DebugVisitor implements FieldModelVisitor {
+    public DebugFieldModelVisitor() {
     }
 
-    public DebugFieldVisitor(int indent) {
+    public DebugFieldModelVisitor(int indent) {
         super(indent);
     }
 
@@ -25,9 +25,9 @@ public class DebugFieldVisitor extends DebugVisitor implements FieldVisitor {
     }
 
     @Override
-    public AttributeVisitor visitAttributes(int count) {
+    public AttributeModelVisitor visitAttributes(int count) {
         if (count > 0)
             log(String.format("Attributes [count=%d]", count), 1);
-        return new DebugAttributeVisitor(indent() + 1);
+        return new DebugAttributeModelVisitor(indent() + 1);
     }
 }

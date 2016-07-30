@@ -1,7 +1,7 @@
 package com.iancaffey.bytecode.io.direct.attribute;
 
 import com.iancaffey.bytecode.io.BytecodeVisitor;
-import com.iancaffey.bytecode.io.direct.AttributeVisitor;
+import com.iancaffey.bytecode.io.direct.AttributeModelVisitor;
 
 /**
  * CodeVisitor
@@ -16,5 +16,5 @@ public interface CodeVisitor extends BytecodeVisitor {
 
     public ExceptionVisitor visitExceptionTable(int count);
 
-    public AttributeVisitor visitAttributes(int count);
+    public AttributeModelVisitor visitAttributes(int count);
 }

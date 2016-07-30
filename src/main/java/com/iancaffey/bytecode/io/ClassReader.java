@@ -1,9 +1,9 @@
 package com.iancaffey.bytecode.io;
 
-import com.iancaffey.bytecode.io.direct.ClassHandler;
-import com.iancaffey.bytecode.io.direct.ClassVisitor;
+import com.iancaffey.bytecode.ClassInfo;
+import com.iancaffey.bytecode.io.direct.ClassModelHandler;
+import com.iancaffey.bytecode.io.direct.ClassModelVisitor;
 import com.iancaffey.bytecode.io.fast.ClassInfoHandler;
-import com.iancaffey.bytecode.io.fast.ClassInfoVisitor;
 import com.iancaffey.bytecode.util.Type;
 import com.sun.org.apache.bcel.internal.util.ClassLoader;
 
@@ -20,15 +20,15 @@ public class ClassReader {
     private ClassReader() {
     }
 
-    public static BytecodeReader<ClassInfoVisitor> fast(Class<?> c) throws IOException {
+    public static BytecodeReader<ClassInfo> fast(Class<?> c) throws IOException {
         return new FastClassReader(ClassLoader.getSystemResourceAsStream(Type.getInternalForm(c) + ".class"));
     }
 
-    public static BytecodeReader<ClassVisitor> direct(Class<?> c) throws IOException {
+    public static BytecodeReader<ClassModelVisitor> direct(Class<?> c) throws IOException {
         return new DirectClassReader(ClassLoader.getSystemResourceAsStream(Type.getInternalForm(c) + ".class"));
     }
 
-    public static class FastClassReader extends BytecodeReader<ClassInfoVisitor> {
+    public static class FastClassReader extends BytecodeReader<ClassInfo> {
 
         public FastClassReader(byte[] data) {
             super(data);
@@ -43,15 +43,15 @@ public class ClassReader {
         }
 
         @Override
-        public BytecodeReader<ClassInfoVisitor> accept(ClassInfoVisitor visitor) throws IOException {
+        public ClassInfo accept(ClassInfo visitor) throws IOException {
             if (visitor == null)
-                return this;
+                throw new IllegalArgumentException();
             ClassInfoHandler.accept(this, visitor);
-            return this;
+            return visitor;
         }
     }
 
-    public static class DirectClassReader extends BytecodeReader<ClassVisitor> {
+    public static class DirectClassReader extends BytecodeReader<ClassModelVisitor> {
         public DirectClassReader(byte[] data) {
             super(data);
         }
@@ -65,11 +65,11 @@ public class ClassReader {
         }
 
         @Override
-        public DirectClassReader accept(ClassVisitor visitor) throws IOException {
+        public ClassModelVisitor accept(ClassModelVisitor visitor) throws IOException {
             if (visitor == null)
-                return this;
-            ClassHandler.accept(this, visitor);
-            return this;
+                throw new IllegalArgumentException();
+            ClassModelHandler.accept(this, visitor);
+            return visitor;
         }
     }
 }

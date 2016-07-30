@@ -1,6 +1,6 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.io.direct.AttributeVisitor;
+import com.iancaffey.bytecode.io.direct.AttributeModelVisitor;
 import com.iancaffey.bytecode.io.direct.attribute.CodeVisitor;
 import com.iancaffey.bytecode.io.direct.attribute.ExceptionVisitor;
 import com.iancaffey.bytecode.util.DebugVisitor;
@@ -36,8 +36,8 @@ public class DebugCodeVisitor extends DebugVisitor implements CodeVisitor {
     }
 
     @Override
-    public AttributeVisitor visitAttributes(int count) {
+    public AttributeModelVisitor visitAttributes(int count) {
         log(String.format("Attributes [count=%d]", count), 1);
-        return new DebugAttributeVisitor(indent() + 1);
+        return new DebugAttributeModelVisitor(indent() + 1);
     }
 }

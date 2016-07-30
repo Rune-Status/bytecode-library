@@ -1,8 +1,7 @@
 import com.iancaffey.bytecode.ClassInfo;
+import com.iancaffey.bytecode.io.BytecodeReader;
 import com.iancaffey.bytecode.io.ClassReader;
-import com.iancaffey.bytecode.io.fast.ClassInfoVisitor;
 import com.iancaffey.bytecode.util.Type;
-import com.iancaffey.bytecode.util.debug.DebugClassVisitor;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -20,9 +19,11 @@ public class A<C> extends Type implements Runnable {
     public Object obj;
 
     public static void main(String[] args) throws IOException {
+        BytecodeReader<ClassInfo> reader = ClassReader.fast(A.class);
         long time = System.nanoTime();
-        ClassReader.direct(A.class).accept(new DebugClassVisitor()).close();
+        ClassInfo info = reader.accept(new ClassInfo());
         System.out.println(TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - time) + "ms");
+        reader.close();
     }
 
     @Override
