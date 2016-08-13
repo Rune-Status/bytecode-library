@@ -1,7 +1,7 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.io.direct.attribute.AnnotationVisitor;
-import com.iancaffey.bytecode.io.direct.attribute.ElementValueVisitor;
+import com.iancaffey.bytecode.io.model.attribute.AnnotationVisitor;
+import com.iancaffey.bytecode.io.model.attribute.ElementValueVisitor;
 import com.iancaffey.bytecode.util.DebugVisitor;
 
 /**

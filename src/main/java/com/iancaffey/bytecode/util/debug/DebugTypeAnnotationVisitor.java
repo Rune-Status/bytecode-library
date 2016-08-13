@@ -1,9 +1,9 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.io.direct.attribute.AnnotationVisitor;
-import com.iancaffey.bytecode.io.direct.attribute.annotation.TypeAnnotationVisitor;
-import com.iancaffey.bytecode.io.direct.attribute.annotation.TypePathVisitor;
-import com.iancaffey.bytecode.io.direct.attribute.annotation.TypeTargetVisitor;
+import com.iancaffey.bytecode.io.model.attribute.AnnotationVisitor;
+import com.iancaffey.bytecode.io.model.attribute.annotation.TypeAnnotationVisitor;
+import com.iancaffey.bytecode.io.model.attribute.annotation.TypePathVisitor;
+import com.iancaffey.bytecode.io.model.attribute.annotation.TypeTargetVisitor;
 import com.iancaffey.bytecode.util.DebugVisitor;
 
 /**

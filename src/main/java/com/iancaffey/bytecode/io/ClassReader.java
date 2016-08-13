@@ -1,10 +1,7 @@
 package com.iancaffey.bytecode.io;
 
-import com.iancaffey.bytecode.ClassInfo;
-import com.iancaffey.bytecode.io.direct.ClassModelHandler;
-import com.iancaffey.bytecode.io.direct.ClassModelVisitor;
-import com.iancaffey.bytecode.io.fast.ClassInfoHandler;
-import com.iancaffey.bytecode.io.fast.ClassVisitor;
+import com.iancaffey.bytecode.io.info.ClassInfoHandler;
+import com.iancaffey.bytecode.io.info.ClassVisitor;
 import com.iancaffey.bytecode.util.Type;
 import com.sun.org.apache.bcel.internal.util.ClassLoader;
 
@@ -17,58 +14,27 @@ import java.io.InputStream;
  * @author Ian Caffey
  * @since 1.0
  */
-public class ClassReader {
-    private ClassReader() {
+public class ClassReader extends BytecodeReader<ClassVisitor> {
+    public ClassReader(byte[] data) {
+        super(data);
     }
 
-    public static BytecodeReader<ClassVisitor> fast(Class<?> c) throws IOException {
-        return new FastClassReader(ClassLoader.getSystemResourceAsStream(Type.getInternalForm(c) + ".class"));
+    public ClassReader(byte[] data, int offset, int length) {
+        super(data, offset, length);
     }
 
-    public static BytecodeReader<ClassModelVisitor> direct(Class<?> c) throws IOException {
-        return new DirectClassReader(ClassLoader.getSystemResourceAsStream(Type.getInternalForm(c) + ".class"));
+    public ClassReader(InputStream stream) throws IOException {
+        super(stream);
     }
 
-    public static class FastClassReader extends BytecodeReader<ClassVisitor> {
-
-        public FastClassReader(byte[] data) {
-            super(data);
-        }
-
-        public FastClassReader(byte[] data, int offset, int length) {
-            super(data, offset, length);
-        }
-
-        public FastClassReader(InputStream stream) throws IOException {
-            super(stream);
-        }
-
-        @Override
-        public void accept(ClassVisitor visitor) throws IOException {
-            if (visitor == null)
-                throw new IllegalArgumentException();
-            ClassInfoHandler.accept(this, visitor);
-        }
+    public static ClassReader of(Class<?> c) throws IOException {
+        return new ClassReader(ClassLoader.getSystemResourceAsStream(Type.getInternalForm(c) + ".class"));
     }
 
-    public static class DirectClassReader extends BytecodeReader<ClassModelVisitor> {
-        public DirectClassReader(byte[] data) {
-            super(data);
-        }
-
-        public DirectClassReader(byte[] data, int offset, int length) {
-            super(data, offset, length);
-        }
-
-        public DirectClassReader(InputStream stream) throws IOException {
-            super(stream);
-        }
-
-        @Override
-        public void accept(ClassModelVisitor visitor) throws IOException {
-            if (visitor == null)
-                throw new IllegalArgumentException();
-            ClassModelHandler.accept(this, visitor);
-        }
+    @Override
+    public void accept(ClassVisitor visitor) throws IOException {
+        if (visitor == null)
+            throw new IllegalArgumentException();
+        ClassInfoHandler.accept(this, visitor);
     }
 }

@@ -1,6 +1,6 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.io.direct.attribute.MethodParameterVisitor;
+import com.iancaffey.bytecode.io.model.attribute.MethodParameterVisitor;
 import com.iancaffey.bytecode.util.DebugVisitor;
 
 /**
