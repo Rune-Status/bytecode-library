@@ -13,9 +13,9 @@ import java.io.IOException;
  * @since 1.0
  */
 public class MethodParametersHandler {
-    public static void accept(BytecodeReader<ClassModelVisitor> reader, AttributeModelVisitor visitor) throws IOException {
+    public static void accept(BytecodeReader<ClassModelVisitor> reader, AttributeModelVisitor visitor, int nameIndex, int length) throws IOException {
         int count = reader.readUnsignedByte();
-        MethodParameterVisitor methodParameterVisitor = visitor.visitMethodParameters(count);
+        MethodParameterVisitor methodParameterVisitor = visitor.visitMethodParameters(nameIndex, length, count);
         for (int i = 0; i < count; i++)
             methodParameterVisitor.visit(reader.readUnsignedShort(), reader.readUnsignedShort());
     }

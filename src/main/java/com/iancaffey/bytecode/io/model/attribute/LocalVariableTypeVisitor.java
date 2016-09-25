@@ -2,6 +2,8 @@ package com.iancaffey.bytecode.io.model.attribute;
 
 import com.iancaffey.bytecode.io.BytecodeVisitor;
 
+import java.io.IOException;
+
 /**
  * LocalVariableTypeVisitor
  *
@@ -9,5 +11,5 @@ import com.iancaffey.bytecode.io.BytecodeVisitor;
  * @since 1.0
  */
 public interface LocalVariableTypeVisitor extends BytecodeVisitor {
-    public void visit(int startIndex, int length, int nameIndex, int signatureIndex, int index);
+    public void visit(int startIndex, int length, int nameIndex, int signatureIndex, int index) throws IOException;
 }

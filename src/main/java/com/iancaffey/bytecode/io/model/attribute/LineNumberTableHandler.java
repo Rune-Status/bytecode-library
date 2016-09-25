@@ -13,9 +13,9 @@ import java.io.IOException;
  * @since 1.0
  */
 public class LineNumberTableHandler {
-    public static void accept(BytecodeReader<ClassModelVisitor> reader, AttributeModelVisitor visitor) throws IOException {
+    public static void accept(BytecodeReader<ClassModelVisitor> reader, AttributeModelVisitor visitor, int nameIndex, int length) throws IOException {
         int count = reader.readUnsignedShort();
-        LineNumberInfoVisitor lineNumberInfoVisitor = visitor.visitLineNumberTable(count);
+        LineNumberInfoVisitor lineNumberInfoVisitor = visitor.visitLineNumberTable(nameIndex, length, count);
         for (int i = 0; i < count; i++)
             lineNumberInfoVisitor.visit(reader.readUnsignedShort(), reader.readUnsignedShort());
     }

@@ -2,6 +2,8 @@ package com.iancaffey.bytecode.io.model.attribute;
 
 import com.iancaffey.bytecode.io.BytecodeVisitor;
 
+import java.io.IOException;
+
 /**
  * ElementValueVisitor
  *
@@ -9,29 +11,29 @@ import com.iancaffey.bytecode.io.BytecodeVisitor;
  * @since 1.0
  */
 public interface ElementValueVisitor extends BytecodeVisitor {
-    public void visitByte(int index);
+    public void visitByte(int index) throws IOException;
 
-    public void visitCharacter(int index);
+    public void visitCharacter(int index) throws IOException;
 
-    public void visitDouble(int index);
+    public void visitDouble(int index) throws IOException;
 
-    public void visitFloat(int index);
+    public void visitFloat(int index) throws IOException;
 
-    public void visitInteger(int index);
+    public void visitInteger(int index) throws IOException;
 
-    public void visitLong(int index);
+    public void visitLong(int index) throws IOException;
 
-    public void visitShort(int index);
+    public void visitShort(int index) throws IOException;
 
-    public void visitBoolean(int index);
+    public void visitBoolean(int index) throws IOException;
 
-    public void visitString(int index);
+    public void visitString(int index) throws IOException;
 
-    public void visitEnum(int typeIndex, int nameIndex);
+    public void visitEnum(int typeIndex, int nameIndex) throws IOException;
 
-    public void visitClass(int index);
+    public void visitClass(int index) throws IOException;
 
-    public AnnotationVisitor visitAnnotation();
+    public AnnotationVisitor visitAnnotation() throws IOException;
 
-    public ElementValueVisitor visitArray(int count);
+    public ElementValueVisitor visitArray(int count) throws IOException;
 }

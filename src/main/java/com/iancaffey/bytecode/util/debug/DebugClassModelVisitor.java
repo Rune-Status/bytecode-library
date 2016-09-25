@@ -2,7 +2,6 @@ package com.iancaffey.bytecode.util.debug;
 
 import com.iancaffey.bytecode.io.model.*;
 import com.iancaffey.bytecode.util.Access;
-import com.iancaffey.bytecode.util.DebugVisitor;
 
 import java.util.Arrays;
 
@@ -21,9 +20,14 @@ public class DebugClassModelVisitor extends DebugVisitor implements ClassModelVi
     }
 
     @Override
-    public void visit(int major, int minor, int access, int nameIndex, int parentNameIndex, int[] interfaces) {
-        log(String.format("Class [access=%s, version=%d.%d, nameIndex=%s, superNameIndex=%s, interfaces=%s]",
-                Access.of(access).toString().toLowerCase(), major, minor, nameIndex, parentNameIndex, Arrays.toString(interfaces)));
+    public void visitVersion(int major, int minor) {
+        log(String.format("Class [version=%d.%d]", major, minor));
+    }
+
+    @Override
+    public void visitDescription(int access, int nameIndex, int parentNameIndex, int[] interfaces) {
+        log(String.format("Class [access=%s, nameIndex=%s, superNameIndex=%s, interfaces=%s]",
+                Access.of(access).toString().toLowerCase(), nameIndex, parentNameIndex, Arrays.toString(interfaces)));
     }
 
     @Override

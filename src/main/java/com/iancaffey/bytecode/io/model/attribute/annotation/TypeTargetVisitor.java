@@ -3,6 +3,8 @@ package com.iancaffey.bytecode.io.model.attribute.annotation;
 import com.iancaffey.bytecode.io.BytecodeVisitor;
 import com.iancaffey.bytecode.io.model.attribute.LocalVariableTargetVisitor;
 
+import java.io.IOException;
+
 /**
  * TypeTargetVisitor
  *
@@ -10,23 +12,23 @@ import com.iancaffey.bytecode.io.model.attribute.LocalVariableTargetVisitor;
  * @since 1.0
  */
 public interface TypeTargetVisitor extends BytecodeVisitor {
-    public void visitTypeParameter(int index);
+    public void visitTypeParameter(int index) throws IOException;
 
-    public void visitSuperType(int index);
+    public void visitSuperType(int index) throws IOException;
 
-    public void visitTypeParameterBound(int parameterIndex, int boundIndex);
+    public void visitTypeParameterBound(int parameterIndex, int boundIndex) throws IOException;
 
-    public void visitEmpty();
+    public void visitEmpty() throws IOException;
 
-    public void visitFormalParameter(int index);
+    public void visitFormalParameter(int index) throws IOException;
 
-    public void visitThrows(int index);
+    public void visitThrows(int index) throws IOException;
 
-    public LocalVariableTargetVisitor visitLocalVariable(int count);
+    public LocalVariableTargetVisitor visitLocalVariable(int count) throws IOException;
 
-    public void visitCatch(int index);
+    public void visitCatch(int index) throws IOException;
 
-    public void visitOffset(int index);
+    public void visitOffset(int index) throws IOException;
 
-    public void visitTypeArgument(int offset, int index);
+    public void visitTypeArgument(int offset, int index) throws IOException;
 }

@@ -13,7 +13,7 @@ import java.io.IOException;
  * @since 1.0
  */
 public class EnclosingMethodHandler {
-    public static void accept(BytecodeReader<ClassModelVisitor> reader, AttributeModelVisitor visitor) throws IOException {
-        visitor.visitEnclosingMethod(reader.readUnsignedShort(), reader.readUnsignedShort());
+    public static void accept(BytecodeReader<ClassModelVisitor> reader, AttributeModelVisitor visitor, int nameIndex, int length) throws IOException {
+        visitor.visitEnclosingMethod(nameIndex, length, reader.readUnsignedShort(), reader.readUnsignedShort());
     }
 }

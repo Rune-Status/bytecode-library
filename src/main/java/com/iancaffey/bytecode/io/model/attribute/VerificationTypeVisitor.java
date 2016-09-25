@@ -2,6 +2,8 @@ package com.iancaffey.bytecode.io.model.attribute;
 
 import com.iancaffey.bytecode.io.BytecodeVisitor;
 
+import java.io.IOException;
+
 /**
  * VerificationTypeVisitor
  *
@@ -9,21 +11,21 @@ import com.iancaffey.bytecode.io.BytecodeVisitor;
  * @since 1.0
  */
 public interface VerificationTypeVisitor extends BytecodeVisitor {
-    public void visitTop();
+    public void visitTop() throws IOException;
 
-    public void visitInteger();
+    public void visitInteger() throws IOException;
 
-    public void visitFloat();
+    public void visitFloat() throws IOException;
 
-    public void visitLong();
+    public void visitLong() throws IOException;
 
-    public void visitDouble();
+    public void visitDouble() throws IOException;
 
-    public void visitNull();
+    public void visitNull() throws IOException;
 
-    public void visitUninitializedThis();
+    public void visitUninitializedThis() throws IOException;
 
-    public void visitObject(int index);
+    public void visitObject(int index) throws IOException;
 
-    public void visitUninitialized(int offset);
+    public void visitUninitialized(int offset) throws IOException;
 }

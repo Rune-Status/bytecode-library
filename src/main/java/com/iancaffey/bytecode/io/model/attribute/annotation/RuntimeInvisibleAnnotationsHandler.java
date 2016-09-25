@@ -15,9 +15,9 @@ import java.io.IOException;
  * @since 1.0
  */
 public class RuntimeInvisibleAnnotationsHandler {
-    public static void accept(BytecodeReader<ClassModelVisitor> reader, AttributeModelVisitor visitor) throws IOException {
+    public static void accept(BytecodeReader<ClassModelVisitor> reader, AttributeModelVisitor visitor, int nameIndex, int length) throws IOException {
         int count = reader.readUnsignedShort();
-        AnnotationVisitor annotationVisitor = visitor.visitRuntimeInvisibleAnnotations(count);
+        AnnotationVisitor annotationVisitor = visitor.visitRuntimeInvisibleAnnotations(nameIndex, length, count);
         for (int i = 0; i < count; i++)
             AnnotationHandler.accept(reader, annotationVisitor);
     }

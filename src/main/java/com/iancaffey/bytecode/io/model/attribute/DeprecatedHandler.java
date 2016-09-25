@@ -11,7 +11,7 @@ import java.io.IOException;
  * @since 1.0
  */
 public class DeprecatedHandler {
-    public static void accept(AttributeModelVisitor visitor) throws IOException {
-        visitor.visitDeprecated();
+    public static void accept(AttributeModelVisitor visitor, int nameIndex, int length) throws IOException {
+        visitor.visitDeprecated(nameIndex, length);
     }
 }

@@ -1,7 +1,6 @@
 package com.iancaffey.bytecode.util.debug;
 
 import com.iancaffey.bytecode.io.model.attribute.VerificationTypeVisitor;
-import com.iancaffey.bytecode.util.DebugVisitor;
 
 /**
  * DebugVerificationTypeVisitor

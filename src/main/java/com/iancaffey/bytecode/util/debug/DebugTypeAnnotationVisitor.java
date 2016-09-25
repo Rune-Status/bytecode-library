@@ -4,7 +4,6 @@ import com.iancaffey.bytecode.io.model.attribute.AnnotationVisitor;
 import com.iancaffey.bytecode.io.model.attribute.annotation.TypeAnnotationVisitor;
 import com.iancaffey.bytecode.io.model.attribute.annotation.TypePathVisitor;
 import com.iancaffey.bytecode.io.model.attribute.annotation.TypeTargetVisitor;
-import com.iancaffey.bytecode.util.DebugVisitor;
 
 /**
  * DebugTypeAnnotationVisitor

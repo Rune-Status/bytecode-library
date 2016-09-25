@@ -2,6 +2,8 @@ package com.iancaffey.bytecode.io.model;
 
 import com.iancaffey.bytecode.io.BytecodeVisitor;
 
+import java.io.IOException;
+
 /**
  * FieldModelVisitor
  *
@@ -9,7 +11,7 @@ import com.iancaffey.bytecode.io.BytecodeVisitor;
  * @since 1.0
  */
 public interface FieldModelVisitor extends BytecodeVisitor {
-    public void visit(int access, int nameIndex, int descriptorIndex);
+    public void visit(int access, int nameIndex, int descriptorIndex) throws IOException;
 
-    public AttributeModelVisitor visitAttributes(int count);
+    public AttributeModelVisitor visitAttributes(int count) throws IOException;
 }

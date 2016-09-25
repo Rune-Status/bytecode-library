@@ -2,6 +2,8 @@ package com.iancaffey.bytecode.io.model.attribute;
 
 import com.iancaffey.bytecode.io.BytecodeVisitor;
 
+import java.io.IOException;
+
 /**
  * ElementValuePairVisitor
  *
@@ -9,5 +11,5 @@ import com.iancaffey.bytecode.io.BytecodeVisitor;
  * @since 1.0
  */
 public interface ElementValuePairVisitor extends BytecodeVisitor {
-    public ElementValueVisitor visit(int index);
+    public ElementValueVisitor visit(int index) throws IOException;
 }

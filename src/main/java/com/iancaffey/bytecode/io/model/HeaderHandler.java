@@ -16,6 +16,8 @@ public class HeaderHandler {
         int magic = reader.readInt();
         int minor = reader.readUnsignedShort();
         int major = reader.readUnsignedShort();
+        if (visitor != null)
+            visitor.visitVersion(major, minor);
         ConstantPoolHandler.accept(reader, visitor, cache);
         int access = reader.readUnsignedShort();
         int nameIndex = reader.readUnsignedShort();
@@ -25,6 +27,6 @@ public class HeaderHandler {
         for (int i = 0; i < interfaceIndexes.length; i++)
             interfaceIndexes[i] = reader.readUnsignedShort();
         if (visitor != null)
-            visitor.visit(major, minor, access, nameIndex, parentNameIndex, interfaceIndexes);
+            visitor.visitDescription(access, nameIndex, parentNameIndex, interfaceIndexes);
     }
 }

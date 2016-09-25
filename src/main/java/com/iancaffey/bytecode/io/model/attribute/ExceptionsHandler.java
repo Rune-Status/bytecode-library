@@ -13,11 +13,11 @@ import java.io.IOException;
  * @since 1.0
  */
 public class ExceptionsHandler {
-    public static void accept(BytecodeReader<ClassModelVisitor> reader, AttributeModelVisitor visitor) throws IOException {
+    public static void accept(BytecodeReader<ClassModelVisitor> reader, AttributeModelVisitor visitor, int nameIndex, int length) throws IOException {
         int count = reader.readUnsignedShort();
         int[] exceptionIndexes = new int[count];
         for (int i = 0; i < count; i++)
             exceptionIndexes[i] = reader.readUnsignedShort();
-        visitor.visitExceptions(exceptionIndexes);
+        visitor.visitExceptions(nameIndex, length, exceptionIndexes);
     }
 }

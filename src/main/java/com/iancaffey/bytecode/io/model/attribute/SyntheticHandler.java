@@ -11,7 +11,7 @@ import java.io.IOException;
  * @since 1.0
  */
 public class SyntheticHandler {
-    public static void accept(AttributeModelVisitor visitor) throws IOException {
-        visitor.visitSynthetic();
+    public static void accept(AttributeModelVisitor visitor, int nameIndex, int length) throws IOException {
+        visitor.visitSynthetic(nameIndex, length);
     }
 }

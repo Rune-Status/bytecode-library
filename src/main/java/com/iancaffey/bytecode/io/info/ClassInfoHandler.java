@@ -12,7 +12,7 @@ import java.io.IOException;
  * @since 1.0
  */
 public class ClassInfoHandler {
-    public static void accept(BytecodeReader<ClassVisitor> reader, ClassVisitor visitor) throws IOException {
+    public static void accept(BytecodeReader<ClassInfoVisitor> reader, ClassInfoVisitor visitor) throws IOException {
         ClassInfoModel model = new ClassInfoModel();
         model.data = reader.buffer();
 

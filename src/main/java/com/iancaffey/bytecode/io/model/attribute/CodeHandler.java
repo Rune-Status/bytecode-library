@@ -16,8 +16,8 @@ import java.nio.BufferUnderflowException;
  * @since 1.0
  */
 public class CodeHandler {
-    public static void accept(BytecodeReader<ClassModelVisitor> reader, AttributeModelVisitor visitor, ConstantPoolCache cache) throws IOException {
-        CodeVisitor codeVisitor = visitor.visitCode();
+    public static void accept(BytecodeReader<ClassModelVisitor> reader, AttributeModelVisitor visitor, ConstantPoolCache cache, int nameIndex, int length) throws IOException {
+        CodeVisitor codeVisitor = visitor.visitCode(nameIndex, length);
         int maxStack = reader.readUnsignedShort();
         int maxLocals = reader.readUnsignedShort();
         codeVisitor.visitDepth(maxStack, maxLocals);

@@ -13,7 +13,7 @@ import java.io.IOException;
  * @since 1.0
  */
 public class AnnotationDefaultHandler {
-    public static void accept(BytecodeReader<ClassModelVisitor> reader, AttributeModelVisitor visitor) throws IOException {
-        ElementValueHandler.accept(reader, visitor.visitAnnotationDefault());
+    public static void accept(BytecodeReader<ClassModelVisitor> reader, AttributeModelVisitor visitor, int nameIndex, int length) throws IOException {
+        ElementValueHandler.accept(reader, visitor.visitAnnotationDefault(nameIndex, length));
     }
 }

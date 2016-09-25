@@ -2,6 +2,8 @@ package com.iancaffey.bytecode.io.model.attribute;
 
 import com.iancaffey.bytecode.io.BytecodeVisitor;
 
+import java.io.IOException;
+
 /**
  * ParameterAnnotationVisitor
  *
@@ -9,5 +11,5 @@ import com.iancaffey.bytecode.io.BytecodeVisitor;
  * @since 1.0
  */
 public interface ParameterAnnotationVisitor extends BytecodeVisitor {
-    public AnnotationVisitor visitAnnotations(int count);
+    public AnnotationVisitor visitAnnotations(int count) throws IOException;
 }

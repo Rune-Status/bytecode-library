@@ -14,11 +14,11 @@ import java.nio.BufferUnderflowException;
  * @since 1.0
  */
 public class SourceDebugExtensionHandler {
-    public static void accept(BytecodeReader<ClassModelVisitor> reader, AttributeModelVisitor visitor, int length) throws IOException {
+    public static void accept(BytecodeReader<ClassModelVisitor> reader, AttributeModelVisitor visitor, int nameIndex, int length) throws IOException {
         byte[] data = new byte[length];
         int read = reader.read(data);
         if (read != length)
             throw new BufferUnderflowException();
-        visitor.visitSourceDebugExtension(data);
+        visitor.visitSourceDebugExtension(nameIndex, length, data);
     }
 }

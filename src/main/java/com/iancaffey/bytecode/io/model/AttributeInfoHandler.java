@@ -44,73 +44,73 @@ public class AttributeInfoHandler {
         String name = cache.strings[nameIndex];
         switch (name) {
             case CONSTANT_VALUE:
-                ConstantValueHandler.accept(reader, visitor);
+                ConstantValueHandler.accept(reader, visitor, nameIndex, length);
                 break;
             case CODE:
-                CodeHandler.accept(reader, visitor, cache);
+                CodeHandler.accept(reader, visitor, cache, nameIndex, length);
                 break;
             case STACK_MAP_TABLE:
-                StackMapTableHandler.accept(reader, visitor);
+                StackMapTableHandler.accept(reader, visitor, nameIndex, length);
                 break;
             case EXCEPTIONS:
-                ExceptionsHandler.accept(reader, visitor);
+                ExceptionsHandler.accept(reader, visitor, nameIndex, length);
                 break;
             case INNER_CLASSES:
-                InnerClassesHandler.accept(reader, visitor);
+                InnerClassesHandler.accept(reader, visitor, nameIndex, length);
                 break;
             case ENCLOSING_METHOD:
-                EnclosingMethodHandler.accept(reader, visitor);
+                EnclosingMethodHandler.accept(reader, visitor, nameIndex, length);
                 break;
             case SYNTHETIC:
-                SyntheticHandler.accept(visitor);
+                SyntheticHandler.accept(visitor, nameIndex, length);
                 break;
             case SIGNATURE:
-                SignatureHandler.accept(reader, visitor);
+                SignatureHandler.accept(reader, visitor, nameIndex, length);
                 break;
             case SOURCE_FILE:
-                SourceFileHandler.accept(reader, visitor);
+                SourceFileHandler.accept(reader, visitor, nameIndex, length);
                 break;
             case SOURCE_DEBUG_EXTENSION:
-                SourceDebugExtensionHandler.accept(reader, visitor, length);
+                SourceDebugExtensionHandler.accept(reader, visitor, nameIndex, length);
                 break;
             case LINE_NUMBER_TABLE:
-                LineNumberTableHandler.accept(reader, visitor);
+                LineNumberTableHandler.accept(reader, visitor, nameIndex, length);
                 break;
             case LOCAL_VARIABLE_TABLE:
-                LocalVariableTableHandler.accept(reader, visitor);
+                LocalVariableTableHandler.accept(reader, visitor, nameIndex, length);
                 break;
             case LOCAL_VARIABLE_TYPE_TABLE:
-                LocalVariableTypeTableHandler.accept(reader, visitor);
+                LocalVariableTypeTableHandler.accept(reader, visitor, nameIndex, length);
                 break;
             case DEPRECATED:
-                DeprecatedHandler.accept(visitor);
+                DeprecatedHandler.accept(visitor, nameIndex, length);
                 break;
             case RUNTIME_VISIBLE_ANNOTATIONS:
-                RuntimeVisibleAnnotationsHandler.accept(reader, visitor);
+                RuntimeVisibleAnnotationsHandler.accept(reader, visitor, nameIndex, length);
                 break;
             case RUNTIME_INVISIBLE_ANNOTATIONS:
-                RuntimeInvisibleAnnotationsHandler.accept(reader, visitor);
+                RuntimeInvisibleAnnotationsHandler.accept(reader, visitor, nameIndex, length);
                 break;
             case RUNTIME_VISIBLE_PARAMETER_ANNOTATIONS:
-                RuntimeVisibleParameterAnnotationsHandler.accept(reader, visitor);
+                RuntimeVisibleParameterAnnotationsHandler.accept(reader, visitor, nameIndex, length);
                 break;
             case RUNTIME_INVISIBLE_PARAMETER_ANNOTATIONS:
-                RuntimeInvisibleParameterAnnotationsHandler.accept(reader, visitor);
+                RuntimeInvisibleParameterAnnotationsHandler.accept(reader, visitor, nameIndex, length);
                 break;
             case RUNTIME_VISIBLE_TYPE_ANNOTATIONS:
-                RuntimeVisibleTypeAnnotationsHandler.accept(reader, visitor);
+                RuntimeVisibleTypeAnnotationsHandler.accept(reader, visitor, nameIndex, length);
                 break;
             case RUNTIME_INVISIBLE_TYPE_ANNOTATIONS:
-                RuntimeInvisibleTypeAnnotationsHandler.accept(reader, visitor);
+                RuntimeInvisibleTypeAnnotationsHandler.accept(reader, visitor, nameIndex, length);
                 break;
             case ANNOTATION_DEFAULT:
-                AnnotationDefaultHandler.accept(reader, visitor);
+                AnnotationDefaultHandler.accept(reader, visitor, nameIndex, length);
                 break;
             case BOOTSTRAP_METHODS:
-                BootstrapMethodsHandler.accept(reader, visitor);
+                BootstrapMethodsHandler.accept(reader, visitor, nameIndex, length);
                 break;
             case METHOD_PARAMETERS:
-                MethodParametersHandler.accept(reader, visitor);
+                MethodParametersHandler.accept(reader, visitor, nameIndex, length);
                 break;
             default:
                 throw new IllegalStateException("Unable to locate handler for attribute: " + name);

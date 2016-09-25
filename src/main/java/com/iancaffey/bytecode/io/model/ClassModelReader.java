@@ -1,7 +1,6 @@
-package com.iancaffey.bytecode.io;
+package com.iancaffey.bytecode.io.model;
 
-import com.iancaffey.bytecode.io.model.ClassModelHandler;
-import com.iancaffey.bytecode.io.model.ClassModelVisitor;
+import com.iancaffey.bytecode.io.BytecodeReader;
 import com.iancaffey.bytecode.util.Type;
 import com.sun.org.apache.bcel.internal.util.ClassLoader;
 

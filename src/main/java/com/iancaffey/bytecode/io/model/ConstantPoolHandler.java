@@ -12,20 +12,20 @@ import java.io.IOException;
  * @since 1.0
  */
 public class ConstantPoolHandler {
-    public static final int UTF8 = 1;
-    public static final int INTEGER = 3;
-    public static final int FLOAT = 4;
-    public static final int LONG = 5;
-    public static final int DOUBLE = 6;
-    public static final int CLASS = 7;
-    public static final int STRING = 8;
-    public static final int FIELD_REFERENCE = 9;
-    public static final int METHOD_REFERENCE = 10;
-    public static final int INTERFACE_METHOD_REFERENCE = 11;
-    public static final int NAME_TYPE = 12;
-    public static final int METHOD_HANDLE = 15;
-    public static final int METHOD_TYPE = 16;
-    public static final int INVOKE_DYNAMIC = 18;
+    public static final byte UTF8 = 1;
+    public static final byte INTEGER = 3;
+    public static final byte FLOAT = 4;
+    public static final byte LONG = 5;
+    public static final byte DOUBLE = 6;
+    public static final byte CLASS = 7;
+    public static final byte STRING = 8;
+    public static final byte FIELD_REFERENCE = 9;
+    public static final byte METHOD_REFERENCE = 10;
+    public static final byte INTERFACE_METHOD_REFERENCE = 11;
+    public static final byte NAME_TYPE = 12;
+    public static final byte METHOD_HANDLE = 15;
+    public static final byte METHOD_TYPE = 16;
+    public static final byte INVOKE_DYNAMIC = 18;
 
     public static void accept(BytecodeReader<ClassModelVisitor> reader, ClassModelVisitor visitor, ConstantPoolCache cache) throws IOException {
         int count = reader.readUnsignedShort();

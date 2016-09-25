@@ -13,7 +13,7 @@ import java.io.IOException;
  * @since 1.0
  */
 public class SourceFileHandler {
-    public static void accept(BytecodeReader<ClassModelVisitor> reader, AttributeModelVisitor visitor) throws IOException {
-        visitor.visitSourceFile(reader.readUnsignedShort());
+    public static void accept(BytecodeReader<ClassModelVisitor> reader, AttributeModelVisitor visitor, int nameIndex, int length) throws IOException {
+        visitor.visitSourceFile(nameIndex, length, reader.readUnsignedShort());
     }
 }

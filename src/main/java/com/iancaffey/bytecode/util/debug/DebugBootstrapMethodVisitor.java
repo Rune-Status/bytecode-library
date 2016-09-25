@@ -1,7 +1,6 @@
 package com.iancaffey.bytecode.util.debug;
 
 import com.iancaffey.bytecode.io.model.attribute.BootstrapMethodVisitor;
-import com.iancaffey.bytecode.util.DebugVisitor;
 
 import java.util.Arrays;
 

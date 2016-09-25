@@ -1,7 +1,6 @@
 package com.iancaffey.bytecode.util.debug;
 
 import com.iancaffey.bytecode.io.model.attribute.InnerClassVisitor;
-import com.iancaffey.bytecode.util.DebugVisitor;
 
 /**
  * DebugInnerClassVisitor
