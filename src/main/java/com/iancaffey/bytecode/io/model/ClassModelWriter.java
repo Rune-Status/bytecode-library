@@ -13,6 +13,13 @@ import java.io.IOException;
  * @since 1.0
  */
 public class ClassModelWriter extends BytecodeWriter implements ClassModelVisitor {
+    public ClassModelWriter() {
+    }
+
+    public ClassModelWriter(ByteArrayOutputStream out) {
+        super(out);
+    }
+
     @Override
     public ConstantPoolVisitor visitConstantPool(int count) throws IOException {
         writeShort(count);

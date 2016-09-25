@@ -2,6 +2,7 @@ package com.iancaffey.bytecode.io.model.attribute;
 
 import com.iancaffey.bytecode.io.BytecodeWriter;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 /**
@@ -11,6 +12,13 @@ import java.io.IOException;
  * @since 1.0
  */
 public class StackMapTableWriter extends BytecodeWriter implements StackMapTableVisitor {
+    public StackMapTableWriter() {
+    }
+
+    public StackMapTableWriter(ByteArrayOutputStream out) {
+        super(out);
+    }
+
     @Override
     public void visitSameFrame(int type) throws IOException {
 

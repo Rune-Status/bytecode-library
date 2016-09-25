@@ -3,6 +3,7 @@ package com.iancaffey.bytecode.io.model.attribute.annotation;
 import com.iancaffey.bytecode.io.BytecodeWriter;
 import com.iancaffey.bytecode.io.model.attribute.AnnotationVisitor;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 /**
@@ -12,6 +13,13 @@ import java.io.IOException;
  * @since 1.0
  */
 public class TypeAnnotationWriter extends BytecodeWriter implements TypeAnnotationVisitor {
+    public TypeAnnotationWriter() {
+    }
+
+    public TypeAnnotationWriter(ByteArrayOutputStream out) {
+        super(out);
+    }
+
     @Override
     public TypeTargetVisitor visitTarget() throws IOException {
         return null;

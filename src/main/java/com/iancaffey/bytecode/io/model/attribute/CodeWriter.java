@@ -3,6 +3,7 @@ package com.iancaffey.bytecode.io.model.attribute;
 import com.iancaffey.bytecode.io.BytecodeWriter;
 import com.iancaffey.bytecode.io.model.AttributeModelVisitor;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 /**
@@ -12,6 +13,13 @@ import java.io.IOException;
  * @since 1.0
  */
 public class CodeWriter extends BytecodeWriter implements CodeVisitor {
+    public CodeWriter() {
+    }
+
+    public CodeWriter(ByteArrayOutputStream out) {
+        super(out);
+    }
+
     @Override
     public void visitDepth(int maxStack, int maxLocals) throws IOException {
 

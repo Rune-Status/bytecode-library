@@ -2,6 +2,7 @@ package com.iancaffey.bytecode.io.model.attribute;
 
 import com.iancaffey.bytecode.io.BytecodeWriter;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 /**
@@ -11,6 +12,13 @@ import java.io.IOException;
  * @since 1.0
  */
 public class ElementValuePairWriter extends BytecodeWriter implements ElementValuePairVisitor {
+    public ElementValuePairWriter() {
+    }
+
+    public ElementValuePairWriter(ByteArrayOutputStream out) {
+        super(out);
+    }
+
     @Override
     public ElementValueVisitor visit(int index) throws IOException {
         return null;
