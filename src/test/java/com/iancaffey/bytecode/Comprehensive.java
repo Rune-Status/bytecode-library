@@ -6,6 +6,8 @@ package com.iancaffey.bytecode;
  * A Java class that requires a visitation of all class File Format data structures, helpful when testing bytecode readng
  * and writing for consistency.
  *
+ * Specification: https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html
+ *
  * @author Ian Caffey
  * @since 1.0
  */
