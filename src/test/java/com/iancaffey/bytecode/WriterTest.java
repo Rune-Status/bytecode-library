@@ -2,6 +2,7 @@ package com.iancaffey.bytecode;
 
 import com.iancaffey.bytecode.model.ClassModelReader;
 import com.iancaffey.bytecode.model.ClassModelWriter;
+import com.iancaffey.bytecode.util.Type;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -19,7 +20,7 @@ public class WriterTest {
     @Test
     public void classATest() throws IOException {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        InputStream in = ClassLoader.getSystemResourceAsStream("A.class");
+        InputStream in = ClassLoader.getSystemResourceAsStream(Type.getInternalForm(Comprehensive.class) + ".class");
         int next;
         while ((next = in.read()) != -1)
             out.write(next);
