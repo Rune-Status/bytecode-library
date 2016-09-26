@@ -83,7 +83,7 @@ public class DebugAttributeModelVisitor extends DebugVisitor implements Attribut
 
     @Override
     public LocalVariableVisitor visitLocalVariableTable(int nameIndex, int length, int count) {
-        log(String.format("LocalVariableTabke [index=%d, count=%d]", index++, count), 1);
+        log(String.format("LocalVariableTable [index=%d, count=%d]", index++, count), 1);
         return new DebugLocalVariableVisitor(indent() + 1);
     }
 

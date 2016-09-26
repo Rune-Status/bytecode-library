@@ -21,6 +21,9 @@ public class ExceptionWriter extends BytecodeWriter implements ExceptionVisitor 
 
     @Override
     public void visit(int startIndex, int endIndex, int handlerIndex, int catchIndex) throws IOException {
-
+        writeShort(startIndex);
+        writeShort(endIndex);
+        writeShort(handlerIndex);
+        writeShort(catchIndex);
     }
 }

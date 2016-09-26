@@ -32,14 +32,15 @@ public class AttributeModelWriter extends BytecodeWriter implements AttributeMod
     public CodeVisitor visitCode(int nameIndex, int length) throws IOException {
         writeShort(nameIndex);
         writeInt(length);
-        return null;
+        return new CodeWriter((ByteArrayOutputStream) out);
     }
 
     @Override
     public StackMapTableVisitor visitStackMapTable(int nameIndex, int length, int count) throws IOException {
         writeShort(nameIndex);
         writeInt(length);
-        return null;
+        writeShort(count);
+        return new StackMapTableWriter((ByteArrayOutputStream) out);
     }
 
     @Override

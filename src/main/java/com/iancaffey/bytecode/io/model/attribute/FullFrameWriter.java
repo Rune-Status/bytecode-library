@@ -21,11 +21,13 @@ public class FullFrameWriter extends BytecodeWriter implements FullFrameVisitor 
 
     @Override
     public VerificationTypeVisitor visitLocals(int count) throws IOException {
-        return null;
+        writeShort(count);
+        return new VerificationTypeWriter((ByteArrayOutputStream) out);
     }
 
     @Override
     public VerificationTypeVisitor visitStack(int count) throws IOException {
-        return null;
+        writeShort(count);
+        return new VerificationTypeWriter((ByteArrayOutputStream) out);
     }
 }
