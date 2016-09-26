@@ -27,7 +27,8 @@ public class WriterTest {
             out.write(next);
         byte[] read = out.toByteArray();
         ClassModelWriter writer = new ClassModelWriter();
-        new ClassModelReader(read).accept(writer);
+        ClassModelReader reader = new ClassModelReader(read);
+        reader.accept(writer);
         byte[] written = writer.toByteArray();
         Assert.assertArrayEquals(read, written);
     }
