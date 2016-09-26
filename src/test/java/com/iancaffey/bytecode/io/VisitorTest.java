@@ -1,7 +1,5 @@
 package com.iancaffey.bytecode.io;
 
-import com.iancaffey.bytecode.io.BytecodeReader;
-import com.iancaffey.bytecode.io.BytecodeVisitor;
 import org.junit.Assert;
 import org.junit.Test;
 
