@@ -21,6 +21,9 @@ public class InnerClassWriter extends BytecodeWriter implements InnerClassVisito
 
     @Override
     public void visit(int innerClassInfoIndex, int outerClassInfoIndex, int innerNameIndex, int innerClassAccess) throws IOException {
-
+        writeShort(innerClassInfoIndex);
+        writeShort(outerClassInfoIndex);
+        writeShort(innerNameIndex);
+        writeShort(innerClassAccess);
     }
 }

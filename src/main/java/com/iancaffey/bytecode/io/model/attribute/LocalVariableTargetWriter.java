@@ -21,6 +21,8 @@ public class LocalVariableTargetWriter extends BytecodeWriter implements LocalVa
 
     @Override
     public void visit(int startIndex, int length, int index) throws IOException {
-
+        writeShort(startIndex);
+        writeShort(length);
+        writeShort(index);
     }
 }

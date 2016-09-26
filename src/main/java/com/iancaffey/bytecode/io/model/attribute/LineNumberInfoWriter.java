@@ -21,6 +21,7 @@ public class LineNumberInfoWriter extends BytecodeWriter implements LineNumberIn
 
     @Override
     public void visit(int startIndex, int number) throws IOException {
-
+        writeShort(startIndex);
+        writeShort(number);
     }
 }

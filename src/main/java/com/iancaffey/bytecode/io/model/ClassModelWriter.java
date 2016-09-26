@@ -29,8 +29,8 @@ public class ClassModelWriter extends BytecodeWriter implements ClassModelVisito
     @Override
     public void visitVersion(int major, int minor) throws IOException {
         writeInt(ClassInfo.MAGIC);
-        writeShort(major);
         writeShort(minor);
+        writeShort(major);
     }
 
     @Override

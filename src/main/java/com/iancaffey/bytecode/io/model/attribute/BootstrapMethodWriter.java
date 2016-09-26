@@ -21,6 +21,9 @@ public class BootstrapMethodWriter extends BytecodeWriter implements BootstrapMe
 
     @Override
     public void visit(int index, int[] argumentIndexes) throws IOException {
-
+        writeShort(index);
+        writeShort(argumentIndexes.length);
+        for (int argumentIndex : argumentIndexes)
+            writeShort(argumentIndex);
     }
 }

@@ -3,6 +3,7 @@ package com.iancaffey.bytecode.io.model;
 import com.iancaffey.bytecode.io.BytecodeWriter;
 import com.iancaffey.bytecode.io.model.attribute.*;
 import com.iancaffey.bytecode.io.model.attribute.annotation.TypeAnnotationVisitor;
+import com.iancaffey.bytecode.io.model.attribute.annotation.TypeAnnotationWriter;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -47,19 +48,25 @@ public class AttributeModelWriter extends BytecodeWriter implements AttributeMod
     public void visitExceptions(int nameIndex, int length, int[] exceptionIndexes) throws IOException {
         writeShort(nameIndex);
         writeInt(length);
+        writeShort(exceptionIndexes.length);
+        for (int index : exceptionIndexes)
+            writeShort(index);
     }
 
     @Override
     public InnerClassVisitor visitInnerClasses(int nameIndex, int length, int count) throws IOException {
         writeShort(nameIndex);
         writeInt(length);
-        return null;
+        writeShort(count);
+        return new InnerClassWriter((ByteArrayOutputStream) out);
     }
 
     @Override
     public void visitEnclosingMethod(int nameIndex, int length, int classIndex, int methodIndex) throws IOException {
         writeShort(nameIndex);
         writeInt(length);
+        writeShort(classIndex);
+        writeShort(methodIndex);
     }
 
     @Override
@@ -72,39 +79,45 @@ public class AttributeModelWriter extends BytecodeWriter implements AttributeMod
     public void visitSignature(int nameIndex, int length, int index) throws IOException {
         writeShort(nameIndex);
         writeInt(length);
+        writeShort(index);
     }
 
     @Override
     public void visitSourceFile(int nameIndex, int length, int index) throws IOException {
         writeShort(nameIndex);
         writeInt(length);
+        writeShort(index);
     }
 
     @Override
     public void visitSourceDebugExtension(int nameIndex, int length, byte[] data) throws IOException {
         writeShort(nameIndex);
         writeInt(length);
+        write(data);
     }
 
     @Override
     public LineNumberInfoVisitor visitLineNumberTable(int nameIndex, int length, int count) throws IOException {
         writeShort(nameIndex);
         writeInt(length);
-        return null;
+        writeShort(count);
+        return new LineNumberInfoWriter((ByteArrayOutputStream) out);
     }
 
     @Override
     public LocalVariableVisitor visitLocalVariableTable(int nameIndex, int length, int count) throws IOException {
         writeShort(nameIndex);
         writeInt(length);
-        return null;
+        writeShort(count);
+        return new LocalVariableWriter((ByteArrayOutputStream) out);
     }
 
     @Override
     public LocalVariableTypeVisitor visitLocalVariableTypeTable(int nameIndex, int length, int count) throws IOException {
         writeShort(nameIndex);
         writeInt(length);
-        return null;
+        writeShort(count);
+        return new LocalVariableTypeWriter((ByteArrayOutputStream) out);
     }
 
     @Override
@@ -117,62 +130,70 @@ public class AttributeModelWriter extends BytecodeWriter implements AttributeMod
     public AnnotationVisitor visitRuntimeVisibleAnnotations(int nameIndex, int length, int count) throws IOException {
         writeShort(nameIndex);
         writeInt(length);
-        return null;
+        writeShort(count);
+        return new AnnotationWriter((ByteArrayOutputStream) out);
     }
 
     @Override
     public AnnotationVisitor visitRuntimeInvisibleAnnotations(int nameIndex, int length, int count) throws IOException {
         writeShort(nameIndex);
         writeInt(length);
-        return null;
+        writeShort(count);
+        return new AnnotationWriter((ByteArrayOutputStream) out);
     }
 
     @Override
     public ParameterAnnotationVisitor visitRuntimeVisibleParameterAnnotations(int nameIndex, int length, int count) throws IOException {
         writeShort(nameIndex);
         writeInt(length);
-        return null;
+        writeByte(count);
+        return new ParameterAnnotationWriter((ByteArrayOutputStream) out);
     }
 
     @Override
     public ParameterAnnotationVisitor visitRuntimeInvisibleParameterAnnotations(int nameIndex, int length, int count) throws IOException {
         writeShort(nameIndex);
         writeInt(length);
-        return null;
+        writeByte(count);
+        return new ParameterAnnotationWriter((ByteArrayOutputStream) out);
     }
 
     @Override
     public TypeAnnotationVisitor visitRuntimeVisibleTypeAnnotations(int nameIndex, int length, int count) throws IOException {
         writeShort(nameIndex);
         writeInt(length);
-        return null;
+        writeShort(count);
+        return new TypeAnnotationWriter((ByteArrayOutputStream) out);
     }
 
     @Override
     public TypeAnnotationVisitor visitRuntimeInvisibleTypeAnnotations(int nameIndex, int length, int count) throws IOException {
         writeShort(nameIndex);
         writeInt(length);
-        return null;
+        writeShort(count);
+        return new TypeAnnotationWriter((ByteArrayOutputStream) out);
     }
 
     @Override
     public ElementValueVisitor visitAnnotationDefault(int nameIndex, int length) throws IOException {
         writeShort(nameIndex);
         writeInt(length);
-        return null;
+        return new ElementValueWriter((ByteArrayOutputStream) out);
     }
 
     @Override
     public BootstrapMethodVisitor visitBootstrapMethods(int nameIndex, int length, int count) throws IOException {
         writeShort(nameIndex);
         writeInt(length);
-        return null;
+        writeShort(count);
+        return new BootstrapMethodWriter((ByteArrayOutputStream) out);
     }
 
     @Override
     public MethodParameterVisitor visitMethodParameters(int nameIndex, int length, int count) throws IOException {
         writeShort(nameIndex);
         writeInt(length);
-        return null;
+        writeByte(count);
+        return new MethodParameterWriter((ByteArrayOutputStream) out);
     }
 }

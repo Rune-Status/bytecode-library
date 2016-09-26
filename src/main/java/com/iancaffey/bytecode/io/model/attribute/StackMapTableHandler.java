@@ -17,24 +17,23 @@ public class StackMapTableHandler {
         int count = reader.readUnsignedShort();
         StackMapTableVisitor stackMapTableVisitor = visitor.visitStackMapTable(nameIndex, length, count);
         for (int i = 0; i < count; i++) {
-            int tag = reader.readUnsignedByte();
-            if (tag < 0 || tag > 255)
-                throw new IllegalArgumentException("Unable to locate handler for stack map frame: " + tag);
             int type = reader.readUnsignedByte();
-            if (tag < 64) {
+            if (type < 0 || type > 255)
+                throw new IllegalArgumentException("Unable to locate handler for stack map frame: " + type);
+            if (type < 64) {
                 stackMapTableVisitor.visitSameFrame(type);
-            } else if (tag < 128) {
+            } else if (type < 128) {
                 stackMapTableVisitor.visitSingleStackItemFrame(type);
-            } else if (tag < 247) {
+            } else if (type < 247) {
                 throw new UnsupportedOperationException("Tags [128-246] are reserved for future use");
-            } else if (tag == 247) {
+            } else if (type == 247) {
                 stackMapTableVisitor.visitSingleStackItemFrameExtended(type);
-            } else if (tag < 251) {
+            } else if (type < 251) {
                 int offset = reader.readUnsignedShort();
                 stackMapTableVisitor.visitChopFrame(type, offset);
-            } else if (tag == 251) {
+            } else if (type == 251) {
                 stackMapTableVisitor.visitSameFrameExtended(type);
-            } else if (tag < 255) {
+            } else if (type < 255) {
                 int offset = reader.readUnsignedShort();
                 int infoCount = type - 251;
                 VerificationTypeVisitor verificationTypeVisitor = stackMapTableVisitor.visitAppendFrame(type, offset, infoCount);

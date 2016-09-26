@@ -26,8 +26,8 @@ public class DebugTypeAnnotationVisitor extends DebugVisitor implements TypeAnno
     }
 
     @Override
-    public TypePathVisitor visitPath(int count) {
-        log(String.format("TypePath [count=%d]", count), 1);
+    public TypePathVisitor visitPath(int length) {
+        log(String.format("TypePath [length=%d]", length), 1);
         return new DebugTypePathVisitor(indent() + 1);
     }
 

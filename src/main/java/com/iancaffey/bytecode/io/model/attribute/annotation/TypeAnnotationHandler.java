@@ -87,9 +87,9 @@ public class TypeAnnotationHandler {
             default:
                 throw new IllegalStateException("Unable to locate handler for type annotation: " + tag);
         }
-        int count = reader.readUnsignedByte();
-        TypePathVisitor typePathVisitor = visitor.visitPath(count);
-        for (int i = 0; i < count; i++)
+        int length = reader.readUnsignedByte();
+        TypePathVisitor typePathVisitor = visitor.visitPath(length);
+        for (int i = 0; i < length; i++)
             typePathVisitor.visit(reader.readUnsignedByte(), reader.readUnsignedByte());
         AnnotationVisitor annotationVisitor = visitor.visitAnnotation();
         int typeIndex = reader.readUnsignedShort();

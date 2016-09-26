@@ -21,6 +21,8 @@ public class AnnotationWriter extends BytecodeWriter implements AnnotationVisito
 
     @Override
     public ElementValuePairVisitor visit(int typeIndex, int count) throws IOException {
-        return null;
+        writeShort(typeIndex);
+        writeShort(count);
+        return new ElementValuePairWriter((ByteArrayOutputStream) out);
     }
 }

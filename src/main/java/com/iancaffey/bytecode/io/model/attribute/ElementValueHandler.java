@@ -12,47 +12,61 @@ import java.io.IOException;
  * @since 1.0
  */
 public class ElementValueHandler {
+    public static final byte BYTE = 'B';
+    public static final byte CHARACTER = 'C';
+    public static final byte DOUBLE = 'D';
+    public static final byte FLOAT = 'F';
+    public static final byte INTEGER = 'I';
+    public static final byte LONG = 'J';
+    public static final byte SHORT = 'S';
+    public static final byte BOOLEAN = 'Z';
+    public static final byte STRING = 's';
+    public static final byte ENUM = 'e';
+    public static final byte CLASS = 'c';
+    public static final byte ANNOTATION = '@';
+    public static final byte ARRAY = '[';
+
     public static void accept(BytecodeReader<ClassModelVisitor> reader, ElementValueVisitor visitor) throws IOException {
         int tag = reader.readUnsignedByte();
         switch (tag) {
-            case 'B':
+            case BYTE:
                 visitor.visitByte(reader.readUnsignedShort());
                 break;
-            case 'C':
+            case CHARACTER:
                 visitor.visitCharacter(reader.readUnsignedShort());
                 break;
-            case 'D':
+            case DOUBLE:
                 visitor.visitDouble(reader.readUnsignedShort());
                 break;
-            case 'F':
+            case FLOAT:
                 visitor.visitFloat(reader.readUnsignedShort());
                 break;
-            case 'I':
+            case INTEGER:
                 visitor.visitInteger(reader.readUnsignedShort());
                 break;
-            case 'J':
+            case LONG:
                 visitor.visitLong(reader.readUnsignedShort());
                 break;
-            case 'S':
+            case SHORT:
                 visitor.visitShort(reader.readUnsignedShort());
                 break;
-            case 'Z':
+            case BOOLEAN:
                 visitor.visitBoolean(reader.readUnsignedShort());
                 break;
-            case 's':
+            case STRING:
                 visitor.visitString(reader.readUnsignedShort());
                 break;
-            case 'e':
+            case ENUM:
                 visitor.visitEnum(reader.readUnsignedShort(), reader.readUnsignedShort());
                 break;
-            case 'c':
+            case CLASS:
                 visitor.visitClass(reader.readUnsignedShort());
                 break;
-            case '@':
+            case ANNOTATION:
                 AnnotationVisitor annotationVisitor = visitor.visitAnnotation();
                 AnnotationHandler.accept(reader, annotationVisitor);
                 break;
-            case '[':
+            case ARRAY:
                 int count = reader.readUnsignedShort();
                 ElementValueVisitor elementValueVisitor = visitor.visitArray(count);
                 ElementValueHandler.accept(reader, elementValueVisitor);

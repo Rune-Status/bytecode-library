@@ -21,6 +21,7 @@ public class ElementValuePairWriter extends BytecodeWriter implements ElementVal
 
     @Override
     public ElementValueVisitor visit(int index) throws IOException {
-        return null;
+        writeShort(index);
+        return new ElementValueWriter((ByteArrayOutputStream) out);
     }
 }

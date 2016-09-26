@@ -21,6 +21,7 @@ public class ParameterAnnotationWriter extends BytecodeWriter implements Paramet
 
     @Override
     public AnnotationVisitor visitAnnotations(int count) throws IOException {
-        return null;
+        writeShort(count);
+        return new AnnotationWriter((ByteArrayOutputStream) out);
     }
 }

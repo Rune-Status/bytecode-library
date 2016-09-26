@@ -21,6 +21,7 @@ public class MethodParameterWriter extends BytecodeWriter implements MethodParam
 
     @Override
     public void visit(int nameIndex, int access) throws IOException {
-
+        writeShort(nameIndex);
+        writeShort(access);
     }
 }

@@ -21,6 +21,7 @@ public class TypePathWriter extends BytecodeWriter implements TypePathVisitor {
 
     @Override
     public void visit(int type, int index) throws IOException {
-
+        writeByte(type);
+        writeByte(index);
     }
 }

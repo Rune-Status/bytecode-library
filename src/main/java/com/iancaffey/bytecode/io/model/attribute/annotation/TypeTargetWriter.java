@@ -2,6 +2,7 @@ package com.iancaffey.bytecode.io.model.attribute.annotation;
 
 import com.iancaffey.bytecode.io.BytecodeWriter;
 import com.iancaffey.bytecode.io.model.attribute.LocalVariableTargetVisitor;
+import com.iancaffey.bytecode.io.model.attribute.LocalVariableTargetWriter;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -22,17 +23,18 @@ public class TypeTargetWriter extends BytecodeWriter implements TypeTargetVisito
 
     @Override
     public void visitTypeParameter(int index) throws IOException {
-
+        writeByte(index);
     }
 
     @Override
     public void visitSuperType(int index) throws IOException {
-
+        writeShort(index);
     }
 
     @Override
     public void visitTypeParameterBound(int parameterIndex, int boundIndex) throws IOException {
-
+        writeByte(parameterIndex);
+        writeByte(boundIndex);
     }
 
     @Override
@@ -42,31 +44,33 @@ public class TypeTargetWriter extends BytecodeWriter implements TypeTargetVisito
 
     @Override
     public void visitFormalParameter(int index) throws IOException {
-
+        writeByte(index);
     }
 
     @Override
     public void visitThrows(int index) throws IOException {
-
+        writeShort(index);
     }
 
     @Override
     public LocalVariableTargetVisitor visitLocalVariable(int count) throws IOException {
-        return null;
+        writeShort(count);
+        return new LocalVariableTargetWriter((ByteArrayOutputStream) out);
     }
 
     @Override
     public void visitCatch(int index) throws IOException {
-
+        writeShort(index);
     }
 
     @Override
     public void visitOffset(int index) throws IOException {
-
+        writeShort(index);
     }
 
     @Override
     public void visitTypeArgument(int offset, int index) throws IOException {
-
+        writeShort(offset);
+        writeByte(index);
     }
 }
