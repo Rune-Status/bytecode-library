@@ -1,5 +1,6 @@
-package com.iancaffey.bytecode;
+package com.iancaffey.bytecode.io;
 
+import com.iancaffey.bytecode.Comprehensive;
 import com.iancaffey.bytecode.model.ClassModelReader;
 import com.iancaffey.bytecode.model.ClassModelWriter;
 import com.iancaffey.bytecode.util.Type;

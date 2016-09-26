@@ -1,4 +1,4 @@
-package com.iancaffey.bytecode;
+package com.iancaffey.bytecode.io;
 
 import com.iancaffey.bytecode.io.BytecodeReader;
 import com.iancaffey.bytecode.io.BytecodeVisitor;
