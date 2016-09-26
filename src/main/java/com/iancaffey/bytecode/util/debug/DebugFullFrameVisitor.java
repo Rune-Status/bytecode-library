@@ -1,7 +1,7 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.io.model.attribute.FullFrameVisitor;
-import com.iancaffey.bytecode.io.model.attribute.VerificationTypeVisitor;
+import com.iancaffey.bytecode.model.attribute.FullFrameVisitor;
+import com.iancaffey.bytecode.model.attribute.VerificationTypeVisitor;
 
 /**
  * DebugFullFrameVisitor

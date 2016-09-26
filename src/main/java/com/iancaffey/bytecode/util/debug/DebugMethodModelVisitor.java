@@ -1,7 +1,7 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.io.model.AttributeModelVisitor;
-import com.iancaffey.bytecode.io.model.MethodModelVisitor;
+import com.iancaffey.bytecode.model.AttributeModelVisitor;
+import com.iancaffey.bytecode.model.MethodModelVisitor;
 import com.iancaffey.bytecode.util.Access;
 
 /**

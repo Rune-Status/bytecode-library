@@ -1,6 +1,6 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.io.model.*;
+import com.iancaffey.bytecode.model.*;
 import com.iancaffey.bytecode.util.Access;
 
 import java.util.Arrays;

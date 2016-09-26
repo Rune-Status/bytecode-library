@@ -1,8 +1,8 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.io.model.AttributeModelVisitor;
-import com.iancaffey.bytecode.io.model.attribute.CodeVisitor;
-import com.iancaffey.bytecode.io.model.attribute.ExceptionVisitor;
+import com.iancaffey.bytecode.model.AttributeModelVisitor;
+import com.iancaffey.bytecode.model.attribute.CodeVisitor;
+import com.iancaffey.bytecode.model.attribute.ExceptionVisitor;
 
 /**
  * DebugCodeVisitor

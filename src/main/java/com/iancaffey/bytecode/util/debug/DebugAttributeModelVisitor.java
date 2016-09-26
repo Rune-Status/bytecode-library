@@ -1,8 +1,8 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.io.model.AttributeModelVisitor;
-import com.iancaffey.bytecode.io.model.attribute.*;
-import com.iancaffey.bytecode.io.model.attribute.annotation.TypeAnnotationVisitor;
+import com.iancaffey.bytecode.model.AttributeModelVisitor;
+import com.iancaffey.bytecode.model.attribute.*;
+import com.iancaffey.bytecode.model.attribute.annotation.TypeAnnotationVisitor;
 
 import java.util.Arrays;
 

@@ -1,7 +1,7 @@
 package com.iancaffey.bytecode.util.debug;
 
-import com.iancaffey.bytecode.io.model.attribute.LocalVariableTargetVisitor;
-import com.iancaffey.bytecode.io.model.attribute.annotation.TypeTargetVisitor;
+import com.iancaffey.bytecode.model.attribute.LocalVariableTargetVisitor;
+import com.iancaffey.bytecode.model.attribute.annotation.TypeTargetVisitor;
 
 /**
  * DebugTypeTargetVisitor
