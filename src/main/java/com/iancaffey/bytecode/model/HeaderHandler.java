@@ -12,8 +12,12 @@ import java.io.IOException;
  * @since 1.0
  */
 public class HeaderHandler {
+    public static final int MAGIC = 0xCAFEBABE;
+
     public static void accept(BytecodeReader<ClassModelVisitor> reader, ClassModelVisitor visitor, ConstantPoolCache cache) throws IOException {
         int magic = reader.readInt();
+        if (magic != MAGIC)
+            throw new IllegalArgumentException("Malformed class file. Missing magic number. Aborting early.");
         int minor = reader.readUnsignedShort();
         int major = reader.readUnsignedShort();
         if (visitor != null)

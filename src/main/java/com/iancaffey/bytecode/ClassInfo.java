@@ -13,7 +13,6 @@ import java.util.Set;
  * @since 1.0
  */
 public class ClassInfo {
-    public static final int MAGIC = 0xCAFEBABE;
     private int version;
     private int access;
     private String name;

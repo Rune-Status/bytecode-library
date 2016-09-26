@@ -1,6 +1,5 @@
 package com.iancaffey.bytecode.model;
 
-import com.iancaffey.bytecode.ClassInfo;
 import com.iancaffey.bytecode.io.BytecodeWriter;
 
 import java.io.ByteArrayOutputStream;
@@ -28,7 +27,7 @@ public class ClassModelWriter extends BytecodeWriter implements ClassModelVisito
 
     @Override
     public void visitVersion(int major, int minor) throws IOException {
-        writeInt(ClassInfo.MAGIC);
+        writeInt(HeaderHandler.MAGIC);
         writeShort(minor);
         writeShort(major);
     }
