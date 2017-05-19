@@ -23,11 +23,14 @@ public class StackMapTableHandler {
             if (type < 64) {
                 stackMapTableVisitor.visitSameFrame(type);
             } else if (type < 128) {
-                stackMapTableVisitor.visitSingleStackItemFrame(type);
+                VerificationTypeVisitor verificationTypeVisitor = stackMapTableVisitor.visitSingleStackItemFrame(type);
+                VerificationTypeHandler.accept(reader, verificationTypeVisitor);
             } else if (type < 247) {
                 throw new UnsupportedOperationException("Tags [128-246] are reserved for future use");
             } else if (type == 247) {
-                stackMapTableVisitor.visitSingleStackItemFrameExtended(type);
+                int offset = reader.readUnsignedShort();
+                VerificationTypeVisitor verificationTypeVisitor = stackMapTableVisitor.visitSingleStackItemFrameExtended(offset);
+                VerificationTypeHandler.accept(reader, verificationTypeVisitor);
             } else if (type < 251) {
                 int offset = reader.readUnsignedShort();
                 stackMapTableVisitor.visitChopFrame(type, offset);
