@@ -16,7 +16,8 @@ public class BootstrapMethodsHandler {
     public static void accept(BytecodeReader<ClassModelVisitor> reader, AttributeModelVisitor visitor, int nameIndex, int length) throws IOException {
         int count = reader.readUnsignedShort();
         BootstrapMethodVisitor bootstrapMethodVisitor = visitor.visitBootstrapMethods(nameIndex, length, count);
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++) {
             BootstrapMethodHandler.accept(reader, bootstrapMethodVisitor);
+        }
     }
 }

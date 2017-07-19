@@ -12,11 +12,11 @@ import java.io.IOException;
  * @since 1.0
  */
 public interface CodeVisitor extends BytecodeVisitor {
-    public void visitDepth(int maxStack, int maxLocals) throws IOException;
+    void visitDepth(int maxStack, int maxLocals) throws IOException;
 
-    public void visitData(byte[] data) throws IOException;
+    void visitData(byte[] data) throws IOException;
 
-    public ExceptionVisitor visitExceptionTable(int count) throws IOException;
+    ExceptionVisitor visitExceptionTable(int count) throws IOException;
 
-    public AttributeModelVisitor visitAttributes(int count) throws IOException;
+    AttributeModelVisitor visitAttributes(int count) throws IOException;
 }

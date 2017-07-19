@@ -22,8 +22,9 @@ public class MethodModelsHandler {
             methodVisitor.visit(access, nameIndex, descriptorIndex);
             int attributeCount = reader.readUnsignedShort();
             AttributeModelVisitor attributeVisitor = methodVisitor.visitAttributes(attributeCount);
-            for (int j = 0; j < attributeCount; j++)
+            for (int j = 0; j < attributeCount; j++) {
                 AttributeInfoHandler.accept(reader, attributeVisitor, cache);
+            }
         }
     }
 }

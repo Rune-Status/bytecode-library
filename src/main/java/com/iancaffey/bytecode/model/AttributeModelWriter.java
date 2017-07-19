@@ -49,8 +49,9 @@ public class AttributeModelWriter extends BytecodeWriter implements AttributeMod
         writeShort(nameIndex);
         writeInt(length);
         writeShort(exceptionIndexes.length);
-        for (int index : exceptionIndexes)
+        for (int index : exceptionIndexes) {
             writeShort(index);
+        }
     }
 
     @Override

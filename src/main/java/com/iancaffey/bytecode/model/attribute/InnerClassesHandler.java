@@ -16,7 +16,8 @@ public class InnerClassesHandler {
     public static void accept(BytecodeReader<ClassModelVisitor> reader, AttributeModelVisitor visitor, int nameIndex, int length) throws IOException {
         int count = reader.readUnsignedShort();
         InnerClassVisitor innerClassVisitor = visitor.visitInnerClasses(nameIndex, length, count);
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++) {
             innerClassVisitor.visit(reader.readUnsignedShort(), reader.readUnsignedShort(), reader.readUnsignedShort(), reader.readUnsignedShort());
+        }
     }
 }

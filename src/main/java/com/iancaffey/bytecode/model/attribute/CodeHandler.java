@@ -24,8 +24,9 @@ public class CodeHandler {
         int codeLength = reader.readInt();
         byte[] code = new byte[codeLength];
         int read = reader.read(code);
-        if (read != codeLength)
+        if (read != codeLength) {
             throw new BufferUnderflowException();
+        }
         codeVisitor.visitData(code);
         int exceptionCount = reader.readUnsignedShort();
         ExceptionVisitor exceptionVisitor = codeVisitor.visitExceptionTable(exceptionCount);
@@ -38,7 +39,8 @@ public class CodeHandler {
         }
         int attributeCount = reader.readUnsignedShort();
         AttributeModelVisitor attributeVisitor = codeVisitor.visitAttributes(attributeCount);
-        for (int i = 0; i < attributeCount; i++)
+        for (int i = 0; i < attributeCount; i++) {
             AttributeInfoHandler.accept(reader, attributeVisitor, cache);
+        }
     }
 }

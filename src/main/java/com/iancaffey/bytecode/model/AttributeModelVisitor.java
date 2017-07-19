@@ -13,49 +13,49 @@ import java.io.IOException;
  * @since 1.0
  */
 public interface AttributeModelVisitor extends BytecodeVisitor {
-    public void visitConstantValue(int nameIndex, int length, int index) throws IOException;
+    void visitConstantValue(int nameIndex, int length, int index) throws IOException;
 
-    public CodeVisitor visitCode(int nameIndex, int length) throws IOException;
+    CodeVisitor visitCode(int nameIndex, int length) throws IOException;
 
-    public StackMapTableVisitor visitStackMapTable(int nameIndex, int length, int count) throws IOException;
+    StackMapTableVisitor visitStackMapTable(int nameIndex, int length, int count) throws IOException;
 
-    public void visitExceptions(int nameIndex, int length, int[] exceptionIndexes) throws IOException;
+    void visitExceptions(int nameIndex, int length, int[] exceptionIndexes) throws IOException;
 
-    public InnerClassVisitor visitInnerClasses(int nameIndex, int length, int count) throws IOException;
+    InnerClassVisitor visitInnerClasses(int nameIndex, int length, int count) throws IOException;
 
-    public void visitEnclosingMethod(int nameIndex, int length, int classIndex, int methodIndex) throws IOException;
+    void visitEnclosingMethod(int nameIndex, int length, int classIndex, int methodIndex) throws IOException;
 
-    public void visitSynthetic(int nameIndex, int length) throws IOException;
+    void visitSynthetic(int nameIndex, int length) throws IOException;
 
-    public void visitSignature(int nameIndex, int length, int index) throws IOException;
+    void visitSignature(int nameIndex, int length, int index) throws IOException;
 
-    public void visitSourceFile(int nameIndex, int length, int index) throws IOException;
+    void visitSourceFile(int nameIndex, int length, int index) throws IOException;
 
-    public void visitSourceDebugExtension(int nameIndex, int length, byte[] data) throws IOException;
+    void visitSourceDebugExtension(int nameIndex, int length, byte[] data) throws IOException;
 
-    public LineNumberInfoVisitor visitLineNumberTable(int nameIndex, int length, int count) throws IOException;
+    LineNumberInfoVisitor visitLineNumberTable(int nameIndex, int length, int count) throws IOException;
 
-    public LocalVariableVisitor visitLocalVariableTable(int nameIndex, int length, int count) throws IOException;
+    LocalVariableVisitor visitLocalVariableTable(int nameIndex, int length, int count) throws IOException;
 
-    public LocalVariableTypeVisitor visitLocalVariableTypeTable(int nameIndex, int length, int count) throws IOException;
+    LocalVariableTypeVisitor visitLocalVariableTypeTable(int nameIndex, int length, int count) throws IOException;
 
-    public void visitDeprecated(int nameIndex, int length) throws IOException;
+    void visitDeprecated(int nameIndex, int length) throws IOException;
 
-    public AnnotationVisitor visitRuntimeVisibleAnnotations(int nameIndex, int length, int count) throws IOException;
+    AnnotationVisitor visitRuntimeVisibleAnnotations(int nameIndex, int length, int count) throws IOException;
 
-    public AnnotationVisitor visitRuntimeInvisibleAnnotations(int nameIndex, int length, int count) throws IOException;
+    AnnotationVisitor visitRuntimeInvisibleAnnotations(int nameIndex, int length, int count) throws IOException;
 
-    public ParameterAnnotationVisitor visitRuntimeVisibleParameterAnnotations(int nameIndex, int length, int count) throws IOException;
+    ParameterAnnotationVisitor visitRuntimeVisibleParameterAnnotations(int nameIndex, int length, int count) throws IOException;
 
-    public ParameterAnnotationVisitor visitRuntimeInvisibleParameterAnnotations(int nameIndex, int length, int count) throws IOException;
+    ParameterAnnotationVisitor visitRuntimeInvisibleParameterAnnotations(int nameIndex, int length, int count) throws IOException;
 
-    public TypeAnnotationVisitor visitRuntimeVisibleTypeAnnotations(int nameIndex, int length, int count) throws IOException;
+    TypeAnnotationVisitor visitRuntimeVisibleTypeAnnotations(int nameIndex, int length, int count) throws IOException;
 
-    public TypeAnnotationVisitor visitRuntimeInvisibleTypeAnnotations(int nameIndex, int length, int count) throws IOException;
+    TypeAnnotationVisitor visitRuntimeInvisibleTypeAnnotations(int nameIndex, int length, int count) throws IOException;
 
-    public ElementValueVisitor visitAnnotationDefault(int nameIndex, int length) throws IOException;
+    ElementValueVisitor visitAnnotationDefault(int nameIndex, int length) throws IOException;
 
-    public BootstrapMethodVisitor visitBootstrapMethods(int nameIndex, int length, int count) throws IOException;
+    BootstrapMethodVisitor visitBootstrapMethods(int nameIndex, int length, int count) throws IOException;
 
-    public MethodParameterVisitor visitMethodParameters(int nameIndex, int length, int count) throws IOException;
+    MethodParameterVisitor visitMethodParameters(int nameIndex, int length, int count) throws IOException;
 }

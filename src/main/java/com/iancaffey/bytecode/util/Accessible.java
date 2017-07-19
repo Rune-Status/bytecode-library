@@ -7,5 +7,5 @@ package com.iancaffey.bytecode.util;
  * @since 1.0
  */
 public interface Accessible {
-    public int access();
+    int access();
 }

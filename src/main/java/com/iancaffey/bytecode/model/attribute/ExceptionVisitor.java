@@ -11,5 +11,5 @@ import java.io.IOException;
  * @since 1.0
  */
 public interface ExceptionVisitor extends BytecodeVisitor {
-    public void visit(int startIndex, int endIndex, int handlerIndex, int catchIndex) throws IOException;
+    void visit(int startIndex, int endIndex, int handlerIndex, int catchIndex) throws IOException;
 }

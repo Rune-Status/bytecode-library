@@ -27,8 +27,9 @@ public class IndexedByteArrayInputStream extends ByteArrayInputStream {
     public static byte[] of(InputStream stream) throws IOException {
         byte[] data = new byte[stream.available()];
         int len = stream.read(data);
-        if (len != data.length)
+        if (len != data.length) {
             throw new EOFException();
+        }
         return data;
     }
 
@@ -41,8 +42,9 @@ public class IndexedByteArrayInputStream extends ByteArrayInputStream {
     }
 
     public void reset(int position) {
-        if (position < 0 || position >= buf.length)
+        if (position < 0 || position >= buf.length) {
             throw new ArrayIndexOutOfBoundsException();
+        }
         pos = position;
     }
 }

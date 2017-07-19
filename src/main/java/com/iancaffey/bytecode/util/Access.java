@@ -29,17 +29,15 @@ public enum Access {
     }
 
     public static Set<Access> of(Accessible accessible) {
-        if (accessible == null)
+        if (accessible == null) {
             throw new IllegalArgumentException();
+        }
         return Access.of(accessible.access());
     }
 
     public static Set<Access> of(int access) {
         EnumSet<Access> set = EnumSet.allOf(Access.class);
-        Iterator<Access> it = set.iterator();
-        while (it.hasNext())
-            if (!it.next().marked(access))
-                it.remove();
+        set.removeIf(acc -> !acc.marked(access));
         return set;
     }
 

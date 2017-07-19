@@ -30,10 +30,12 @@ public class IndexedDataInputStream extends IndexedByteArrayInputStream implemen
 
     @Override
     public void readFully(byte[] b, int off, int len) throws IOException {
-        if (len < 0)
+        if (len < 0) {
             throw new IndexOutOfBoundsException();
-        if (pos + len >= buf.length)
+        }
+        if (pos + len >= buf.length) {
             throw new EOFException();
+        }
         System.arraycopy(buf, pos, b, off, len);
         pos += len;
     }
@@ -41,32 +43,36 @@ public class IndexedDataInputStream extends IndexedByteArrayInputStream implemen
     @Override
     public int skipBytes(int n) throws IOException {
         pos += n;
-        if (pos >= buf.length)
+        if (pos >= buf.length) {
             throw new EOFException();
+        }
         return pos;
     }
 
     @Override
     public boolean readBoolean() throws IOException {
         int ch = read();
-        if (ch < 0)
+        if (ch < 0) {
             throw new EOFException();
+        }
         return (ch != 0);
     }
 
     @Override
     public byte readByte() throws IOException {
         int ch = read();
-        if (ch < 0)
+        if (ch < 0) {
             throw new EOFException();
+        }
         return (byte) (ch);
     }
 
     @Override
     public int readUnsignedByte() throws IOException {
         int ch = read();
-        if (ch < 0)
+        if (ch < 0) {
             throw new EOFException();
+        }
         return ch;
     }
 
@@ -74,8 +80,9 @@ public class IndexedDataInputStream extends IndexedByteArrayInputStream implemen
     public short readShort() throws IOException {
         int ch1 = read();
         int ch2 = read();
-        if ((ch1 | ch2) < 0)
+        if ((ch1 | ch2) < 0) {
             throw new EOFException();
+        }
         return (short) ((ch1 << 8) + ch2);
     }
 
@@ -83,8 +90,9 @@ public class IndexedDataInputStream extends IndexedByteArrayInputStream implemen
     public int readUnsignedShort() throws IOException {
         int ch1 = read();
         int ch2 = read();
-        if ((ch1 | ch2) < 0)
+        if ((ch1 | ch2) < 0) {
             throw new EOFException();
+        }
         return (ch1 << 8) + ch2;
     }
 
@@ -92,8 +100,9 @@ public class IndexedDataInputStream extends IndexedByteArrayInputStream implemen
     public char readChar() throws IOException {
         int ch1 = read();
         int ch2 = read();
-        if ((ch1 | ch2) < 0)
+        if ((ch1 | ch2) < 0) {
             throw new EOFException();
+        }
         return (char) ((ch1 << 8) + ch2);
     }
 
@@ -103,8 +112,9 @@ public class IndexedDataInputStream extends IndexedByteArrayInputStream implemen
         int ch2 = read();
         int ch3 = read();
         int ch4 = read();
-        if ((ch1 | ch2 | ch3 | ch4) < 0)
+        if ((ch1 | ch2 | ch3 | ch4) < 0) {
             throw new EOFException();
+        }
         return ((ch1 << 24) + (ch2 << 16) + (ch3 << 8) + ch4);
     }
 

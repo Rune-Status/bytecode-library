@@ -23,8 +23,9 @@ public class WriterTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         InputStream in = ClassLoader.getSystemResourceAsStream(Type.getInternalForm(Comprehensive.class) + ".class");
         int next;
-        while ((next = in.read()) != -1)
+        while ((next = in.read()) != -1) {
             out.write(next);
+        }
         byte[] read = out.toByteArray();
         ClassModelWriter writer = new ClassModelWriter();
         ClassModelReader reader = new ClassModelReader(read);

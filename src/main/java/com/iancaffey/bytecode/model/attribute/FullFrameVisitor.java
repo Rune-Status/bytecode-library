@@ -11,7 +11,7 @@ import java.io.IOException;
  * @since 1.0
  */
 public interface FullFrameVisitor extends BytecodeVisitor {
-    public VerificationTypeVisitor visitLocals(int count) throws IOException;
+    VerificationTypeVisitor visitLocals(int count) throws IOException;
 
-    public VerificationTypeVisitor visitStack(int count) throws IOException;
+    VerificationTypeVisitor visitStack(int count) throws IOException;
 }

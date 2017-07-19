@@ -15,7 +15,8 @@ public class AttributeModelsHandler {
     public static void accept(BytecodeReader<ClassModelVisitor> reader, ClassModelVisitor visitor, ConstantPoolCache cache) throws IOException {
         int count = reader.readUnsignedShort();
         AttributeModelVisitor attributeVisitor = visitor.visitAttributes(count);
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++) {
             AttributeInfoHandler.accept(reader, attributeVisitor, cache);
+        }
     }
 }

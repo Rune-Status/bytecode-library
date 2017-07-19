@@ -18,8 +18,9 @@ public class StackMapTableHandler {
         StackMapTableVisitor stackMapTableVisitor = visitor.visitStackMapTable(nameIndex, length, count);
         for (int i = 0; i < count; i++) {
             int type = reader.readUnsignedByte();
-            if (type < 0 || type > 255)
+            if (type < 0 || type > 255) {
                 throw new IllegalArgumentException("Unable to locate handler for stack map frame: " + type);
+            }
             if (type < 64) {
                 stackMapTableVisitor.visitSameFrame(type);
             } else if (type < 128) {
@@ -40,19 +41,22 @@ public class StackMapTableHandler {
                 int offset = reader.readUnsignedShort();
                 int infoCount = type - 251;
                 VerificationTypeVisitor verificationTypeVisitor = stackMapTableVisitor.visitAppendFrame(type, offset, infoCount);
-                for (int j = 0; j < infoCount; j++)
+                for (int j = 0; j < infoCount; j++) {
                     VerificationTypeHandler.accept(reader, verificationTypeVisitor);
+                }
             } else {
                 int offset = reader.readUnsignedShort();
                 FullFrameVisitor fullFrameVisitor = stackMapTableVisitor.visitFullFrame(offset);
                 int locals = reader.readUnsignedShort();
                 VerificationTypeVisitor localVisitor = fullFrameVisitor.visitLocals(locals);
-                for (int j = 0; j < locals; j++)
+                for (int j = 0; j < locals; j++) {
                     VerificationTypeHandler.accept(reader, localVisitor);
+                }
                 int stack = reader.readUnsignedShort();
                 VerificationTypeVisitor stackVisitor = fullFrameVisitor.visitStack(stack);
-                for (int j = 0; j < locals; j++)
+                for (int j = 0; j < locals; j++) {
                     VerificationTypeHandler.accept(reader, stackVisitor);
+                }
             }
         }
     }

@@ -89,13 +89,15 @@ public class TypeAnnotationHandler {
         }
         int length = reader.readUnsignedByte();
         TypePathVisitor typePathVisitor = visitor.visitPath(length);
-        for (int i = 0; i < length; i++)
+        for (int i = 0; i < length; i++) {
             typePathVisitor.visit(reader.readUnsignedByte(), reader.readUnsignedByte());
+        }
         AnnotationVisitor annotationVisitor = visitor.visitAnnotation();
         int typeIndex = reader.readUnsignedShort();
         int valueCount = reader.readUnsignedShort();
         ElementValuePairVisitor elementValuePairVisitor = annotationVisitor.visit(typeIndex, valueCount);
-        for (int i = 0; i < valueCount; i++)
+        for (int i = 0; i < valueCount; i++) {
             ElementValueHandler.accept(reader, elementValuePairVisitor.visit(reader.readUnsignedShort()));
+        }
     }
 }

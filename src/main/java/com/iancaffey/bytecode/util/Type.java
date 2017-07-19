@@ -8,8 +8,9 @@ package com.iancaffey.bytecode.util;
  */
 public class Type {
     public static String getInternalForm(Class<?> c) {
-        if (c == null)
+        if (c == null) {
             throw new IllegalArgumentException();
+        }
         return c.getName().replace('.', '/');
     }
 }

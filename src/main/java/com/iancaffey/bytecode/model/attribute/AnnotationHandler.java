@@ -16,7 +16,8 @@ public class AnnotationHandler {
         int index = reader.readUnsignedShort();
         int count = reader.readUnsignedShort();
         ElementValuePairVisitor elementValueVisitor = visitor.visit(index, count);
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++) {
             ElementValueHandler.accept(reader, elementValueVisitor.visit(reader.readUnsignedShort()));
+        }
     }
 }

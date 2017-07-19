@@ -32,8 +32,9 @@ public class ClassModelReader extends BytecodeReader<ClassModelVisitor> {
 
     @Override
     public void accept(ClassModelVisitor visitor) throws IOException {
-        if (visitor == null)
+        if (visitor == null) {
             throw new IllegalArgumentException();
+        }
         ClassModelHandler.accept(this, visitor);
     }
 }

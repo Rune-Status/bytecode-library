@@ -11,7 +11,7 @@ import java.io.IOException;
  * @since 1.0
  */
 public interface MethodModelVisitor extends BytecodeVisitor {
-    public void visit(int access, int nameIndex, int descriptorIndex) throws IOException;
+    void visit(int access, int nameIndex, int descriptorIndex) throws IOException;
 
-    public AttributeModelVisitor visitAttributes(int count) throws IOException;
+    AttributeModelVisitor visitAttributes(int count) throws IOException;
 }

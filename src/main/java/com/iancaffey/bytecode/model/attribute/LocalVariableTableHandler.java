@@ -16,7 +16,8 @@ public class LocalVariableTableHandler {
     public static void accept(BytecodeReader<ClassModelVisitor> reader, AttributeModelVisitor visitor, int nameIndex, int length) throws IOException {
         int count = reader.readUnsignedShort();
         LocalVariableVisitor localVariableVisitor = visitor.visitLocalVariableTable(nameIndex, length, count);
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++) {
             localVariableVisitor.visit(reader.readUnsignedShort(), reader.readUnsignedShort(), reader.readUnsignedShort(), reader.readUnsignedShort(), reader.readUnsignedShort());
+        }
     }
 }

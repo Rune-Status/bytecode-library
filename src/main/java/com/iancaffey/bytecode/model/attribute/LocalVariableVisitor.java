@@ -11,5 +11,5 @@ import java.io.IOException;
  * @since 1.0
  */
 public interface LocalVariableVisitor extends BytecodeVisitor {
-    public void visit(int startIndex, int length, int nameIndex, int descriptorIndex, int index) throws IOException;
+    void visit(int startIndex, int length, int nameIndex, int descriptorIndex, int index) throws IOException;
 }

@@ -25,8 +25,9 @@ public class DebugMethodModelVisitor extends DebugVisitor implements MethodModel
 
     @Override
     public AttributeModelVisitor visitAttributes(int count) {
-        if (count > 0)
+        if (count > 0) {
             log(String.format("Attributes [count=%d]", count), 1);
+        }
         return new DebugAttributeModelVisitor(indent() + 1);
     }
 }

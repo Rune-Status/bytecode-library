@@ -11,5 +11,5 @@ import java.io.IOException;
  * @since 1.0
  */
 public interface LineNumberInfoVisitor extends BytecodeVisitor {
-    public void visit(int startIndex, int number) throws IOException;
+    void visit(int startIndex, int number) throws IOException;
 }

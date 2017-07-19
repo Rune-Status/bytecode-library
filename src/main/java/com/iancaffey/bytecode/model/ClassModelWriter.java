@@ -38,8 +38,9 @@ public class ClassModelWriter extends BytecodeWriter implements ClassModelVisito
         writeShort(nameIndex);
         writeShort(parentNameIndex);
         writeShort(interfaceIndexes.length);
-        for (int index : interfaceIndexes)
+        for (int index : interfaceIndexes) {
             writeShort(index);
+        }
     }
 
     @Override

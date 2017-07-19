@@ -11,5 +11,5 @@ import java.io.IOException;
  * @since 1.0
  */
 public interface InnerClassVisitor extends BytecodeVisitor {
-    public void visit(int innerClassInfoIndex, int outerClassInfoIndex, int innerNameIndex, int innerClassAccess) throws IOException;
+    void visit(int innerClassInfoIndex, int outerClassInfoIndex, int innerNameIndex, int innerClassAccess) throws IOException;
 }

@@ -22,8 +22,9 @@ public class FieldModelsHandler {
             int attributeCount = reader.readUnsignedShort();
             fieldVisitor.visit(access, nameIndex, descriptorIndex);
             AttributeModelVisitor attributeVisitor = fieldVisitor.visitAttributes(attributeCount);
-            for (int j = 0; j < attributeCount; j++)
+            for (int j = 0; j < attributeCount; j++) {
                 AttributeInfoHandler.accept(reader, attributeVisitor, cache);
+            }
         }
     }
 }

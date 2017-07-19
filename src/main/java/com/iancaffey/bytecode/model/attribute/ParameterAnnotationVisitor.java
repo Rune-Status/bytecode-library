@@ -11,5 +11,5 @@ import java.io.IOException;
  * @since 1.0
  */
 public interface ParameterAnnotationVisitor extends BytecodeVisitor {
-    public AnnotationVisitor visitAnnotations(int count) throws IOException;
+    AnnotationVisitor visitAnnotations(int count) throws IOException;
 }

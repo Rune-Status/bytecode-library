@@ -11,21 +11,21 @@ import java.io.IOException;
  * @since 1.0
  */
 public interface VerificationTypeVisitor extends BytecodeVisitor {
-    public void visitTop() throws IOException;
+    void visitTop() throws IOException;
 
-    public void visitInteger() throws IOException;
+    void visitInteger() throws IOException;
 
-    public void visitFloat() throws IOException;
+    void visitFloat() throws IOException;
 
-    public void visitLong() throws IOException;
+    void visitLong() throws IOException;
 
-    public void visitDouble() throws IOException;
+    void visitDouble() throws IOException;
 
-    public void visitNull() throws IOException;
+    void visitNull() throws IOException;
 
-    public void visitUninitializedThis() throws IOException;
+    void visitUninitializedThis() throws IOException;
 
-    public void visitObject(int index) throws IOException;
+    void visitObject(int index) throws IOException;
 
-    public void visitUninitialized(int offset) throws IOException;
+    void visitUninitialized(int offset) throws IOException;
 }

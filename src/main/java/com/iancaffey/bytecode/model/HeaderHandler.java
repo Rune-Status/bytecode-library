@@ -16,21 +16,25 @@ public class HeaderHandler {
 
     public static void accept(BytecodeReader<ClassModelVisitor> reader, ClassModelVisitor visitor, ConstantPoolCache cache) throws IOException {
         int magic = reader.readInt();
-        if (magic != MAGIC)
+        if (magic != MAGIC) {
             throw new IllegalArgumentException("Malformed class file. Missing magic number. Aborting early.");
+        }
         int minor = reader.readUnsignedShort();
         int major = reader.readUnsignedShort();
-        if (visitor != null)
+        if (visitor != null) {
             visitor.visitVersion(major, minor);
+        }
         ConstantPoolHandler.accept(reader, visitor, cache);
         int access = reader.readUnsignedShort();
         int nameIndex = reader.readUnsignedShort();
         int parentNameIndex = reader.readUnsignedShort();
         int length = reader.readUnsignedShort();
         int[] interfaceIndexes = new int[length];
-        for (int i = 0; i < interfaceIndexes.length; i++)
+        for (int i = 0; i < interfaceIndexes.length; i++) {
             interfaceIndexes[i] = reader.readUnsignedShort();
-        if (visitor != null)
+        }
+        if (visitor != null) {
             visitor.visitDescription(access, nameIndex, parentNameIndex, interfaceIndexes);
+        }
     }
 }

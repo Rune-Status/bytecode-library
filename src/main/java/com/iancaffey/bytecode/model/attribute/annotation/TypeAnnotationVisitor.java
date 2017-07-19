@@ -12,9 +12,9 @@ import java.io.IOException;
  * @since 1.0
  */
 public interface TypeAnnotationVisitor extends BytecodeVisitor {
-    public TypeTargetVisitor visitTarget() throws IOException;
+    TypeTargetVisitor visitTarget() throws IOException;
 
-    public TypePathVisitor visitPath(int length) throws IOException;
+    TypePathVisitor visitPath(int length) throws IOException;
 
-    public AnnotationVisitor visitAnnotation() throws IOException;
+    AnnotationVisitor visitAnnotation() throws IOException;
 }

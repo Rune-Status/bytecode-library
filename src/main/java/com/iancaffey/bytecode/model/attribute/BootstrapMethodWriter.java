@@ -23,7 +23,8 @@ public class BootstrapMethodWriter extends BytecodeWriter implements BootstrapMe
     public void visit(int index, int[] argumentIndexes) throws IOException {
         writeShort(index);
         writeShort(argumentIndexes.length);
-        for (int argumentIndex : argumentIndexes)
+        for (int argumentIndex : argumentIndexes) {
             writeShort(argumentIndex);
+        }
     }
 }

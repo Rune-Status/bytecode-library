@@ -11,5 +11,5 @@ import java.io.IOException;
  * @since 1.0
  */
 public interface AnnotationVisitor extends BytecodeVisitor {
-    public ElementValuePairVisitor visit(int typeIndex, int count) throws IOException;
+    ElementValuePairVisitor visit(int typeIndex, int count) throws IOException;
 }

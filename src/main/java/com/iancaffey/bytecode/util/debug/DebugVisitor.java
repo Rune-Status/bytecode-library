@@ -29,8 +29,9 @@ public class DebugVisitor implements BytecodeVisitor {
 
     protected void log(String info, int padding) {
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < indent + padding; i++)
+        for (int i = 0; i < indent + padding; i++) {
             builder.append('\t');
+        }
         builder.append(info);
         System.out.println(builder.toString());
     }

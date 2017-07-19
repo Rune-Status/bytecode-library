@@ -11,17 +11,17 @@ import java.io.IOException;
  * @since 1.0
  */
 public interface StackMapTableVisitor extends BytecodeVisitor {
-    public void visitSameFrame(int type) throws IOException;
+    void visitSameFrame(int type) throws IOException;
 
-    public VerificationTypeVisitor visitSingleStackItemFrame(int type) throws IOException;
+    VerificationTypeVisitor visitSingleStackItemFrame(int type) throws IOException;
 
-    public VerificationTypeVisitor visitSingleStackItemFrameExtended(int offset) throws IOException;
+    VerificationTypeVisitor visitSingleStackItemFrameExtended(int offset) throws IOException;
 
-    public void visitChopFrame(int type, int offset) throws IOException;
+    void visitChopFrame(int type, int offset) throws IOException;
 
-    public void visitSameFrameExtended(int offset) throws IOException;
+    void visitSameFrameExtended(int offset) throws IOException;
 
-    public VerificationTypeVisitor visitAppendFrame(int type, int offset, int count) throws IOException;
+    VerificationTypeVisitor visitAppendFrame(int type, int offset, int count) throws IOException;
 
-    public FullFrameVisitor visitFullFrame(int offset) throws IOException;
+    FullFrameVisitor visitFullFrame(int offset) throws IOException;
 }

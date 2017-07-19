@@ -11,5 +11,5 @@ import java.io.IOException;
  * @since 1.0
  */
 public interface BootstrapMethodVisitor extends BytecodeVisitor {
-    public void visit(int index, int[] argumentIndexes) throws IOException;
+    void visit(int index, int[] argumentIndexes) throws IOException;
 }

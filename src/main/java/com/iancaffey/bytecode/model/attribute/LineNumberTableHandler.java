@@ -16,7 +16,8 @@ public class LineNumberTableHandler {
     public static void accept(BytecodeReader<ClassModelVisitor> reader, AttributeModelVisitor visitor, int nameIndex, int length) throws IOException {
         int count = reader.readUnsignedShort();
         LineNumberInfoVisitor lineNumberInfoVisitor = visitor.visitLineNumberTable(nameIndex, length, count);
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++) {
             lineNumberInfoVisitor.visit(reader.readUnsignedShort(), reader.readUnsignedShort());
+        }
     }
 }

@@ -16,8 +16,9 @@ public class BootstrapMethodHandler {
         int index = reader.readUnsignedShort();
         int count = reader.readUnsignedShort();
         int[] parameterIndexes = new int[count];
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++) {
             parameterIndexes[i] = reader.readUnsignedShort();
+        }
         visitor.visit(index, parameterIndexes);
     }
 }

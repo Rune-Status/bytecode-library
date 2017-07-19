@@ -17,8 +17,9 @@ public class SourceDebugExtensionHandler {
     public static void accept(BytecodeReader<ClassModelVisitor> reader, AttributeModelVisitor visitor, int nameIndex, int length) throws IOException {
         byte[] data = new byte[length];
         int read = reader.read(data);
-        if (read != length)
+        if (read != length) {
             throw new BufferUnderflowException();
+        }
         visitor.visitSourceDebugExtension(nameIndex, length, data);
     }
 }

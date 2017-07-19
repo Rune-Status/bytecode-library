@@ -11,29 +11,29 @@ import java.io.IOException;
  * @since 1.0
  */
 public interface ElementValueVisitor extends BytecodeVisitor {
-    public void visitByte(int index) throws IOException;
+    void visitByte(int index) throws IOException;
 
-    public void visitCharacter(int index) throws IOException;
+    void visitCharacter(int index) throws IOException;
 
-    public void visitDouble(int index) throws IOException;
+    void visitDouble(int index) throws IOException;
 
-    public void visitFloat(int index) throws IOException;
+    void visitFloat(int index) throws IOException;
 
-    public void visitInteger(int index) throws IOException;
+    void visitInteger(int index) throws IOException;
 
-    public void visitLong(int index) throws IOException;
+    void visitLong(int index) throws IOException;
 
-    public void visitShort(int index) throws IOException;
+    void visitShort(int index) throws IOException;
 
-    public void visitBoolean(int index) throws IOException;
+    void visitBoolean(int index) throws IOException;
 
-    public void visitString(int index) throws IOException;
+    void visitString(int index) throws IOException;
 
-    public void visitEnum(int typeIndex, int nameIndex) throws IOException;
+    void visitEnum(int typeIndex, int nameIndex) throws IOException;
 
-    public void visitClass(int index) throws IOException;
+    void visitClass(int index) throws IOException;
 
-    public AnnotationVisitor visitAnnotation() throws IOException;
+    AnnotationVisitor visitAnnotation() throws IOException;
 
-    public ElementValueVisitor visitArray(int count) throws IOException;
+    ElementValueVisitor visitArray(int count) throws IOException;
 }

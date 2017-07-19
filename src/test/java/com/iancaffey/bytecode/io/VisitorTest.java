@@ -12,8 +12,8 @@ import java.io.IOException;
  * @since 1.0
  */
 public class VisitorTest {
-    private static interface ByteVisitor extends BytecodeVisitor {
-        public void visit(byte[] data);
+    private interface ByteVisitor extends BytecodeVisitor {
+        void visit(byte[] data);
     }
 
     @Test

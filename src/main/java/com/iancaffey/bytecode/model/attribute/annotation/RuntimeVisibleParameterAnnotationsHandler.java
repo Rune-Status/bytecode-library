@@ -18,7 +18,8 @@ public class RuntimeVisibleParameterAnnotationsHandler {
     public static void accept(BytecodeReader<ClassModelVisitor> reader, AttributeModelVisitor visitor, int nameIndex, int length) throws IOException {
         int count = reader.readUnsignedByte();
         ParameterAnnotationVisitor parameterAnnotationVisitor = visitor.visitRuntimeVisibleParameterAnnotations(nameIndex, length, count);
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++) {
             AnnotationHandler.accept(reader, parameterAnnotationVisitor.visitAnnotations(reader.readUnsignedShort()));
+        }
     }
 }

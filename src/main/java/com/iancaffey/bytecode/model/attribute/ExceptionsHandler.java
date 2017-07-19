@@ -16,8 +16,9 @@ public class ExceptionsHandler {
     public static void accept(BytecodeReader<ClassModelVisitor> reader, AttributeModelVisitor visitor, int nameIndex, int length) throws IOException {
         int count = reader.readUnsignedShort();
         int[] exceptionIndexes = new int[count];
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++) {
             exceptionIndexes[i] = reader.readUnsignedShort();
+        }
         visitor.visitExceptions(nameIndex, length, exceptionIndexes);
     }
 }
